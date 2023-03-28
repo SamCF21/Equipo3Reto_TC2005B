@@ -1,3 +1,6 @@
+# TEAM3 
+
+Documentation and assignments for our videogame project for the course TC2005B
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
 <!--

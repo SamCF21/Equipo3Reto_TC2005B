@@ -1,5 +1,7 @@
 # **Game Name Here**
 
+Mealtime Mayhem: The fungal Invasion
+
 ## _Game Design Document_
 
 ---
@@ -46,15 +48,23 @@
 
 ### **Summary**
 
-Sum up your game idea in 2 sentences. A kind of elevator pitch. Keep it simple!
+You share a love for the gastronomic culture of your country so when you move to an island you decide to start your food business, what you were not prepared to face is that there is an evil entity that seeks to harm your food, reputation and business. To defend what you have fought so hard for, you have created food soldiers.
+Choose the best food combinations to defend yourself against the hordes of fungi, protect your cart, add new ingredients to your soldiers, upgrade your food cart and free the island from the evil that stalks it so that you can dominate the stomachs of the inhabitants.
 
 ### **Gameplay**
 
-What should the gameplay be like? What is the goal of the game, and what kind of obstacles are in the way? What tactics should the player use to overcome them?
+In the video game you first select the nationality with which you want to customize the chef, which will give special attributes to the food you make. The food soldier will be based on a dish from the country's gastronomy.
+The created soldiers will be completely customizable from the base, their mission is to defend the food stall, which will be found in the center of the map.
+The map is divided into tiles, which allow the player to select the tile they want to position the soldiers on.
+They have to defend the food stall from the fungi, who has been the main enemy, which appear in hordes.
+If a soldier and a fungi meet they start fighting, if the fungi reaches the food stall you start to lose score, if the hordes of fungi end the player wins the level.
+According to the score level will be the reward of the player, with the reward points you can improve your soldiers, food stall and cooking skills.
+As the levels progress, different types of fungi will appear, which will have different abilities and will appear in greater numbers.
+If one of your soldiers dies, you will not be able to revive him. You lose if you run out of soldiers or if your food stand is destroyed by the fungi.
 
 ### **Mindset**
 
-What kind of mindset do you want to provoke in the player? Do you want them to feel powerful, or weak? Adventurous, or nervous? Hurried, or calm? How do you intend to provoke those emotions?
+What is expected to generate in a player is a strategic and tactical approach, where they have to make decisions about the best selection of food to face the mushrooms of the level, as well as the ability to think long term and be able to act on unpredictable decisions.
 
 ## _Technical_
 
@@ -78,7 +88,72 @@ How will the player interact with the game? Will they be able to choose the cont
 
 ### **Mechanics**
 
-Are there any interesting mechanics? If so, how are you going to accomplish them? Physics, algorithms, etc.
+Nationality selection:
+This allows you to change the type of soldier according to the cuisine of the selected nationality.
+
+Each nationality will have items that give soldiers an advantage:
+ Mexican (Spicy): Mexican food soldiers' attacks have a chance to deal fire damage on enemies.
+ Venezuelan (Resistance): The vitality of Venezuelan food soldiers is increased.
+ American (Fast Food): American food soldiers heal faster.
+
+Ingredient selection:
+This allows you to customize the soldiers from the beginning, having advantages and disadvantages according to the elements that you select:
+
+Base:
+MEXICAN
+1. Flour tortilla (higher speed, less health)
+2. Corn tortilla (greater, health, slower speed)
+VENEZUELAN
+1. White arepa (increased attack speed, less health) 
+2. Yellow arepa (More damage per attack, reduced attack speed)
+US
+1. Bread (Base element that does not change, but as the soldier improves his class will be defined)
+
+First ingredient:
+MEXICAN
+1. Beef
+2. Pork Meat
+3. Chicken meat
+VENEZUELAN
+1. Meatloaf
+2. Ham
+4. Egg
+US
+1. Hamburger 'bread
+2. Hot dog bread
+
+Second ingredient
+MEXICAN
+1. Coriander and onion
+2. Lemon
+3. Cheese
+VENEZUELAN
+1. Cheese
+2. Beans
+3. Butter
+US
+1. Beef
+2. Pork Meat
+3. Vegan
+
+Third ingredient
+MEXICAN
+1. Green sauce
+2. Red sauce
+VENEZUELAN
+1. Garlic sauce
+2. Guasacaca
+US
+1. Ketchup
+2. Mayonnaise
+3. Mustard
+
+Item selection:
+After completing milestone hordes, you will be offered items which will allow you to upgrade your soldiers with specific abilities.
+1. Salt
+2. Pepper
+3. Cumin
+4. Garlic
 
 ## _Level Design_
 

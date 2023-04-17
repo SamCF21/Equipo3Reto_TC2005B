@@ -53,14 +53,8 @@ Choose the best food combinations to defend yourself against the hordes of fungi
 
 ### **Gameplay**
 
-In the video game you first select the nationality with which you want to customize the chef, which will give special attributes to the food you make. The food soldier will be based on a dish from the country's gastronomy.
-The created soldiers will be completely customizable from the base, their mission is to defend the food stall, which will be found in the center of the map.
-The map is divided into tiles, which allow the player to select the tile they want to position the soldiers on.
-They have to defend the food stall from the fungi, who has been the main enemy, which appear in hordes.
-If a soldier and a fungi meet they start fighting, if the fungi reaches the food stall you start to lose score, if the hordes of fungi end the player wins the level.
-According to the score level will be the reward of the player, with the reward points you can improve your soldiers, food stall and cooking skills.
-As the levels progress, different types of fungi will appear, which will have different abilities and will appear in greater numbers.
-If one of your soldiers dies, you will not be able to revive him. You lose if you run out of soldiers or if your food stand is destroyed by the fungi.
+When starting the game, you select the nationality with which you want to customize the chef, which will grant special attributes to the food you make. The food soldier will be based on a dish from the country's gastronomy and each one will be completely customizable from the base. These have the mission of defending the food stall, which is located in the center of the map, from the hordes of fungi that seek to destroy it. The map is divided into squares, which allow the player to select the most optimal position for the soldiers.
+The soldier starts attacking once he comes across a fungi. If the player manages to kill all the hordes of fungi, the level will be passed. However, if the fungi defeats the soldier, the soldier cannot be revived and the fungi will advance. If the fungi reach the food cart, the score will start to drop. The player will lose the level if they run out of soldiers or if the fungi manage to destroy their food stand. The reward granted for each level is according to the score obtained in it. These rewards allow you to make improvements to the soldiers, the food stall and cooking skills. As the player levels up, they will find different types of fungi with new abilities that will appear in greater numbers.
 
 ### **Mindset**
 

@@ -99,6 +99,8 @@ Venezuelan (Resistance): The vitality of Venezuelan food soldiers is increased.
 
 American (Fast Food): American food soldiers heal faster.
 
+
+
 Ingredient selection:
 
 This allows you to customize the soldiers from the beginning, having advantages and disadvantages according to the elements that you select:

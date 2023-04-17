@@ -1,6 +1,6 @@
 # **Game Name Here**
 
-Mealtime Mayhem: The fungal Invasion
+Mealtime Mayhem
 
 ## _Game Design Document_
 

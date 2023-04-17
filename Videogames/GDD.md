@@ -1,6 +1,6 @@
 # **Game Name Here**
 
-Mealtime Mayhem: The fungal Invasion
+Mealtime Mayhem
 
 ## _Game Design Document_
 
@@ -88,8 +88,7 @@ How will the player interact with the game? Will they be able to choose the cont
 
 ### **Mechanics**
 
-Nationality selection:
-This allows you to change the type of soldier according to the cuisine of the selected nationality.
+Nationality selection: This allows you to change the type of soldier according to the cuisine of the selected nationality.
 
 Each nationality will have items that give soldiers an advantage:
 
@@ -101,9 +100,7 @@ American (Fast Food): American food soldiers heal faster.
 
 
 
-Ingredient selection:
-
-This allows you to customize the soldiers from the beginning, having advantages and disadvantages according to the elements that you select:
+Ingredient selection: This allows you to customize the soldiers from the beginning, having advantages and disadvantages according to the elements that you select:
 
 Base:
 
@@ -178,9 +175,7 @@ US
 2. Mayonnaise
 3. Mustard
 
-Item selection:
-
-After completing milestone hordes, you will be offered items which will allow you to upgrade your soldiers with specific abilities.
+Item selection: After completing milestone hordes, you will be offered items which will allow you to upgrade your soldiers with specific abilities.
 
 1. Salt
 2. Pepper

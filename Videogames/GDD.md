@@ -92,64 +92,94 @@ Nationality selection:
 This allows you to change the type of soldier according to the cuisine of the selected nationality.
 
 Each nationality will have items that give soldiers an advantage:
- Mexican (Spicy): Mexican food soldiers' attacks have a chance to deal fire damage on enemies.
- Venezuelan (Resistance): The vitality of Venezuelan food soldiers is increased.
- American (Fast Food): American food soldiers heal faster.
+
+Mexican (Spicy): Mexican food soldiers' attacks have a chance to deal fire damage on enemies.
+ 
+Venezuelan (Resistance): The vitality of Venezuelan food soldiers is increased.
+
+American (Fast Food): American food soldiers heal faster.
 
 Ingredient selection:
+
 This allows you to customize the soldiers from the beginning, having advantages and disadvantages according to the elements that you select:
 
 Base:
+
 MEXICAN
+
 1. Flour tortilla (higher speed, less health)
 2. Corn tortilla (greater, health, slower speed)
+
 VENEZUELAN
+
 1. White arepa (increased attack speed, less health) 
 2. Yellow arepa (More damage per attack, reduced attack speed)
+
 US
+
 1. Bread (Base element that does not change, but as the soldier improves his class will be defined)
 
 First ingredient:
+
 MEXICAN
+
 1. Beef
 2. Pork Meat
 3. Chicken meat
+
 VENEZUELAN
+
 1. Meatloaf
 2. Ham
 4. Egg
+
 US
+
 1. Hamburger 'bread
 2. Hot dog bread
 
-Second ingredient
+Second ingredient:
+
 MEXICAN
+
 1. Coriander and onion
 2. Lemon
 3. Cheese
+
 VENEZUELAN
+
 1. Cheese
 2. Beans
 3. Butter
+
 US
+
 1. Beef
 2. Pork Meat
 3. Vegan
 
-Third ingredient
+Third ingredient:
+
 MEXICAN
+
 1. Green sauce
 2. Red sauce
+
 VENEZUELAN
+
 1. Garlic sauce
 2. Guasacaca
+
 US
+
 1. Ketchup
 2. Mayonnaise
 3. Mustard
 
 Item selection:
+
 After completing milestone hordes, you will be offered items which will allow you to upgrade your soldiers with specific abilities.
+
 1. Salt
 2. Pepper
 3. Cumin

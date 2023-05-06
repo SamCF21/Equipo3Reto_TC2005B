@@ -24,15 +24,9 @@ Mealtime Mayhem
     3. [Mechanics](#mechanics)
 4. [Level Design](#level-design)
     1. [Themes](#themes)
-        1. Ambience
-        2. Objects
-            1. Ambient
-            2. Interactive
-        3. Challenges
     2. [Game Flow](#game-flow)
 5. [Development](#development)
     1. [Abstract Classes](#abstract-classes--components)
-    2. [Derived Classes](#derived-classes--component-compositions)
 6. [Graphics](#graphics)
     1. [Style Attributes](#style-attributes)
     2. [Graphics Needed](#graphics-needed)
@@ -48,13 +42,27 @@ Mealtime Mayhem
 
 ### **Summary**
 
-You share a love for the gastronomic culture of your country so when you move to an island you decide to start your food business, what you were not prepared to face is that there is an evil entity that seeks to harm your food, reputation and business. To defend what you have fought so hard for, you have created food soldiers.
-Choose the best food combinations to defend yourself against the hordes of fungi, protect your cart, add new ingredients to your soldiers, upgrade your food cart and free the island from the evil that stalks it so that you can dominate the stomachs of the inhabitants.
+Mealtime Mayhem is a real time strategy game where the player takes the role of a chef that has to fight the evil fungi that was found on the island where they recently opened their regional food cart.
 
 ### **Gameplay**
 
-When starting the game, you select the nationality with which you want to customize the chef, which will grant special attributes to the food you make. The food soldier will be based on a dish from the country's gastronomy and each one will be completely customizable from the base. These have the mission of defending the food stall, which is located in the center of the map, from the hordes of fungi that seek to destroy it. The map is divided into squares, which allow the player to select the most optimal position for the soldiers.
-The soldier starts attacking once he comes across a fungi. If the player manages to kill all the hordes of fungi, the level will be passed. However, if the fungi defeats the soldier, the soldier cannot be revived and the fungi will advance. If the fungi reach the food cart, the score will start to drop. The player will lose the level if they run out of soldiers or if the fungi manage to destroy their food stand. The reward granted for each level is according to the score obtained in it. These rewards allow you to make improvements to the soldiers, the food stall and cooking skills. As the player levels up, they will find different types of fungi with new abilities that will appear in greater numbers.
+The game is a 2D top-down with RPG and real-time strategy elements, where the player must focus on selecting the best strategy to defeat the enemy hordes of fungi, creating the food companions that will best fulfill the task.
+
+The playable ground is designed as a grid in order to aid the player regarding the positioning of the chef and his sidekicks. For the placement of the characters on the grid, the player will have to select the character followed by the desired square. Once placed, the sidekicks will remain fixed on the selected square. The chef will be able to move to the food cart in case a sidekick is defeated and a new one has to be created. In terms of the enemies (fungi), these will spawn randomly from the edges of the playable ground and move freely towards the food cart. 
+
+The levels of the game revolve around hordes of enemies (fungi) that must be defeated by the player and its food sidekicks. As they are individually defeated they release certain loot items related to the gas that the food cart uses to prepare more sidekicks, which ultimately allows for the creation of these helper characters and a certain scalability to the gameplay.
+
+The attack of the characters is automatic and will be triggered whenever an enemy and a sidekick/chef encounter each other within a certain distance. The healing of the chef and sidekicks is also automatic, entering into effect a few seconds after finishing a combat.
+
+After completing a level, a certain amount of points will be given to the player based on performance, this points can be spent on the many skill trees available in the game, where you can upgrade the chef or the sidekick statistics, such as health, speed and damage
+
+You can select some of the cosmetic elements that will affect the chef character, such as color, other cosmetics will start appearing after the evolution of the chef’s skill tree, showing improvement of their statistics.
+
+The player will be able to customize the food companions, allowing for the opportunity to create strategies according to the situations that arise. If a companion is destroyed, it will not be possible to revive it, and if the chef dies, it will be game over.
+
+The chef is the main character that the entire game is based on. Its main mission is to defend his food cart from the fungi by creating his sidekicks. Likewise, he can attack his enemies with melee combat with the spatula that he has by default, when attacking opponents and collecting gas, XP among other items allows him to improve his cooking skills (to improve his sidekicks) and his own skills such as speed , stamina, life, etc.. to make him more powerful.
+
+To create the food that will be their sidekicks, the chef must collect gas from the fungi by killing them as this will be useful to be able to use his stall and cook his sidekicks, then to be able to improve his sidekicks with different ingredients and improve the skill tree of the chef, the xp points that the chef is obtaining for the attacks, hordes and levels won must be exchanged.
 
 ### **Mindset**
 
@@ -67,114 +75,152 @@ What is expected to generate in a player is a strategic and tactical approach, w
 ### **Screens**
 
 1. Title Screen
-    1. Options
-2. Level Select
-3. Game
-    1. Inventory
-    2. Assessment / Next Level
-4. End Credits
+   1. Controls
+   1. Login/Play
+   1. Stats
+   1. Options
 
-_(example)_
+![Title Screen](/Videogames/imagesforGDD/titlescreen.png)
+
+2. Game slot selection
+
+![Game slot selection](/Videogames/imagesforGDD/gameselection.png)
+
+3. Country selection
+
+![Country selection](/Videogames/imagesforGDD/nationalityselection.png)
+
+
+4. Game
+   1. Sidekick upgrades
+
+![Chef upgrades](/Videogames/imagesforGDD/ChefUpgrades.png)
+
+   1. Food upgrades
+
+![Food upgrades](/Videogames/imagesforGDD/FoodUpgrades.png)
+
+   1. Skill tree upgrades
+   1. Fungi hordes (3)
+   1. Levels (5)
+
+![Levels](/Videogames/imagesforGDD/levels.png)
+
+   1. Level map
+
+![map](/Videogames/imagesforGDD/tiles.jpg)
+
+
+5. End Screen
+   1. Winning screen
+
+![Winning screen](/Videogames/imagesforGDD/endwon.png)
+
+   1. Losing screen
+
+![Loosing screen](/Videogames/imagesforGDD/endlost.png)
+
+6. Credits Screen
+
+![Credits screen](/Videogames/imagesforGDD/credits.png)
 
 ### **Controls**
 
-How will the player interact with the game? Will they be able to choose the controls? What kind of in-game events are they going to be able to trigger, and how? (e.g. pressing buttons, opening doors, etc.)
+The game is played by using the mouse controller in order to select where the sidekick will be placed, sidekick´s upgrades selection and other game options like the food stand or the chef personalization. 
+
+**Assets**:
+
+Sprites: 
+
+1. Chef: that can be personalized
+
+![Chef](/Videogames/imagesforGDD/chef.png)
+
+1. Chef´s weapon (selected by the player)
+
+4. Food:
+   1. Mexican
+
+![mex](/Videogames/imagesforGDD/taco.png)
+
+
+      1. Taco (will be upgrades as the game advance) 
+   1. Venezuelan
+
+![ven](/Videogames/imagesforGDD/arepa.png)
+
+      1. Arepa ( will be upgrades as the game advance)
+   1. USA
+
+![us](/Videogames/imagesforGDD/bread.png)
+
+      1. Sandwich (will be upgrades as the game advance)
+3. Enemies (Fungi)
+   1. Type 1
+
+![e1](/Videogames/imagesforGDD/enemy1.png)
+
+
+   2. Type 2
+
+![e2](/Videogames/imagesforGDD/enemy2.png)
+
+   3. Type 3 
+
+![e3](/Videogames/imagesforGDD/enemy3.png)
+
+Note: the color of the Fungi distinguishes each type from each other, in the game, each type has its own difficulty. 
+
+5. Food cart
+
+![fc](/Videogames/imagesforGDD/foodcart.png)
+
+1. Background
+   1. Island background with sea animations
+   1. Grid (playable ground) 
+   1. Level design:
+      1. Progress bar 
+      1. Food stall
+      1. Background decorations
+         1. Palm tree
+         1. Boat
+         1. Menu button 
+1. Title screen
+   1. Background
+   1. Log In setup
+      1. Buttons 
+         1. Username
+         1. Password
+         1. Sign in
+         1. Welcome 
+   1. Country selection 
+   1. Upgrades 
+
+Audio
+
+1. Title screen
+1. Level music
+1. End level 
+   1. Win level
+   1. Lose level
+1. Upgrades scene 
+1. End game 
+1. Credits 
 
 ### **Mechanics**
 
-Nationality selection: This allows you to change the type of soldier according to the cuisine of the selected nationality.
-
-Each nationality will have items that give soldiers an advantage:
-
-Mexican (Spicy): Mexican food soldiers' attacks have a chance to deal fire damage on enemies.
- 
-Venezuelan (Resistance): The vitality of Venezuelan food soldiers is increased.
-
-American (Fast Food): American food soldiers heal faster.
-
-
-
-Ingredient selection: This allows you to customize the soldiers from the beginning, having advantages and disadvantages according to the elements that you select:
-
-Base:
-
-MEXICAN
-
-1. Flour tortilla (higher speed, less health)
-2. Corn tortilla (greater, health, slower speed)
-
-VENEZUELAN
-
-1. White arepa (increased attack speed, less health) 
-2. Yellow arepa (More damage per attack, reduced attack speed)
-
-US
-
-1. Bread (Base element that does not change, but as the soldier improves his class will be defined)
-
-First ingredient:
-
-MEXICAN
-
-1. Beef
-2. Pork Meat
-3. Chicken meat
-
-VENEZUELAN
-
-1. Meatloaf
-2. Ham
-4. Egg
-
-US
-
-1. Hamburger 'bread
-2. Hot dog bread
-
-Second ingredient:
-
-MEXICAN
-
-1. Coriander and onion
-2. Lemon
-3. Cheese
-
-VENEZUELAN
-
-1. Cheese
-2. Beans
-3. Butter
-
-US
-
-1. Beef
-2. Pork Meat
-3. Vegan
-
-Third ingredient:
-
-MEXICAN
-
-1. Green sauce
-2. Red sauce
-
-VENEZUELAN
-
-1. Garlic sauce
-2. Guasacaca
-
-US
-
-1. Ketchup
-2. Mayonnaise
-3. Mustard
-
-Item selection: After completing milestone hordes, you will be offered items which will allow you to upgrade your soldiers with specific abilities.
-
-1. Salt
-2. Pepper
-3. Cumin
-4. Garlic
+1. Grid like setup: How are the levels configured 
+   1. The level display is based on a grid, like a chess board divided in squares in which the player can place one sidekick per square. 
+1. Scoring system: a way in which the player collects points that will be useful for upgrades. 
+   1. The player will earn points after each level, which is won by defeating each enemy/horde. These points will be stored and can be exchanged for different upgrades like special ingredients for the sidekicks, the chef´s weapon, or the food stall (resistance).
+1. Horde management
+   1. Enemies spawning - Each enemy will appear at a random position declared in a range, and if a sidekick or chef is near, they will attack each other. 
+   1. 2 hordes per level, each one more complex than the other. 
+1. Loot
+   1. Each time an enemy is defeated, it will drop gas
+   1. Gas helps players to create more sidekicks
+1. Cooking
+   1. Each time the chef wants to cook a sidekick, movement or attack will be blocked for a few seconds
 
 ## _Level Design_
 
@@ -184,84 +230,68 @@ _(Note : These sections can safely be skipped if they&#39;re not relevant, or yo
 
 ### **Themes**
 
-1. Forest
-    1. Mood
-        1. Dark, calm, foreboding
-    2. Objects
-        1. _Ambient_
-            1. Fireflies
-            2. Beams of moonlight
-            3. Tall grass
-        2. _Interactive_
-            1. Wolves
-            2. Goblins
-            3. Rocks
-2. Castle
-    1. Mood
-        1. Dangerous, tense, active
-    2. Objects
-        1. _Ambient_
-            1. Rodents
-            2. Torches
-            3. Suits of armor
-        2. _Interactive_
-            1. Guards
-            2. Giant rats
-            3. Chests
+1. Island 
+    1. Light, sunny, colorful.
+2. Objects
+    1. Palm Trees
+    2. Sand
+    3. Sand castles
+    4. Water surroundings
+    5. Boat floating on water surroundings
 
-_(example)_
 
 ### **Game Flow**
 
-1. Player starts in forest
-2. Pond to the left, must move right
-3. To the right is a hill, player jumps to traverse it (&quot;jump&quot; taught)
-4. Player encounters castle - door&#39;s shut and locked
-5. There&#39;s a window within jump height, and a rock on the ground
-6. Player picks up rock and throws at glass (&quot;throw&quot; taught)
-7. … etc.
+1. Player chooses his country
+2. Player starts fighting enemies as a chef
+3. Chef gathers points to redeem for ingredients and cook food sidekicks
+4. Player chooses where to put their sidekicks to fight
+5. Player successfully beats 3 fungi hordes and passes to the next level
 
-_(example)_
 
 ## _Development_
 
 ---
 
-### **Abstract Classes / Components**
+### **Abstract & Derived Classes / Components**
 
-1. BasePhysics
-    1. BasePlayer
-    2. BaseEnemy
-    3. BaseObject
-2. BaseObstacle
-3. BaseInteractable
+1. Chef
+   1. ` `Upgradable stats (health, damage, stamina) 
+1. Chef’s brother 
+   1. Ability to attack 
+   1. Dialogue interaction 
+1. Sidekicks
+   1. Attack 
+   1. Placeable object
+   1. Added upgrade 
+1. Enemies 
+   1. Hord plantation
+   1. Attack
+   1. Loot (may or may not drop gas) 
+1. Food stall
+   1. Upgrades 
+1. Buttons 
+   1. Login 
+   1. Play
+   1. Menu
+1. Progress bars (changeable during each level): 
+   1. Health bar 
+   1. Level bar (hordes)
+1. Stats bars (shown when upgrades are made): 
+   1. Stats such as chef´s stats like health and damage
+   1. Sidekicks´ bars such as health and damage
+   1. Food stall´s bar such as health
+1. Map
+   1. Trigger islands for each level
+   1. Side quests to earn points 
+   1. Opening and closing paths according to the player´s progress
+1. Decision making 
+   1. Nationality 
+   1. Side quest option 
+1. Points
+   1. They can be collected and exchanged for different upgrades
 
-_(example)_
 
-### **Derived Classes / Component Compositions**
-
-1. BasePlayer
-    1. PlayerMain
-    2. PlayerUnlockable
-2. BaseEnemy
-    1. EnemyWolf
-    2. EnemyGoblin
-    3. EnemyGuard (may drop key)
-    4. EnemyGiantRat
-    5. EnemyPrisoner
-3. BaseObject
-    1. ObjectRock (pick-up-able, throwable)
-    2. ObjectChest (pick-up-able, throwable, spits gold coins with key)
-    3. ObjectGoldCoin (cha-ching!)
-    4. ObjectKey (pick-up-able, throwable)
-4. BaseObstacle
-    1. ObstacleWindow (destroyed with rock)
-    2. ObstacleWall
-    3. ObstacleGate (watches to see if certain buttons are pressed)
-5. BaseInteractable
-    1. InteractableButton
-
-_(example)_
 
 ## _Graphics_
 

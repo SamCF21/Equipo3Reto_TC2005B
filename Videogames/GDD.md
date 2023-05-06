@@ -1,6 +1,4 @@
-# **Game Name Here**
-
-Mealtime Mayhem
+# **Mealtime Mayhem**
 
 ## _Game Design Document_
 

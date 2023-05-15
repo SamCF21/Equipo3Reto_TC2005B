@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203970660}
   - component: {fileID: 203970659}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: GridManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2df10347a2bd146967efec85904264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 16
-  _height: 9
+  _width: 20
+  _height: 8
   _tilePrefab: {fileID: 7609939618437235271, guid: 56c781b3b6d74ae4c959228d59187125, type: 3}
   _cam: {fileID: 519420032}
 --- !u!4 &203970660
@@ -224,7 +224,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8.894244
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

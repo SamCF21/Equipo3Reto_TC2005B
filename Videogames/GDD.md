@@ -4,7 +4,7 @@
 
 ---
 
-##### **Copyright notice / author information / boring legal stuff nobody likes**
+##### **Copyright notice / Samantha Covarrubias, Cristina González, Valeria Martínez, Mauricio Tumalan, Fernanda Colomo / E**
 
 ##
 ## _Index_

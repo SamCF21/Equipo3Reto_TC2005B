@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class PlayerController_chefd : MonoBehaviour
 {
-    //Initiate rigidbody for player
-    private Rigidbody2D rigid;
+    public float speed = 5f; // Velocidad de movimiento del jugador
 
-    [SerializeField]
-    private float speed; //controls character´s speed only for this script
-    // Start is called before the first frame update
+    private Rigidbody2D rb; // Referencia al componente Rigidbody2D del jugador
+
     void Start()
     {
-        //takes the component which is the rigidbody
-        rigid = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>(); // Obtener referencia al componente Rigidbody2D
     }
 
-    // Update is called once per frame
     void Update()
     {
-        rigid.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis(""));
+        // Obtener la entrada horizontal y vertical del teclado
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        // Calcular el vector de movimiento
+        Vector2 movement = new Vector2(moveHorizontal, moveVertical) * speed * Time.deltaTime;
+
+        // Aplicar el movimiento al Rigidbody2D del jugador
+        rb.MovePosition(rb.position + movement);
     }
 }

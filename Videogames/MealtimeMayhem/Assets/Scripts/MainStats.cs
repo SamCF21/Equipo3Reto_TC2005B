@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainStats : MonoBehaviour
 {
-    public float globalSpeed = 1.0f;
+    public float globalSpeed = 0.5f;
     public float globalEnemySpeed;
     public float globalEnemyHealth;
     public float globalEnemyAttack;

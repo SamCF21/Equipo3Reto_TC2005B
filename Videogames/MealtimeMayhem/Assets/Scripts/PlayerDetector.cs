@@ -8,7 +8,6 @@ public class PlayerDetector : MonoBehaviour
     public Button botonCerrar; // Referencia al botón de cerrar
     public Button botonJugar; // Referencia al botón de jugar
 
-    private bool ventanaEmergenteActivada = false;
 
     private void Start()
     {

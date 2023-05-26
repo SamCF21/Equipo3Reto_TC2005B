@@ -34,4 +34,3 @@ public class PlayerDetector : MonoBehaviour
         SceneManager.LoadScene("SceneCris");
     }
 }
-

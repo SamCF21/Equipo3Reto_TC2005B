@@ -8,6 +8,9 @@ TagManager:
   - Ally
   - Base
   - Enemy
+  - Tier1Skill
+  - Tier2Skill
+  - Tier3Skill
   layers:
   - Default
   - TransparentFX

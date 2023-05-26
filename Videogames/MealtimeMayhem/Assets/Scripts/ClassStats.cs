@@ -12,6 +12,9 @@ public class ClassStats : MonoBehaviour
    public int life = 1;
    public int maxhealth = 5;
    public int health = 0;
+   public GameObject healthBarPrefab;
+   public Transform canvas;
+   private HealthBarFollow healthBarFollow;
 
     void Start(){
         health = maxhealth;
@@ -30,4 +33,8 @@ public class ClassStats : MonoBehaviour
             Destroy(gameObject);
         }
     } 
+
+    public void SpawnHealth(Transform target){
+        GameObject healthBarInstance = Instantiate (healthBarPrefab, canvas);
+    }
 }

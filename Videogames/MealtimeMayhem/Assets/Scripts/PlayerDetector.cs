@@ -31,7 +31,7 @@ public class PlayerDetector : MonoBehaviour
     // Método para iniciar el juego
     public void Jugar()
     {
-        SceneManager.LoadScene("SceneMau");
+        SceneManager.LoadScene("SceneCris");
     }
 }
 

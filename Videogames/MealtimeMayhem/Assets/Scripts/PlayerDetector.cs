@@ -7,7 +7,7 @@ public class PlayerDetector : MonoBehaviour
     public Canvas ventanaEmergente; // Referencia al componente Canvas de la ventana emergente
     public Button botonCerrar; // Referencia al botón de cerrar
     public Button botonJugar; // Referencia al botón de jugar
-
+    public bool triggeredWindow;
 
     private void Start()
     {
@@ -20,12 +20,14 @@ public class PlayerDetector : MonoBehaviour
     public void MostrarVentanaEmergente()
     {
         ventanaEmergente.gameObject.SetActive(true);
+        triggeredWindow = true;
     }
 
     // Método para cerrar la ventana emergente
     public void CerrarVentanaEmergente()
     {
         ventanaEmergente.gameObject.SetActive(false);
+        triggeredWindow = false;
     }
 
     // Método para iniciar el juego

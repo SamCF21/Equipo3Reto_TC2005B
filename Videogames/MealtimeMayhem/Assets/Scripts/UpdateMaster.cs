@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpdateMaster : MonoBehaviour
+public class pdateMaster : MonoBehaviour
 {
     private GameObject left;
     private GameObject right;

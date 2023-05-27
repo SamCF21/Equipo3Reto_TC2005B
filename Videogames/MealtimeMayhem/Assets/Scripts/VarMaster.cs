@@ -6,4 +6,8 @@ public class VarMaster : MonoBehaviour{
     public int nat;
     public Color eyeColor;
     public Color headColor;
+
+    void Update(){
+        DontDestroyOnLoad(this.gameObject);
+    }
 }

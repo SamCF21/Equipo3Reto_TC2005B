@@ -47,6 +47,8 @@ public class CustomizeMaster : MonoBehaviour
                 usa.SetActive(true);
                 break;
         }
+
+        varMaster.nat = nat;
     }
 
     void BodyColorChanger(){
@@ -79,17 +81,13 @@ public class CustomizeMaster : MonoBehaviour
         if (hit.collider != null){
             if (hit.collider.gameObject.name == "Left"){
                 nat -= 1;
-                varMaster.nat = nat;
                 if (nat < 1){
                     nat = 3;
-                    varMaster.nat = nat;
                 }
             }
             else if (hit.collider.gameObject.name == "Right"){
-                nat += 1;
                 if (nat > 3){
                     nat = 1;
-                    varMaster.nat = nat;
                 }
             }
         }

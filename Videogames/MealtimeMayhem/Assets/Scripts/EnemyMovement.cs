@@ -80,6 +80,9 @@ public class EnemyMovement : MonoBehaviour
             nearestAllyPosition = Vector2.zero;
             targetPosition = foodCart.transform.position;
             Destroy(gameObject);
+            if (GameObject.Find("Score").GetComponent<ScoreValue>()){
+               ScoreValue.scoreValue += 55;
+            }
         }
     } 
     

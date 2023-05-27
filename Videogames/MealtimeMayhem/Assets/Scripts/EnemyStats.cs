@@ -24,6 +24,9 @@ public class EnemyStats : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            if (GameObject.Find("Score").GetComponent<ScoreValue>()){
+               ScoreValue.scoreValue += 125;
+            }
         }
     }       
 }

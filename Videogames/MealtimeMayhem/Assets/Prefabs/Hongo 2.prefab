@@ -108,7 +108,7 @@ MonoBehaviour:
   speed: 2
   attack: 1
   life: 1
-  maxhealth: 1
+  maxhealth: 2
   health: 0
 --- !u!114 &7539649415487342972
 MonoBehaviour:

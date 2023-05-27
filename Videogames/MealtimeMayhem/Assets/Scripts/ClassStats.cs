@@ -27,7 +27,15 @@ public class ClassStats : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            EnemyMovement[] enemyMovements = FindObjectsOfType<EnemyMovement>();
+            if (enemyMovements != null && enemyMovements.Length > 0)
+            {
+                foreach (EnemyMovement enemyMovement in enemyMovements)
+                {
+                    enemyMovement.OnAllyKilled(transform.position);
+                }
+            }
             Destroy(gameObject);
         }
     } 
-}
+} 

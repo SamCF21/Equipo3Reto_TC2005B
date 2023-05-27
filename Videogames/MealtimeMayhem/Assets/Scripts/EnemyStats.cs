@@ -10,12 +10,20 @@ public class EnemyStats : MonoBehaviour
     public float speed = 1f;
     public float attack = 1f;
     public int life = 1;
+    public int maxhealth = 5;
+    public int health = 0;
     
-    void Start(){
-        if(enemyType == 1){
-            speed = 3;
-            attack = 2;
-            life = 3;
+    void Start()
+    {
+        health = maxhealth;
+    }
+
+    public void Damage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }       
 }

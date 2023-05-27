@@ -3475,6 +3475,8 @@ GameObject:
   - component: {fileID: 849286949}
   - component: {fileID: 849286948}
   - component: {fileID: 849286947}
+  - component: {fileID: 849286955}
+  - component: {fileID: 849286954}
   m_Layer: 7
   m_Name: ArepaBlanca (2)
   m_TagString: Ally
@@ -3544,7 +3546,7 @@ MonoBehaviour:
   speed: 1
   attack: 1
   life: 1
-  maxhealth: 10
+  maxhealth: 5
   health: 0
 --- !u!95 &849286951
 Animator:
@@ -3634,6 +3636,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &849286954
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849286946}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 5
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &849286955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849286946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5f106a02a9f4158accf50f20165521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  thrust: 5
+  knockTime: 0.4
 --- !u!1 &855848910
 GameObject:
   m_ObjectHideFlags: 0
@@ -6268,9 +6306,11 @@ GameObject:
   - component: {fileID: 1586120453}
   - component: {fileID: 1586120452}
   - component: {fileID: 1586120451}
+  - component: {fileID: 1586120456}
   - component: {fileID: 1586120450}
   - component: {fileID: 1586120449}
   - component: {fileID: 1586120448}
+  - component: {fileID: 1586120455}
   m_Layer: 7
   m_Name: ArepaBlanca (3)
   m_TagString: Ally
@@ -6350,7 +6390,7 @@ MonoBehaviour:
   speed: 1
   attack: 1
   life: 1
-  maxhealth: 10
+  maxhealth: 6
   health: 0
 --- !u!95 &1586120452
 Animator:
@@ -6440,6 +6480,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1586120455
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586120447}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 5
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &1586120456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586120447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5f106a02a9f4158accf50f20165521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  thrust: 5
+  knockTime: 0.4
 --- !u!1 &1587978132
 GameObject:
   m_ObjectHideFlags: 0
@@ -6563,7 +6639,8 @@ GameObject:
   - component: {fileID: 1626607024}
   - component: {fileID: 1626607022}
   - component: {fileID: 1626607026}
-  m_Layer: 0
+  - component: {fileID: 1626607027}
+  m_Layer: 9
   m_Name: carrito
   m_TagString: Base
   m_Icon: {fileID: 0}
@@ -6636,7 +6713,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: c07cefd208f3d4859ad1207f911f1a9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6678,6 +6755,27 @@ MonoBehaviour:
   entityType: base
   maxhealth: 10
   health: 0
+--- !u!50 &1626607027
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626607021}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1665083350
 GameObject:
   m_ObjectHideFlags: 0

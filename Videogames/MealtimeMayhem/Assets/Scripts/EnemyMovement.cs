@@ -12,7 +12,6 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 nearestAllyPosition; // Position of the nearest ally
     private GameObject foodCart; // Reference to the food cart's position
 
-
     private void Start()
     {
         mainStats = FindObjectOfType<MainStats>();
@@ -25,23 +24,30 @@ public class EnemyMovement : MonoBehaviour
     
     private void Update()
     {
-        
         if (!isAttackingAlly)
         {
             // Continue moving towards the base
-            transform.position = Vector2.MoveTowards(transform.position, foodCart.transform.position, (enemyStats.speed * mainStats.globalEnemySpeed) * Time.deltaTime);
+            targetPosition = foodCart.transform.position;
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, (enemyStats.speed * mainStats.globalEnemySpeed) * Time.deltaTime);
             Debug.Log("Moving towards base for enemy: " + gameObject.name); // Debug log statement
         }
         else if (nearestAllyPosition != null && isAttackingAlly) 
         {
             // Move towards the nearest ally
-            transform.position = Vector2.MoveTowards(transform.position, nearestAllyPosition, (enemyStats.speed * mainStats.globalEnemySpeed) * Time.deltaTime);
+            targetPosition = nearestAllyPosition;
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, (enemyStats.speed * mainStats.globalEnemySpeed) * Time.deltaTime);
             Debug.Log("Moving towards ally for enemy: " + gameObject.name); // Debug log statement
         }
-        else 
+        else
         {
-            Debug.Log("No target or nearest ally for enemy: " + gameObject.name); // Debug log statement
-        }       
+            // No more allies in range, move back towards the base
+            targetPosition = foodCart.transform.position;
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, (enemyStats.speed * mainStats.globalEnemySpeed) * Time.deltaTime);
+        }
+        // else 
+        // {
+        //     Debug.Log("No target or nearest ally for enemy: " + gameObject.name); // Debug log statement
+        // }       
     }
 
     // Detects if the enemy is within range of an ally
@@ -57,14 +63,29 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Detects if the enemy is out of range of an ally. This is used to prevent the enemy from attacking an ally that is out of range, usually when the ally is killed
-    private void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag("Ally")){ // If the enemy is out of range of an ally
-            if (isAttackingAlly == true){
-                // Get the nearest ally
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Ally"))
+        {
+            if (isAttackingAlly && nearestAllyPosition == (Vector2)other.transform.position)
+            {
                 isAttackingAlly = false; // Set the enemy to attack the nearest ally
-                Debug.Log("Nearest ally lost for enemy: " + other.name ); // Debug log statement
+                nearestAllyPosition = Vector2.zero;
+                Debug.Log("Nearest ally lost for enemy: " + other.name); // Debug log statement
             }
         }
     }
+
+    public void OnAllyKilled(Vector2 allyPosition)
+    {
+        if (isAttackingAlly)
+        {
+            isAttackingAlly = false; // Set the enemy to stop attacking the ally
+            nearestAllyPosition = Vector2.zero;
+            targetPosition = foodCart.transform.position;
+            //Debug.Log("Ally killed, moving towards base for enemy: " + allyPosition); // Debug log statement
+        }
+    } 
+    
 
 }

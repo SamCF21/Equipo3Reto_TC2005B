@@ -9,27 +9,33 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: 83edfd554a4a79b4e8e9608774146e05
   - enabled: 1
-    path: Assets/Scenes/Login.unity
+    path: Assets/Scenes/Scenes/Login.unity
     guid: 633b0b3c007013647be41af9c70a5c1c
   - enabled: 1
-    path: Assets/Scenes/SlotSelector.unity
+    path: Assets/Scenes/Scenes/SlotSelector.unity
     guid: a7d5d4d4f8c195644bc713d1c924e36d
   - enabled: 1
-    path: Assets/Scenes/PersonalizarMau.unity
+    path: Assets/Scenes/Scenes/PersonalizarMau.unity
     guid: 29e8b8f7d2b2cf04c88fc858be550752
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
+    path: Assets/Scenes/Scenes/Tutorial.unity
     guid: 9a510f2553f398d40aaf6665fb7329f6
   - enabled: 1
-    path: Assets/Scenes/Overworld.unity
+    path: Assets/Scenes/Scenes/Overworld.unity
     guid: 96f0a620cb9f39c4ea397548d2a8e60f
   - enabled: 1
-    path: Assets/Scenes/SceneCris.unity
+    path: Assets/Scenes/Scenes/SceneCris.unity
     guid: 2989eba97fa464507a0b10718e79c863
   - enabled: 1
-    path: Assets/Scenes/NPCtest.unity
+    path: Assets/Scenes/Scenes/NPCtest.unity
     guid: 08a3fa4a81348d1459392eba362433e0
   - enabled: 1
-    path: Assets/Scenes/ChefUpgradesSkillTree.unity
+    path: Assets/Scenes/Scenes/ChefUpgradesSkillTree.unity
     guid: 8a423acd090aec444b0e11ddb96ad01b
+  - enabled: 1
+    path: Assets/Scenes/Scenes/LoosingScreen.unity
+    guid: 25b62562ec758d2429284ce6cf028434
+  - enabled: 1
+    path: Assets/Scenes/Scenes/WinningScreen.unity
+    guid: 4bf29747bfc92b744a4f5c93b8b81ace
   m_configObjects: {}

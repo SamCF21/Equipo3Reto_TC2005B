@@ -105,10 +105,10 @@ MonoBehaviour:
   enemyType: 1
   entityType: enemy
   rangeType: 1
-  speed: 1
+  speed: 2
   attack: 1
   life: 1
-  maxhealth: 5
+  maxhealth: 1
   health: 0
 --- !u!114 &7539649415487342972
 MonoBehaviour:
@@ -152,7 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   baseStats: {fileID: 0}
-  classStats: {fileID: 0}
 --- !u!70 &6657739635213239996
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

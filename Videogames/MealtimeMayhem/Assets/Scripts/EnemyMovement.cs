@@ -43,11 +43,7 @@ public class EnemyMovement : MonoBehaviour
             // No more allies in range, move back towards the base
             targetPosition = foodCart.transform.position;
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, (enemyStats.speed * mainStats.globalEnemySpeed) * Time.deltaTime);
-        }
-        // else 
-        // {
-        //     Debug.Log("No target or nearest ally for enemy: " + gameObject.name); // Debug log statement
-        // }       
+        }      
     }
 
     // Detects if the enemy is within range of an ally
@@ -83,7 +79,7 @@ public class EnemyMovement : MonoBehaviour
             isAttackingAlly = false; // Set the enemy to stop attacking the ally
             nearestAllyPosition = Vector2.zero;
             targetPosition = foodCart.transform.position;
-            //Debug.Log("Ally killed, moving towards base for enemy: " + allyPosition); // Debug log statement
+            Destroy(gameObject);
         }
     } 
     

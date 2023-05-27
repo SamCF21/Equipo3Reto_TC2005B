@@ -33,13 +33,9 @@ public class EnemyDamage : MonoBehaviour
             if (classStats != null)
             {
                 classStats.Damage(damage);
-                //Destroy(gameObject);
             }
             
-            //Vector2 difference = (transform.position - collision.transform.position).normalized;
-            //Vector2 force = difference * knockback;
-            //rb.AddForce(force, ForceMode2D.Impulse);
-            //Destroy(gameObject);
+            
         }
     }
 } 

@@ -5,7 +5,6 @@ using UnityEngine;
 public class AllyDamage : MonoBehaviour
 {
     public int damage;
-    //public EnemyStats enemyStats;
     public float thrust;
     public float knockTime;
     private bool isAllyAlive = true;

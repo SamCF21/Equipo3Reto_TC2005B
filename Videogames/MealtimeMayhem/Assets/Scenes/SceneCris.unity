@@ -6390,7 +6390,7 @@ MonoBehaviour:
   speed: 1
   attack: 1
   life: 1
-  maxhealth: 6
+  maxhealth: 5
   health: 0
 --- !u!95 &1586120452
 Animator:
@@ -6767,7 +6767,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

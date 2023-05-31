@@ -6,43 +6,42 @@ public class EnemyMovement : MonoBehaviour
 {
     private EnemyStats enemyStats; // To get the enemy movement speed
     private MainStats mainStats; // To get the global enenmy speed
-
     private Vector2 targetPosition; // Current target position. Can be the cart or an ally
     private bool isAttackingAlly = false; // Is the enemy attacking an ally?
     private Vector2 nearestAllyPosition; // Position of the nearest ally
     private GameObject foodCart; // Reference to the food cart's position
+    public float speed;
 
     private void Start()
     {
         mainStats = FindObjectOfType<MainStats>();
         enemyStats = GetComponent<EnemyStats>();
-
         foodCart = FindObjectOfType<BaseStats>().gameObject; // To get the food cart's position
-
         Debug.Log("Start called for enemy: " + gameObject.name); // Debug log statement
     }
     
     private void Update()
     {
+        speed = enemyStats.speed * mainStats.globalSpeed;
         if (!isAttackingAlly)
         {
             // Continue moving towards the base
             targetPosition = foodCart.transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, (enemyStats.speed * mainStats.globalEnemySpeed) * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
             Debug.Log("Moving towards base for enemy: " + gameObject.name); // Debug log statement
         }
         else if (nearestAllyPosition != null && isAttackingAlly) 
         {
             // Move towards the nearest ally
             targetPosition = nearestAllyPosition;
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, (enemyStats.speed * mainStats.globalEnemySpeed) * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
             Debug.Log("Moving towards ally for enemy: " + gameObject.name); // Debug log statement
         }
         else
         {
             // No more allies in range, move back towards the base
             targetPosition = foodCart.transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, (enemyStats.speed * mainStats.globalEnemySpeed) * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         }      
     }
 
@@ -79,10 +78,10 @@ public class EnemyMovement : MonoBehaviour
             isAttackingAlly = false; // Set the enemy to stop attacking the ally
             nearestAllyPosition = Vector2.zero;
             targetPosition = foodCart.transform.position;
-            Destroy(gameObject);
             if (GameObject.Find("Score").GetComponent<ScoreValue>()){
-               ScoreValue.scoreValue += 55;
+               ScoreValue.scoreValue -= 55;
             }
+            Destroy(gameObject);
         }
     } 
     

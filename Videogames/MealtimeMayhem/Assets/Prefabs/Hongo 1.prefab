@@ -105,10 +105,10 @@ MonoBehaviour:
   enemyType: 1
   entityType: enemy
   rangeType: 1
-  speed: 1
+  speed: 0.5
   attack: 1
   life: 1
-  maxhealth: 5
+  maxhealth: 3
   health: 0
 --- !u!114 &7539649415487342972
 MonoBehaviour:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0c8055c147e422db6325cf9291b756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 3
   baseStats: {fileID: 0}
 --- !u!50 &4943128228593522803
 Rigidbody2D:

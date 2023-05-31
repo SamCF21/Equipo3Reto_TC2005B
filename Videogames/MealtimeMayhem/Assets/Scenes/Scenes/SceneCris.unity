@@ -3737,7 +3737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5f106a02a9f4158accf50f20165521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   thrust: 5
   knockTime: 0.4
 --- !u!1 &855848910
@@ -6731,7 +6731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5f106a02a9f4158accf50f20165521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   thrust: 5
   knockTime: 0.4
 --- !u!1 &1587978132
@@ -6971,7 +6971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityType: base
-  maxhealth: 5
+  maxhealth: 10
   health: 0
   winScene: WinningScreen
   loseScene: LoosingScreen

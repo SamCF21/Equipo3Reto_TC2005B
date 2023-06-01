@@ -17,7 +17,6 @@ public class EnemyMovement : MonoBehaviour
         mainStats = FindObjectOfType<MainStats>();
         enemyStats = GetComponent<EnemyStats>();
         foodCart = FindObjectOfType<BaseStats>().gameObject; // To get the food cart's position
-        Debug.Log("Start called for enemy: " + gameObject.name); // Debug log statement
     }
     
     private void Update()
@@ -28,14 +27,12 @@ public class EnemyMovement : MonoBehaviour
             // Continue moving towards the base
             targetPosition = foodCart.transform.position;
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            Debug.Log("Moving towards base for enemy: " + gameObject.name); // Debug log statement
         }
         else if (nearestAllyPosition != null && isAttackingAlly) 
         {
             // Move towards the nearest ally
             targetPosition = nearestAllyPosition;
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            Debug.Log("Moving towards ally for enemy: " + gameObject.name); // Debug log statement
         }
         else
         {
@@ -52,7 +49,6 @@ public class EnemyMovement : MonoBehaviour
                 // Get the nearest ally
                 nearestAllyPosition = other.transform.position; // Get the position of the nearest ally
                 isAttackingAlly = true; // Set the enemy to attack the nearest ally
-                Debug.Log("Nearest ally found for enemy: " + other.name ); // Debug log statement
             }
         }
     }
@@ -66,7 +62,6 @@ public class EnemyMovement : MonoBehaviour
             {
                 isAttackingAlly = false; // Set the enemy to attack the nearest ally
                 nearestAllyPosition = Vector2.zero;
-                Debug.Log("Nearest ally lost for enemy: " + other.name); // Debug log statement
             }
         }
     }

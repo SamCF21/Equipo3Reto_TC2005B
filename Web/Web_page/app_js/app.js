@@ -23,7 +23,7 @@ async function connectToDB() //la conexion a la base de datos es una promesa
 }
 
 app.get('/', (request,response)=>{
-    fs.readFile('index-1.html', 'utf8', (err, html)=>{
+    fs.readFile('./public/index-1.html', 'utf8', (err, html)=>{
         if(err) response.status(500).send('There was an error: ' + err)
         console.log('Loading page...')
         response.send(html)
@@ -37,7 +37,7 @@ app.get('/api/users', async (request, response)=>{ //definir un endpoint
     try
     {
         connection = await connectToDB()
-        const [results, fields] = await connection.execute('select * from users')
+        const [results, fields] = await connection.execute('select * from user_data')
         //en execute le estamos pidiendo q selecciones toda la tabla de users
         //sigue siendo una promesa entonces usamos await
         //results es un array de objetos, cada objeto es un usuario, viene la info por query
@@ -70,7 +70,7 @@ app.get('/api/users/:id', async (request, response)=> // ya le manda un parámet
     {
         connection = await connectToDB()
 
-        const [results_user, _] = await connection.query('select * from users where id_users= ?', [request.params.id])
+        const [results_user, _] = await connection.query('select * from user_data where identifier= ?', [request.params.id])
         
         console.log(`${results_user.length} rows returned`)
         response.json(results_user)
@@ -101,7 +101,7 @@ app.post('/api/users', async (request, response)=>{ // se usa post porque se qui
     {    
         connection = await connectToDB()
 
-        const [results, fields] = await connection.query('insert into users set ?', request.body)
+        const [results, fields] = await connection.query('insert into user_data set ?', request.body)
         //request.body es un objeto que contiene los datos que se quieren insertar
         
         console.log(`${results.affectedRows} row inserted`)
@@ -123,62 +123,35 @@ app.post('/api/users', async (request, response)=>{ // se usa post porque se qui
     }
 })
 
-app.put('/api/users', async (request, response)=>{
-
-    let connection = null
-
-    try{
-        connection = await connectToDB()
-
-        const [results, fields] = await connection.query('update users set name = ?, surname = ? where id_users= ?', [request.body['name'], request.body['surname'], request.body['userID']])
-        
-        console.log(`${results.affectedRows} rows updated`)
-        response.json({'message': `Data updated correctly: ${results.affectedRows} rows updated.`})
+app.post('/api/users/login', async (request, response) => {
+    const { username, password } = request.body;
+  
+    let connection = null;
+  
+    try {
+      connection = await connectToDB();
+  
+      const [results] = await connection.query('SELECT * FROM user_data WHERE username = ? AND password = ?', [
+        username,
+        password
+      ]);
+  
+      if (results.length > 0) {
+        response.json({ message: 'Inicio de sesión exitoso' });
+      } else {
+        response.status(401).json({ error: 'Credenciales inválidas' });
+      }
+    } catch (error) {
+      response.status(500).json({ error: 'Error en el servidor' });
+    } finally {
+      if (connection !== null) {
+        connection.end();
+        console.log('Connection closed successfully!');
+      }
     }
-    catch(error)
-    {
-        response.status(500)
-        response.json(error)
-        console.log(error)
-    }
-    finally
-    {
-        if(connection!==null) 
-        {
-            connection.end()
-            console.log("Connection closed succesfully!")
-        }
-    }
-})
+  });
+  
 
-app.delete('/api/users/:id', async (request, response)=>{
-
-    let connection = null
-
-    try
-    {
-        connection = await connectToDB()
-
-        const [results, fields] = await connection.query('delete from users where id_users= ?', [request.params.id])
-        
-        console.log(`${results.affectedRows} row deleted`)
-        response.json({'message': `Data deleted correctly: ${results.affectedRows} rows deleted.`})
-    }
-    catch(error)
-    {
-        response.status(500)
-        response.json(error)
-        console.log(error)
-    }
-    finally
-    {
-        if(connection!==null) 
-        {
-            connection.end()
-            console.log("Connection closed succesfully!")
-        }
-    }
-})
 //siempre borrar con where, si no borra toda la tabla
 app.listen(port, ()=>
 {

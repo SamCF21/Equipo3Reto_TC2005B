@@ -204,7 +204,7 @@
 .hero .background-content .bg-pattern
 {
     opacity: 0;
-    background: url(../images/bg-pattern.png);
+    /*background: url(../images/bg-pattern.png);*/
     background-repeat: repeat;
 }
 

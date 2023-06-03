@@ -147,9 +147,14 @@ public class TestAPI : MonoBehaviour
     [SerializeField] string url;
     [SerializeField] string getPersonalizationsEP;
     [SerializeField] Text errorText;
+    public VarMaster varMaster;
 
     // This is where the information from the api will be extracted
     public PersonChefList allPersonalizations;
+
+    void Start(){
+        varMaster = GameObject.FindObjectOfType<VarMaster>();
+    }
     
     // Update is called once per frame
     void Update()
@@ -221,8 +226,8 @@ public class TestAPI : MonoBehaviour
 
         // Create the object to be sent as json
         PersonChef testChef = new PersonChef();
-        testChef.color_ojos = Random.Range(1, 8);
-        testChef.color_piel = Random.Range(1, 8);
+        testChef.color_ojos = varMaster.codeEye;
+        testChef.color_piel = varMaster.codeHead;
         //Debug.Log("USER: " + testUser);
         string jsonData = JsonUtility.ToJson(testChef);
         //Debug.Log("BODY: " + jsonData);

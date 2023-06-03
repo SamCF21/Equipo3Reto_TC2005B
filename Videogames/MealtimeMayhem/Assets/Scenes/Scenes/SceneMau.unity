@@ -3822,7 +3822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c692a60b589ab408e40a9417e9d667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalSpeed: 3
+  globalSpeed: 1
   globalEnemySpeed: 1
   globalEnemyHealth: 1
   globalEnemyAttack: 1

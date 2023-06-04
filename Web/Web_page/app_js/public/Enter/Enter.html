@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script type="module" defer src="./Login.js"></script>
-    <link rel="stylesheet" href="./Login.css">
+    <script type="module" defer src="./Enter.js"></script>
+    <link rel="stylesheet" href="./Enter.css">
     <title>Document</title>
 </head>
 <body>
+    
+
 
 
     <!--OTHER      -->
@@ -15,32 +17,26 @@
 
         <div class="formInput">
     
-          <img src="assets/images/icons/arepa_icon.png" class="site__logo" alt="">
-          <h2>Sign Up</h2>
+          <img src="../assets/images/soldiers/taco.png" class="site__logo" alt="">
+          <h2>Log in</h2>
     
           <form id="formInsert">
-    
-            <div class="form__field">
-              <input type="email" name ="email" placeholder="dummy@mailaddress.com">
-            </div>
-    
-            <div class="form__field">
-              <input type="password" name= "password" placeholder="••••••••••••">
-            </div>
-            
             <div class="form__field">
                 <input type="text" name="username" placeholder=" Username">
             </div>
 
             <div class="form__field">
-              <input type="submit" id = "b-home" value="Create Account">
+              <input type="password" name= "password" placeholder="••••••••••••">
             </div>
-    
+            
+            <div class="form__field">
+              <input type="submit" id = "b-home" value="Log in" >
+            </div>
+            <p>Don't have an account? <a href="../SignUp/Login.html">Sign up</a></p>
+            <p id="sessionError" style="display: none; color: red;">Datos incorrectos </p>
           </form>
     
-          <p>Already have an accout? <a href="Enter.html">Log in</a></p>
-          <p>Return to  <a href="index-1.html">home page </a></p>
-    
+          
         </div>
     
       </div>

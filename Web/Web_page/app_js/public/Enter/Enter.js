@@ -21,7 +21,7 @@ function main()
             localStorage.setItem("userlog",true);
             console.log("estoy debajo de mystorage")
             let name = localStorage.setItem("username",username);
-            location.href = "index-1.html";
+            location.href = "../index-1.html";
            
 
           } else {

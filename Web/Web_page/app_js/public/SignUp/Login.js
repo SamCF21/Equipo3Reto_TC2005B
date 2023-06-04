@@ -80,7 +80,7 @@ function main()
             localStorage.setItem('userlog', true);
             console.log(localStorage.getItem('userlog'));
             console.log(localStorage.getItem('username'));
-            location.href = "index-1.html";
+            location.href = "../index-1.html";
             //postResults.innerHTML = results.message + ' id: ' + results.id
         }
         else{
@@ -91,3 +91,5 @@ function main()
         //location.href = "index-1.html";
     //};
 main()
+
+//POR AHORA JALA PT2

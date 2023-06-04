@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AllyMovementMaster : MonoBehaviour
 {
-    private GameObject target; 
-    private GameObject ally;
+    [SerializeField] GameObject target;
+    [SerializeField] GameObject ally;
     private AllyMovement selectedAlly;
     private AllyMovement prevAlly;
     public MainStats mainStats;
@@ -17,6 +17,19 @@ public class AllyMovementMaster : MonoBehaviour
 
     void Update()
     {
+       AllySelection();
+        if (ally != null)
+        {
+            TargetSelection();
+        }
+
+        if (target != null)
+        {
+            SendTransform();
+        }
+    }
+
+    void AllySelection(){
         if (Input.GetMouseButtonDown(0))
         {
             int layerMask = 1 << LayerMask.NameToLayer("Characters");
@@ -33,31 +46,31 @@ public class AllyMovementMaster : MonoBehaviour
                     if(selectedAlly != null){
                         selectedAlly.isSelected = true;
                         prevAlly = selectedAlly;
-                    } 
+                    }
                 }
             }
         }
+    }
 
-        if (ally != null)
+    void TargetSelection(){
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            int layerMask2 = 1 << LayerMask.NameToLayer("Tiles");
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask2);
+            if (hit.collider != null && hit.collider.gameObject != ally) 
             {
-                int layerMask2 = 1 << LayerMask.NameToLayer("Tiles");
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask2);
-                if (hit.collider != null && hit.collider.gameObject != ally) 
-                {
-                    target = hit.collider.gameObject; 
+                if(ally != null){
+                    target = hit.collider.gameObject;
                 }
             }
         }
+    }
 
-        if (target != null && ally != null)
+    void SendTransform(){  
+        selectedAlly = ally.GetComponent<AllyMovement>();
+        if (selectedAlly != null && selectedAlly.isSelected)
         {
-            selectedAlly = ally.GetComponent<AllyMovement>();
-            if (selectedAlly != null)
-            {
-                selectedAlly.target = target.transform; 
-            }
+            selectedAlly.target = target.transform;
         }
     }
 }

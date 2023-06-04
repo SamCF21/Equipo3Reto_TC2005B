@@ -19,7 +19,7 @@ TagManager:
   - Characters
   - Enemies
   - Base
-  - 
+  - Background
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2307178007
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -7,12 +7,20 @@ public class VarMaster : MonoBehaviour
     public int nat;
     public int codeEye;
     public int codeHead;
+    public int cartLvl;
+    public int allyHealthLvl;
+    public int allySpeedLvl;
+    public int allyAttackLvl;
+    public int chefHealthLvl;
+    public int chefSpeedLvl;
+    public int chefAttackLvl;
+    public int path;
+
     public Color eyeColor;
     public Color headColor;
 
     void Update()
     {
-        DontDestroyOnLoad(this.gameObject);
         CheckEyeColor();
         CheckHeadColor();
     }

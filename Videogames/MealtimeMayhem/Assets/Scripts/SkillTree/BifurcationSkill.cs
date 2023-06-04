@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class SkillUpgrade : MonoBehaviour
+public class BifurcationSkill : MonoBehaviour
 {
     private SpriteRenderer alpha;
     private Material material;
@@ -16,92 +16,69 @@ public class SkillUpgrade : MonoBehaviour
     public bool isLocked;
     public bool isSelected;
     public bool isBought;
-    [SerializeField] SkillUpgrade nextSkill;
+    [SerializeField] BifurcationSkill skillToBlock;
+    [SerializeField] BifurcationSkill secondSkillToBlock;
     [SerializeField] string titleText;
     [SerializeField] string contentText;
     [SerializeField] TextMeshProUGUI title;
     [SerializeField] TextMeshProUGUI content;
     [SerializeField] GameObject buyButton;
-    [SerializeField] int cartUp;
-    [SerializeField] int allyHealthUp;
-    [SerializeField] int allySpeedUp;
-    [SerializeField] int allyAttackUp;
-    [SerializeField] int chefHealthUp;
-    [SerializeField] int chefSpeedUp;
-    [SerializeField] int chefAttackUp;
+    [SerializeField] int selectedPath;
 
-    void Awake()
-    {
+    void Awake(){
         alpha = GetComponent<SpriteRenderer>();
         material = alpha.material;
         boxCollider = GetComponent<BoxCollider2D>();
         buyButtonRenderer = buyButton.GetComponent<SpriteRenderer>();
         varMaster = FindObjectOfType<VarMaster>();
-        blockedText = "Upgrade the previous skill before accessing this one";
+        blockedText = "Path has been selected";
         purchaseText = "Purchased!";
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate(){
         CheckStatus();
         CheckSelected();
         Bought();
     }
 
-    void CheckStatus()
-    {
+    void CheckStatus(){
         Color color = alpha.color;
-        if (!isLocked)
-        {
+        if (!isLocked){
             color.a = 0.5f;
             alpha.color = color;
         }
-        else
-        {
+        else{
             color.a = 1;
             alpha.color = color;
         }
     }
 
-    void CheckSelected()
-    {
+    void CheckSelected(){
         Color bColor = buyButtonRenderer.color;
-        if (isSelected && !isLocked)
-        {
+        if (isSelected && !isLocked){
             bColor.a = 1;
             buyButtonRenderer.color = bColor;
             title.text = titleText;
             content.text = contentText;
             alpha.material = material;
-        }
-        else if (isSelected && isLocked)
-        {
+        }else if (isSelected && isLocked){
             bColor.a = 0.5f;
             buyButtonRenderer.color = bColor;
             title.text = titleText;
             content.text = blockedText;
             alpha.material = material;
-        } else if (!isSelected){
+        }else if (!isSelected){
             alpha.material = defaultMaterial;
         }
     }
 
     void Bought(){
         if(isBought){
-            varMaster.cartLvl += cartUp;
-            varMaster.allyHealthLvl += allyHealthUp;
-            varMaster.allyAttackLvl += allyAttackUp;
-            varMaster.allySpeedLvl += allySpeedUp;
-            varMaster.chefHealthLvl += chefHealthUp;
-            varMaster.chefAttackLvl += chefAttackUp;
-            varMaster.chefSpeedLvl += chefSpeedUp;
             content.text = purchaseText;
-            if(nextSkill != null){
-                nextSkill.isLocked = false;
+                skillToBlock.isLocked = true;
+                secondSkillToBlock.isLocked = true;
                 Destroy(gameObject);
-            }else{
-                Destroy(gameObject);
-            }
+                varMaster.path = selectedPath;
         }
     }
 }

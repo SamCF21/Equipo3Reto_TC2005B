@@ -34,6 +34,13 @@ public class MoverPersonaje : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Si el personaje choca con un collider, detener el movimiento
+        isMoving = false;
+    }
 }
+
 
 

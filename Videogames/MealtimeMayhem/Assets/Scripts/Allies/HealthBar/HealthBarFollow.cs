@@ -5,13 +5,18 @@ using UnityEngine;
 public class HealthBarFollow : MonoBehaviour
 
 {
-    public Transform target;  // Objeto objetivo que se seguirá
-    public float yOffset = 1f;
+    [SerializeField] Transform target;  // Objeto objetivo que se seguirá
+    [SerializeField] float yOffset = 1f;
+    private GameObject canvasObject;
     private RectTransform rectTransform;
 
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        canvasObject = GameObject.Find("Canvas");
+        if(canvasObject != null){
+            transform.SetParent(canvasObject.transform, true);
+        }
     }
 
     void Update()

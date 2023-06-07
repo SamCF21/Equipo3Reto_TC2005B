@@ -12,16 +12,17 @@ public class ClassStats : MonoBehaviour
    public float attack = 1f;
    public int maxhealth = 5;
    public int health = 0;
-   public Image healthBar;
+   [SerializeField] Image healthBar;
+   private FoodManager foodManager;
 
     void Start(){
         health = maxhealth;
+        foodManager = GameObject.FindObjectOfType<FoodManager>();
         if(allyType == 1){
             speed = 3;
             attack = 2;
         }
     }
-
 
     public void Damage(int damage)
     {
@@ -37,7 +38,8 @@ public class ClassStats : MonoBehaviour
                     enemyMovement.OnAllyKilled(transform.position);
                 }
             }
+            foodManager.totalFood = foodManager.totalFood - 1;
             Destroy(gameObject);
         }
-    } 
-} 
+    }
+}

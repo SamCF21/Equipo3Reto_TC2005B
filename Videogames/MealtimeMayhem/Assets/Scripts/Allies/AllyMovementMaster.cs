@@ -36,7 +36,7 @@ public class AllyMovementMaster : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask);
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Ally"))
+                if (hit.collider.CompareTag("Ally") || hit.collider.CompareTag("Chef"))
                 {
                     ally = hit.collider.gameObject;
                     selectedAlly = ally.GetComponent<AllyMovement>();

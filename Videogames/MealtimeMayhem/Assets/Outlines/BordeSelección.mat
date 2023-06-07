@@ -93,7 +93,7 @@ Material:
     - _SpecularHighlights: 1
     - _SpriteOverlay: 0
     - _SrcBlend: 1
-    - _Thickness: 15
+    - _Thickness: 20
     - _TileMode: 0
     - _UVSec: 0
     - _Weight: 0.5
@@ -104,5 +104,5 @@ Material:
     - _GradientOutline1: {r: 1, g: 1, b: 1, a: 1}
     - _GradientOutline2: {r: 1, g: 1, b: 1, a: 1}
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 1, g: 1, b: 0, a: 1}
+    - _SolidOutline: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

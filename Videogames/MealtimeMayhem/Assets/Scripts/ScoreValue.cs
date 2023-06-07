@@ -20,7 +20,7 @@ public class ScoreValue: MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + scoreValue;
-        if(scoreValue >=700){
+        if(scoreValue >=5000){
             SceneManager.LoadScene(nombreEscena);
             scoreValue = 0;
         }

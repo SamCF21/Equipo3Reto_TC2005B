@@ -1,3 +1,4 @@
+DROP SCHEMA IF EXISTS `vg_db`;
 CREATE DATABASE  IF NOT EXISTS `vg_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `vg_db`;
 
@@ -16,10 +17,10 @@ USE `vg_db`;
 -- Table structure for table `user_data`
 --
 
-DROP TABLE IF EXISTS `user_data`;
+DROP TABLE IF EXISTS `Usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_data` (
+CREATE TABLE `Usuario` (
   `identifier` int NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
@@ -33,11 +34,66 @@ CREATE TABLE `user_data` (
 -- Dumping data for table `user_Data`
 --
 
-LOCK TABLES `user_data` WRITE;
-/*!40000 ALTER TABLE `user_data` DISABLE KEYS */;
-INSERT INTO `user_data` VALUES (1,'Sam88799','Sam123@88799', 'sam88799@outlook.com'),(2,'Cristgad','Venezuela123', 'CrisyVenezuela4eva@gmail.com'),(3,'X-mob14','z12w91y41', 'xmob@hotmail.com'),(4,'Fer_vie','3ot1im8ah', 'solecito@yahoo.com'),(5,'tumalxn','mautum123', 'mautum@mail.com');
-/*!40000 ALTER TABLE `user_data` ENABLE KEYS */;
+LOCK TABLES `Usuario` WRITE;
+/*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
+INSERT INTO `Usuario` VALUES (1,'Sam88799','Sam123@88799', 'sam88799@outlook.com'),(2,'Cristgad','Venezuela123', 'CrisyVenezuela4eva@gmail.com'),(3,'X-mob14','z12w91y41', 'xmob@hotmail.com'),(4,'Fer_vie','3ot1im8ah', 'solecito@yahoo.com'),(5,'tumalxn','mautum123', 'mautum@mail.com');
+/*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `PersonChef`
+--
+
+DROP TABLE IF EXISTS `PersonChef`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `PersonChef` (
+  `chef_id` int NOT NULL AUTO_INCREMENT,
+  `color_ojos` int NOT NULL,
+  `color_piel` int NOT NULL,
+  `nacionalidad` int NOT NULL,
+  PRIMARY KEY (`chef_id`),
+  UNIQUE KEY `chef_id_UNIQUE` (`chef_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PersonChef`
+--
+
+LOCK TABLES `PersonChef` WRITE;
+/*!40000 ALTER TABLE `PersonChef` DISABLE KEYS */;
+INSERT INTO `PersonChef` VALUES (1,7,5,1),(2,2,8,2),(3,7,1,2),(4,4,7,3),(5,8,5,3);
+/*!40000 ALTER TABLE `PersonChef` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table strcuture for table `Menu`
+--
+DROP TABLE IF EXISTS `Menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Menu` (
+  `menu_id` int AUTO_INCREMENT,
+  `volume` int NOT NULL,
+  `music` bool NOT NULL,
+  `user_id` int,
+  PRIMARY KEY (`menu_id`),
+  UNIQUE KEY `menu_id_UNIQUE`(`menu_id`),
+  FOREIGN KEY (`user_id`) REFERENCES Usuario(`identifier`)
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Menu`
+--
+
+LOCK TABLES `Menu` WRITE;
+/*!40000 ALTER TABLE `Menu` DISABLE KEYS */;
+INSERT INTO `Menu` VALUES (1,10,TRUE,1),(2,5,FALSE,2),(3,12,FALSE,3),(4,10,TRUE,4),(5,8,TRUE,5);
+/*!40000 ALTER TABLE `Menu` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 -- *************************************************************************
 -- To be determined...
@@ -136,3 +192,5 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+SELECT * FROM vg_db.PersonChef;

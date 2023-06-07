@@ -742,7 +742,7 @@ ol.list-default > li
     height: 100%;
 
     opacity: .5;
-    background: url('../images/bg-pattern.png') repeat;
+    
 }
 
 .bg-pattern-section
@@ -754,7 +754,7 @@ ol.list-default > li
     height: 100%;
 
     opacity: .3;
-    background: url('../images/bg-pattern.png') repeat;
+    
 }
 
 .phantom-wrapper-popups 
@@ -1041,7 +1041,10 @@ ol.list-default > li
     padding-right: 100px;
     padding-left: 100px;
 }
-
+.video_tutorial
+{
+    margin-top: 20px;
+}
 
 @media (max-width: 500px)
 {

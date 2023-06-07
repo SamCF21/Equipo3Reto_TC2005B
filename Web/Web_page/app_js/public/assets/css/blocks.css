@@ -364,6 +364,7 @@ section .content.bg-black .pagination-custom-1 .cbp-nav-pagination-item::after
 .block-about-1.bg-white p
 {
     color: #3b3d40;
+    font-size: 22px;
 }
 
 .block-about-1.bg-white h3
@@ -764,7 +765,7 @@ section .content.bg-black .pagination-custom-1 .cbp-nav-pagination-item::after
 
 .block-work-1.bg-white .work-grid a .cbp-caption-activeWrap
 {
-    background-color: rgb(176,153,128);
+    background-color: rgb(170, 128, 176);
 }
 
 .block-work-1.bg-white .work-grid a .cbp-caption-activeWrap h5

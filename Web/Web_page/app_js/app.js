@@ -12,6 +12,7 @@ const port = 5500
 app.use(express.json())
 app.use(express.static('./public'))
 
+3
 async function connectToDB() //la conexion a la base de datos es una promesa
 {
     return await mysql.createConnection({
@@ -37,7 +38,7 @@ app.get('/api/users', async (request, response)=>{ //definir un endpoint
     try
     {
         connection = await connectToDB()
-        const [results, fields] = await connection.execute('select * from user_data')
+        const [results, fields] = await connection.execute('select * from Usuario')
         //en execute le estamos pidiendo q selecciones toda la tabla de users
         //sigue siendo una promesa entonces usamos await
         //results es un array de objetos, cada objeto es un usuario, viene la info por query
@@ -70,7 +71,7 @@ app.get('/api/users/:id', async (request, response)=> // ya le manda un parámet
     {
         connection = await connectToDB()
 
-        const [results_user, _] = await connection.query('select * from user_data where identifier= ?', [request.params.id])
+        const [results_user, _] = await connection.query('select * from Usuario where identifier= ?', [request.params.id])
         
         console.log(`${results_user.length} rows returned`)
         response.json(results_user)
@@ -101,7 +102,7 @@ app.post('/api/users', async (request, response)=>{ // se usa post porque se qui
     {    
         connection = await connectToDB()
 
-        const [results, fields] = await connection.query('insert into user_data set ?', request.body)
+        const [results, fields] = await connection.query('insert into Usuario set ?', request.body)
         //request.body es un objeto que contiene los datos que se quieren insertar
         
         console.log(`${results.affectedRows} row inserted`)
@@ -131,7 +132,7 @@ app.post('/api/users/login', async (request, response) => {
     try {
       connection = await connectToDB();
   
-      const [results] = await connection.query('SELECT * FROM user_data WHERE username = ? AND password = ?', [
+      const [results] = await connection.query('SELECT * FROM Usuario WHERE username = ? AND password = ?', [
         username,
         password
       ]);
@@ -150,7 +151,38 @@ app.post('/api/users/login', async (request, response) => {
       }
     }
   });
-  
+  app.get('/api/levels', async(request, response)=>{
+    
+    let connection = null;
+    
+
+    try{
+
+        connection = await connectToDB();
+
+        const [results] = await connection.query('select * from level where completion_rate is not null order by completion_rate desc limit 5')
+        //LEADERBOARD DE NIVELES
+        //TOP 5 EN RELACIÓN A COMPLETION_RATE
+            
+            console.log("Sending data correctly.")
+            response.status(200)
+            response.json(results)
+        }
+
+        
+    
+    catch(error)
+    {
+        console.log(error)
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        connection.end()
+    }
+})
 
 //siempre borrar con where, si no borra toda la tabla
 app.listen(port, ()=>

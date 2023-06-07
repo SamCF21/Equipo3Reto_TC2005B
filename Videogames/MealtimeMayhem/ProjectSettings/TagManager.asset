@@ -8,6 +8,8 @@ TagManager:
   - Ally
   - Base
   - Enemy
+  - Event
+  - Chef
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Enemies
   - Base
   - Background
-  - 
+  - Chef
   - 
   - 
   - 

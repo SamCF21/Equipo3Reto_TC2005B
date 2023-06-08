@@ -5,29 +5,51 @@ using UnityEngine.UI;
 
 public class ClassStats : MonoBehaviour
 {
-   public int allyType = 1;
-   public string entityType = "ally";
-   public int rangeType = 1;
-   public float speed = 1f;
-   public float attack = 1f;
-   public int maxhealth = 5;
-   public int health = 0;
-   [SerializeField] Image healthBar;
-   private FoodManager foodManager;
+    public int allyType = 1;
+    public string entityType = "ally";
+    public int rangeType = 1;
+    public float speed = 1f;
+    public float attack = 1f;
+    public int maxhealth = 5;
+    public int health = 0;
+    [SerializeField] Image healthBar;
+    private FoodManager foodManager;
 
-    void Start(){
+    private bool canRegenerateHealth = true;
+    public float regenerateHealthDelay = 5f;
+
+    void Start()
+    {
         health = maxhealth;
         foodManager = GameObject.FindObjectOfType<FoodManager>();
-        if(allyType == 1){
+        if (allyType == 1)
+        {
             speed = 3;
             attack = 2;
+        }
+
+        StartCoroutine(RegenerateHealth());
+    }
+
+    IEnumerator RegenerateHealth()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(regenerateHealthDelay);
+
+            if (canRegenerateHealth)
+            {
+                health++;
+                health = Mathf.Clamp(health, 0, maxhealth);
+                healthBar.fillAmount = (float)health / maxhealth;
+            }
         }
     }
 
     public void Damage(int damage)
     {
         health -= damage;
-        healthBar.fillAmount = Mathf.Clamp((float)health / (float)maxhealth, 0, 1);
+        healthBar.fillAmount = (float)health / maxhealth;
         if (health <= 0)
         {
             EnemyMovement[] enemyMovements = FindObjectsOfType<EnemyMovement>();
@@ -38,8 +60,21 @@ public class ClassStats : MonoBehaviour
                     enemyMovement.OnAllyKilled(transform.position);
                 }
             }
-            foodManager.totalFood = foodManager.totalFood - 1;
+            foodManager.totalFood -= 1;
+            foodManager.totalDeath += 1;
             Destroy(gameObject);
         }
+        else
+        {
+            // Reiniciar el temporizador de regeneración de salud
+            StartCoroutine(ResetRegenerateHealthDelay());
+        }
+    }
+
+    IEnumerator ResetRegenerateHealthDelay()
+    {
+        canRegenerateHealth = false;
+        yield return new WaitForSeconds(regenerateHealthDelay);
+        canRegenerateHealth = true;
     }
 }

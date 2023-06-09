@@ -1122,6 +1122,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &179864444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4975750024967481179, guid: 165fabe06663445c3b2d311d6f403bad, type: 3}
+  m_PrefabInstance: {fileID: 2359791312681479671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &181895340
 GameObject:
   m_ObjectHideFlags: 0
@@ -5286,6 +5291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa3f77b2046c1340b283e3926165d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  ally: {fileID: 0}
   mainStats: {fileID: 0}
 --- !u!1 &1447284681
 GameObject:
@@ -8180,6 +8187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArepaBlanca (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1420970020946257270, guid: 21f60e19d0bc4401a87d8b4771e29829, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21f60e19d0bc4401a87d8b4771e29829, type: 3}
 --- !u!1001 &2359791312681479671
@@ -8189,6 +8200,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 869864935}
     m_Modifications:
+    - target: {fileID: -1359289455936344992, guid: 165fabe06663445c3b2d311d6f403bad, type: 3}
+      propertyPath: point
+      value: 
+      objectReference: {fileID: 179864444}
+    - target: {fileID: -1359289455936344992, guid: 165fabe06663445c3b2d311d6f403bad, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 7469622413185460964, guid: 87b116c7065184fa397705444b576663, type: 3}
+    - target: {fileID: 2359791312049721468, guid: 165fabe06663445c3b2d311d6f403bad, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2359791312049721469, guid: 165fabe06663445c3b2d311d6f403bad, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -8249,6 +8272,10 @@ PrefabInstance:
     - target: {fileID: 6084878585429790978, guid: 7c6a4c9af6514405fa716fad35fa6e3a, type: 3}
       propertyPath: m_Name
       value: ArepaBlanca (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084878585429790978, guid: 7c6a4c9af6514405fa716fad35fa6e3a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6084878586163771957, guid: 7c6a4c9af6514405fa716fad35fa6e3a, type: 3}
       propertyPath: m_RootOrder

@@ -16,7 +16,6 @@ public class AllyDamage : MonoBehaviour
             EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
             if (enemyStats != null)
             {
-                enemyStats.Damage(damage);
                 Rigidbody2D enemyRb = collision.gameObject.GetComponent<Rigidbody2D>();
                 if (enemyRb != null)
                 {
@@ -27,15 +26,16 @@ public class AllyDamage : MonoBehaviour
                     enemyRb.AddForce(force, ForceMode2D.Impulse);
                     enemyRb.isKinematic = true;
                 }
+                enemyStats.Damage(damage);
             }
         }
     }
 
     private IEnumerator Knock(Rigidbody2D enemyRb)
     {
+        yield return new WaitForSeconds(knockTime);
         if (enemyRb != null)
         {   
-            yield return new WaitForSeconds(knockTime);
             enemyRb.velocity = Vector2.zero;
             enemyRb.isKinematic = true;
         }  

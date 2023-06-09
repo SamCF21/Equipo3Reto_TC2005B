@@ -177,8 +177,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  prevTarget: {fileID: 0}
+  isSelected: 0
   speed: 0
-  timeDelay: 0
+  selectedMaterial: {fileID: 2100000, guid: a00f49b59ad55964faf2e13b8cd6987e, type: 2}
 --- !u!114 &1420970020834224244
 MonoBehaviour:
   m_ObjectHideFlags: 0

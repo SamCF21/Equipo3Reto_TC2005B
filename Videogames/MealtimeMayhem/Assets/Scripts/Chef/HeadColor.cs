@@ -7,7 +7,7 @@ public class HeadColor : MonoBehaviour
     private VarMaster varMaster;
     private SpriteRenderer spriteRenderer;
 
-    void Start()
+    void Awake()
     {
         varMaster = FindObjectOfType<VarMaster>();
         if (varMaster != null)

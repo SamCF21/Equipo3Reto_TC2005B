@@ -21,6 +21,7 @@ public class VarMaster : MonoBehaviour
 
     void Update()
     {
+        DontDestroyOnLoad(gameObject);
         CheckEyeColor();
         CheckHeadColor();
     }

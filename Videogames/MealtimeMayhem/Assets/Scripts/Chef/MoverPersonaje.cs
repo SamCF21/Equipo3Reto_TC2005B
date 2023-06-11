@@ -6,6 +6,7 @@ public class MoverPersonaje : MonoBehaviour
 
     private Vector2 destino; // Destino del personaje
     private bool isMoving; // Indica si el personaje está en movimiento
+    public bool dialogTrigger;
 
     private void Update()
     {
@@ -19,7 +20,7 @@ public class MoverPersonaje : MonoBehaviour
             isMoving = true;
         }
 
-        if (isMoving)
+        if (isMoving && !dialogTrigger)
         {
             // Calcular la dirección hacia el destino
             Vector2 direccion = (destino - (Vector2)transform.position).normalized;
@@ -41,6 +42,3 @@ public class MoverPersonaje : MonoBehaviour
         isMoving = false;
     }
 }
-
-
-

@@ -22,12 +22,6 @@ public class ClassStats : MonoBehaviour
     {
         health = maxhealth;
         foodManager = GameObject.FindObjectOfType<FoodManager>();
-        if (allyType == 1)
-        {
-            speed = 3;
-            attack = 2;
-        }
-
         StartCoroutine(RegenerateHealth());
     }
 

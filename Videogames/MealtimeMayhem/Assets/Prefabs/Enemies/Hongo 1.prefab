@@ -168,7 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
+  thrust: 5
   baseStats: {fileID: 0}
+  knockTime: 0.4
 --- !u!50 &4943128228593522803
 Rigidbody2D:
   serializedVersion: 4

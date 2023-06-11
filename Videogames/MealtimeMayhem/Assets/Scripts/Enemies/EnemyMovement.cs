@@ -28,25 +28,17 @@ public class EnemyMovement : MonoBehaviour
             targetPosition = foodCart.transform.position;
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         }
-        else if (nearestAllyPosition != null && isAttackingAlly) 
+        if ((nearestAllyPosition != Vector2.zero) && isAttackingAlly) 
         {
-            // Move towards the nearest ally
             targetPosition = nearestAllyPosition;
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         }
-        else
-        {
-            // No more allies in range, move back towards the base
-            targetPosition = foodCart.transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-        }      
     }
 
     // Detects if the enemy is within range of an ally
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other){
         if (other.CompareTag("Ally")){ // If the enemy is within range of an ally
-            if (isAttackingAlly == false){
-                // Get the nearest ally
+            if (!isAttackingAlly){
                 nearestAllyPosition = other.transform.position; // Get the position of the nearest ally
                 isAttackingAlly = true; // Set the enemy to attack the nearest ally
             }
@@ -58,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.CompareTag("Ally"))
         {
-            if (isAttackingAlly && nearestAllyPosition == (Vector2)other.transform.position)
+            if (isAttackingAlly)
             {
                 isAttackingAlly = false; // Set the enemy to attack the nearest ally
                 nearestAllyPosition = Vector2.zero;
@@ -73,12 +65,10 @@ public class EnemyMovement : MonoBehaviour
             isAttackingAlly = false; // Set the enemy to stop attacking the ally
             nearestAllyPosition = Vector2.zero;
             targetPosition = foodCart.transform.position;
+            Debug.Log("ya valio");
             if (GameObject.Find("Score").GetComponent<ScoreValue>()){
-               ScoreValue.scoreValue -= 55;
+               ScoreValue.scoreValue -= 100;
             }
-            Destroy(gameObject);
         }
     } 
-    
-
 }

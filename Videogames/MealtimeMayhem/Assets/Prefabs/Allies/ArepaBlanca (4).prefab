@@ -128,11 +128,12 @@ MonoBehaviour:
   allyType: 1
   entityType: ally
   rangeType: 1
-  speed: 1
+  speed: 3
   attack: 1
   maxhealth: 15
   health: 0
   healthBar: {fileID: 1420970021174038294}
+  regenerateHealthDelay: 5
 --- !u!70 &1420970020834224247
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -179,7 +180,6 @@ MonoBehaviour:
   target: {fileID: 0}
   prevTarget: {fileID: 0}
   isSelected: 0
-  speed: 0
   selectedMaterial: {fileID: 2100000, guid: a00f49b59ad55964faf2e13b8cd6987e, type: 2}
 --- !u!114 &1420970020834224244
 MonoBehaviour:
@@ -193,9 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5f106a02a9f4158accf50f20165521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
-  thrust: 5
-  knockTime: 0.4
+  damage: 1
 --- !u!50 &1420970020834224251
 Rigidbody2D:
   serializedVersion: 4

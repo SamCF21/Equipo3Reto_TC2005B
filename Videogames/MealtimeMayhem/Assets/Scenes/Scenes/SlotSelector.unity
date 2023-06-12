@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b46b2fc5134c074383a1e965db0d06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreEscena: PersonalizarMau
+  nombreEscena: CustomChef
 --- !u!114 &740647150
 MonoBehaviour:
   m_ObjectHideFlags: 0

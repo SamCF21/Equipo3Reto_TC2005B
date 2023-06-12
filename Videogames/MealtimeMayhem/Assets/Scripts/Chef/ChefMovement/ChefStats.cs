@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ChefStats : MonoBehaviour
 {
+    public string nombreEscena;
     public float maxhealth;
     public float speed;
     public float attack;
@@ -14,7 +16,7 @@ public class ChefStats : MonoBehaviour
 
     public bool flip;
 
-    [SerializeField] float health;
+    private float health;
     [SerializeField] BootChange botas;
     private bool canRegenerateHealth = true;
     [SerializeField] float regenerateHealthDelay = 5f;
@@ -28,7 +30,6 @@ public class ChefStats : MonoBehaviour
         varMaster = GameObject.FindObjectOfType<VarMaster>();
         if(varMaster != null){
             speed = (speed + varMaster.chefSpeedLvl) * mainStats.globalAllySpeed;
-            maxhealth = (maxhealth + varMaster.chefHealthLvl) * mainStats.globalAllyHealth;
             attack = (attack + varMaster.chefAttackLvl) * mainStats.globalAllyAttack;
         }
 
@@ -81,7 +82,7 @@ public class ChefStats : MonoBehaviour
                     enemyMovement.OnAllyKilled(transform.position);
                 }
             }
-            Destroy(gameObject);
+            SceneManager.LoadScene(nombreEscena);
         }
         else
         {

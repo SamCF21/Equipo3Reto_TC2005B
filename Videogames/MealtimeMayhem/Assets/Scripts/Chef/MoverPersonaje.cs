@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class MoverPersonaje : MonoBehaviour
 {
+    private VarMaster varMaster;
+    private int checkpoint;
+
     public float velocidadMovimiento = 5f; // Velocidad de movimiento del personaje
 
     private Vector2 destino; // Destino del personaje
@@ -16,6 +19,21 @@ public class MoverPersonaje : MonoBehaviour
     private void Start()
     {
         // Guardar las posiciones originales de los elementos hijos
+        varMaster = GameObject.FindObjectOfType<VarMaster>();
+        if(varMaster != null){
+            checkpoint = varMaster.checkpoint;
+        }
+
+        if(checkpoint == 0){
+            transform.position = new Vector2(-2.69f, 2.04f);
+        }else if(checkpoint == 1){
+            transform.position = new Vector2(18.6f, -23.6f);
+        }else if(checkpoint == 2){
+            transform.position = new Vector2(115f, -4.8f);
+        }else if(checkpoint == 3){
+            transform.position = new Vector2(119.8f, 46.5f);
+        }
+
         posicionesOriginales = new Vector2[elementosHijos.Length];
         for (int i = 0; i < elementosHijos.Length; i++)
         {

@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class BaseStats : MonoBehaviour
 {
     public string entityType = "base";
-    public int maxhealth = 20;
-    public int health = 0;
+    public float maxhealth = 20;
+    public float health = 0;
     public string winScene;
     public string loseScene;
     public Image healthBar;
@@ -22,7 +22,7 @@ public class BaseStats : MonoBehaviour
         healthBar.fillAmount = Mathf.Clamp((float)health / (float)maxhealth, 0, 1);
     }
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
         health -= damage;
         if (health <= 0)

@@ -21,6 +21,7 @@ public class ChefUpgrader : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(varMaster != null){
         if(varMaster.chefHealthLvl == 1)
         {
             Suit.SetActive(false);
@@ -44,5 +45,6 @@ public class ChefUpgrader : MonoBehaviour
         //}else if(varMaster.chefAttackLvl == 2){
             //Weapon.sprite = WeaponUpgrade2;
         //}
+        }
     }
 }

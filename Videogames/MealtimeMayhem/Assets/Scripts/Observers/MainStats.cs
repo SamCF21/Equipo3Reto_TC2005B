@@ -11,9 +11,14 @@ public class MainStats : MonoBehaviour
     public float globalAllySpeed;
     public float globalAllyHealth;
     public float globalAllyAttack;
-    public int difficulty = 1;
+    public int difficulty;
+    private VarMaster varMaster;
 
     void Start(){
+        varMaster = GameObject.FindObjectOfType<VarMaster>();
+        if(varMaster != null){
+            difficulty = varMaster.difficulty;
+        }
         Difficulty();
     }
 

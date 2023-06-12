@@ -6,12 +6,14 @@ public class EnemyMovement : MonoBehaviour
 {
     private EnemyStats enemyStats; // To get the enemy movement speed
     private MainStats mainStats; // To get the global enenmy speed
-    private Vector2 targetPosition; // Current target position. Can be the cart or an ally
-    private bool isAttackingAlly = false; // Is the enemy attacking an ally?
-    private Vector2 nearestAllyPosition; // Position of the nearest ally
     private GameObject foodCart; // Reference to the food cart's position
+    
     public float speed;
 
+    private Vector2 nearestAllyPosition; // Position of the nearest ally
+    private Vector2 targetPosition; // Current target position. Can be the cart or an ally
+    private bool isAttackingAlly = false; // Is the enemy attacking an ally?
+    
     private void Start()
     {
         mainStats = FindObjectOfType<MainStats>();
@@ -36,14 +38,22 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Detects if the enemy is within range of an ally
-    private void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("Ally")){ // If the enemy is within range of an ally
-            if (!isAttackingAlly){
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Ally")) // If the enemy is within range of an ally
+        {
+            if (!isAttackingAlly)
+            {
                 nearestAllyPosition = other.transform.position; // Get the position of the nearest ally
                 isAttackingAlly = true; // Set the enemy to attack the nearest ally
             }
+            else if (isAttackingAlly && (nearestAllyPosition != (Vector2)other.transform.position))
+            {
+                nearestAllyPosition = other.transform.position;
+            }
         }
     }
+
 
     // Detects if the enemy is out of range of an ally. This is used to prevent the enemy from attacking an ally that is out of range, usually when the ally is killed
     private void OnTriggerExit2D(Collider2D other)

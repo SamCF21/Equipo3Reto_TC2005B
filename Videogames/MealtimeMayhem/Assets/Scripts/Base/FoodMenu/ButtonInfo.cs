@@ -7,13 +7,21 @@ using TMPro;
 public class ButtonInfo : MonoBehaviour
 {
     public int FoodID;
-    public GameObject FoodManager;
+    [SerializeField] GameObject FoodManager;
 
-    [SerializeField] private GameObject objectToInstantiate; // Objeto a instanciar
+    private VarMaster varMaster;
+    [SerializeField] int nat;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private GameObject arepa;
+    [SerializeField] private GameObject taco;
+    [SerializeField] private GameObject pan;
+
+    void Start()
     {
+        varMaster = GameObject.FindObjectOfType<VarMaster>();
+        if(varMaster != null){
+            nat = varMaster.nat;
+        }
     }
 
     public void InstantiateObject()
@@ -23,7 +31,13 @@ public class ButtonInfo : MonoBehaviour
             GameObject carrito = GameObject.Find("carrito");
             if(carrito !=null){
                 Vector2 cartPos = carrito.transform.position;
-                Instantiate(objectToInstantiate, cartPos, Quaternion.identity);
+                if(nat == 1){
+                    Instantiate(arepa, cartPos, Quaternion.identity);
+                }else if(nat == 2){
+                    Instantiate(taco, cartPos, Quaternion.identity);
+                }else{
+                    Instantiate(pan, cartPos, Quaternion.identity);
+                }
                 FoodManager.GetComponent<FoodManager>().totalFood = FoodManager.GetComponent<FoodManager>().totalFood + 1;
             }
         }

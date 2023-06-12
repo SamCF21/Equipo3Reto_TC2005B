@@ -5,16 +5,26 @@ using UnityEngine;
 public class VarMaster : MonoBehaviour
 {
     public int nat;
+    public int difficulty;
     public int codeEye;
     public int codeHead;
+
     public int cartLvl;
-    public int allyHealthLvl;
-    public int allySpeedLvl;
-    public int allyAttackLvl;
-    public int chefHealthLvl;
-    public int chefSpeedLvl;
-    public int chefAttackLvl;
+    public float allyHealthLvl;
+    public float allySpeedLvl;
+    public float allyAttackLvl;
+    public float chefHealthLvl;
+    public float chefSpeedLvl;
+    public float chefAttackLvl;
+
     public int path;
+
+    public int tutorial;
+    public int lvlOne;
+    public int lvlTwo;
+    public int lvlThree;
+
+    public int skillPoints;
 
     public Color eyeColor;
     public Color headColor;

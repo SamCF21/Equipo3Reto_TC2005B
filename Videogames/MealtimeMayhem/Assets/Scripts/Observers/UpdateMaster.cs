@@ -12,14 +12,20 @@ public class UpdateMaster : MonoBehaviour
     private GameObject cartTree;
     private GameObject allyTree;
     private GameObject chefTree;
+    
     private SkillUpgrade skillUpgrade;
     private BifurcationSkill bifSkill;
+    private VarMaster varMaster;
+
     private bool isAny;
     private int st = 1;
+
     private string chefTitle;
     private string allyTitle;
     private string cartTitle;
     private string selectText;
+    private string notEnough;
+
     [SerializeField] TextMeshProUGUI title;
     [SerializeField] TextMeshProUGUI content;
 
@@ -33,11 +39,16 @@ public class UpdateMaster : MonoBehaviour
         allyTree = GameObject.Find("AllySkills");
         cartTree = GameObject.Find("CartSkills");
         chefTree = GameObject.Find("ChefSkills");
+        
+        varMaster = GameObject.FindObjectOfType<VarMaster>();
+
         isAny = false;
+        
         chefTitle = "Chef Tree";
         allyTitle = "Ally Tree";
         cartTitle = "Cart Tree";
         selectText = "Select a skill to see more information about it";
+        notEnough = "Win more skillpoints to purchase this skill";
     }
 
     void Update()
@@ -173,6 +184,7 @@ public class UpdateMaster : MonoBehaviour
             }
         }
     }
+
     void BuySkill()
     {
         // Obtener capa asignada
@@ -184,13 +196,23 @@ public class UpdateMaster : MonoBehaviour
             // Comprar la habilidad si se hace clic en el collider correspondiente y no está bloqueada
             if (hit.collider != null && !skillUpgrade.isLocked)
             {
-                skillUpgrade.isBought = true;
+                if(varMaster.skillPoints >= 1){
+                    skillUpgrade.isBought = true;
+                    varMaster.skillPoints -= 1;
+                }else{
+                    content.text = notEnough;
+                }
             }
         }
         if (bifSkill != null){
             if (hit.collider != null && !bifSkill.isLocked)
             {
-                bifSkill.isBought = true;
+                if(varMaster.skillPoints >= 1){
+                    bifSkill.isBought = true;
+                    varMaster.skillPoints -= 1;
+                }else{
+                    content.text = notEnough;
+                }
             }
         }
     }

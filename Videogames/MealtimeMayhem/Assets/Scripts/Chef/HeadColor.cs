@@ -7,17 +7,13 @@ public class HeadColor : MonoBehaviour
     private VarMaster varMaster;
     private SpriteRenderer spriteRenderer;
 
-    void Start()
+    void Awake()
     {
         varMaster = FindObjectOfType<VarMaster>();
         if (varMaster != null)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = varMaster.headColor;
-        }
-        else
-        {
-            Debug.LogError("VarMaster not found.");
         }
     }
 }

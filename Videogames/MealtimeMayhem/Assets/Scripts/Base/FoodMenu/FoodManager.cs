@@ -9,7 +9,9 @@ public class FoodManager : MonoBehaviour
 {
     public int[,] foodItems = new int [3,4];
     public int totalFood;
+    public int totalDeath;
     [SerializeField] TextMeshProUGUI totalText;
+    [SerializeField] TextMeshProUGUI deathFood;
 
 
     // Start is called before the first frame update
@@ -32,6 +34,7 @@ public class FoodManager : MonoBehaviour
 
     void Update(){
         totalText.text = totalFood.ToString();
+        deathFood.text = totalDeath.ToString();
     }
 
     public void FoodBuy(){

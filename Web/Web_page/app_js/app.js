@@ -182,7 +182,7 @@ app.post('/api/users/login', async (request, response) => {
     {
         connection.end()
     }
-}) 
+})
 app.get('/unity', (request,response)=>{
     fs.readFile('./public/Build_file_1/index.html', 'utf8', (err, html)=>{
         if(err) response.status(500).send('There was an error: ' + err)

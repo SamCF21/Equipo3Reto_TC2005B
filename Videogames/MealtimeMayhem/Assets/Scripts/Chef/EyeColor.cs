@@ -15,9 +15,5 @@ public class EyeColor : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = varMaster.eyeColor;
         }
-        else
-        {
-            Debug.LogError("VarMaster not found.");
-        }
     }
 }

@@ -15,9 +15,5 @@ public class HeadColor : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = varMaster.headColor;
         }
-        else
-        {
-            Debug.LogError("VarMaster not found.");
-        }
     }
 }

@@ -12,43 +12,55 @@ public class CustomizeMaster : MonoBehaviour
     private GameObject usa;
     private GameObject mex;
     private VarMaster varMaster;
-    private int nat = 1;
+    public int nat = 1;
+    [SerializeField] int window;
 
     void Start(){
-        head = GameObject.Find("Head").GetComponent<SpriteRenderer>();
-        eyes = GameObject.Find("Eyes").GetComponent<SpriteRenderer>();
-        ven = GameObject.Find("Venezuela");
-        usa = GameObject.Find("USA");
-        mex = GameObject.Find("México");
-        left = GameObject.Find("Left");
-        right = GameObject.Find("Right");
+        if(window == 1){
+            head = GameObject.Find("Head").GetComponent<SpriteRenderer>();
+            eyes = GameObject.Find("Eyes").GetComponent<SpriteRenderer>();
+        }
+        if (window == 2){
+            ven = GameObject.Find("Venezuela");
+            usa = GameObject.Find("USA");
+            mex = GameObject.Find("México");
+            left = GameObject.Find("Left");
+            right = GameObject.Find("Right");
+        }
         varMaster = GameObject.FindObjectOfType<VarMaster>();
     }
 
     void Update(){
         if (Input.GetMouseButtonDown(0)){
-            BodyColorChanger();
-            EyeColorChanger();
-            NationalityChanger();
+            if(head != null){
+                BodyColorChanger();
+            }
+            if(eyes != null){
+                EyeColorChanger();
+            }
+            if((ven != null) || (usa != null) || (mex != null) || (left != null) || (right != null)){
+                NationalityChanger(); 
+            }
+        }
+        if (window == 2){
+                ven.SetActive(false);
+                usa.SetActive(false);
+                mex.SetActive(false);
+
+            switch (nat){
+                case 1:
+                    ven.SetActive(true);
+                    break;
+                case 2:
+                    mex.SetActive(true);
+                    break;
+                case 3:
+                    usa.SetActive(true);
+                    break;
+            }
+            varMaster.nat = nat;
         }
 
-        ven.SetActive(false);
-        usa.SetActive(false);
-        mex.SetActive(false);
-
-        switch (nat){
-            case 1:
-                ven.SetActive(true);
-                break;
-            case 2:
-                mex.SetActive(true);
-                break;
-            case 3:
-                usa.SetActive(true);
-                break;
-        }
-
-        varMaster.nat = nat;
     }
 
     void BodyColorChanger(){
@@ -71,7 +83,6 @@ public class CustomizeMaster : MonoBehaviour
             if (renderer != null){
                 eyes.color = renderer.color;
                 varMaster.eyeColor = eyes.color;
-                Debug.Log(eyes.color);
             }
         }
     }

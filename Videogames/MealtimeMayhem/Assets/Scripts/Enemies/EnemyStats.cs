@@ -4,21 +4,28 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-    public int enemyType = 1;
-    public string entityType = "enemy";
-    public int rangeType = 1;
-    public float speed = 1f;
-    public float attack = 1f;
-    public int life = 1;
-    public int maxhealth = 5;
-    public int health = 0;
+    public float speed;
+    public float attack;
+    public float maxhealth;
+
+    private MainStats mainStats;
+
+    public float health;
     
     void Start()
     {
+        mainStats = GameObject.FindObjectOfType<MainStats>();
+
+        if(mainStats != null){
+            speed = speed * mainStats.globalEnemySpeed;
+            maxhealth = maxhealth * mainStats.globalEnemyHealth;
+            attack = attack * mainStats.globalEnemyAttack;
+        }
+        
         health = maxhealth;
     }
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
         health -= damage;
         if (health <= 0)

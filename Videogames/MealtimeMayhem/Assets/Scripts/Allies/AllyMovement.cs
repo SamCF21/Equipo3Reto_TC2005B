@@ -8,22 +8,27 @@ public class AllyMovement : MonoBehaviour
     public Transform prevTarget;
     public bool isSelected;
     private float speed;
-    [SerializeField] Material selectedMaterial;
-    private Material actualMaterial;
-    private SpriteRenderer spriteRenderer;
+
     private MainStats mainStats;
     private ClassStats classStats;
+    private ChefStats chefStats;
+    [SerializeField] BootChange botas;
+
     private TileEmpty[] tiles;
     private TileEmpty tileEmpty;
+
     private AllyMovementMaster allyMaster;
+    
 
     void Start(){
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        actualMaterial = spriteRenderer.material;
         classStats = GetComponent<ClassStats>();
+        chefStats = GetComponent<ChefStats>();
+
         mainStats = GameObject.FindObjectOfType<MainStats>();
         allyMaster = GameObject.FindObjectOfType<AllyMovementMaster>();
+        
         isSelected = false;
+
         tiles = GameObject.FindObjectsOfType<TileEmpty>();
         if (tiles.Length > 0)
         {
@@ -54,7 +59,12 @@ public class AllyMovement : MonoBehaviour
     }
 
     void MovePos(){
-        speed = classStats.speed * mainStats.globalSpeed;
+        if(classStats != null){
+            speed = classStats.speed * mainStats.globalSpeed;
+        }
+        if(chefStats != null){
+            speed = chefStats.speed * mainStats.globalSpeed;
+        }
         if (prevTarget != null){
             tileEmpty = prevTarget.GetComponent<TileEmpty>();
             if(tileEmpty != null){
@@ -72,15 +82,24 @@ public class AllyMovement : MonoBehaviour
             if (actPos != transform.position.x){
                 isSelected = false;
                 mainStats.globalSpeed = 1;
+                botas.movement = true;
+            }else{
+                botas.movement = false;
             }
             if(actPos > transform.position.x){
-                if(spriteRenderer != null){
-                    spriteRenderer.flipX = true;
+                if(classStats != null){
+                    classStats.flip = true;
+                }
+                if(chefStats != null){
+                    chefStats.flip = true;
                 }
             }
             if(actPos < transform.position.x){
-                if (spriteRenderer != null){
-                    spriteRenderer.flipX = false;
+                if(classStats != null){
+                    classStats.flip = false;
+                }
+                if(chefStats != null){
+                    chefStats.flip = false;
                 }
             }
         }
@@ -88,14 +107,7 @@ public class AllyMovement : MonoBehaviour
 
     void Selection(){
         if(isSelected){
-            if (spriteRenderer != null){
-                spriteRenderer.material = selectedMaterial;
-            }
-            mainStats.globalSpeed = 0.5f;
-        }else if (!isSelected){
-            if(spriteRenderer != null){
-                spriteRenderer.material = actualMaterial;
-            }
+           mainStats.globalSpeed = 0.5f;
         }
     }
 }

@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    [SerializeField] int damage;
+    private Rigidbody2D rb;
+    
+    private EnemyStats enemyStats;
+    private BaseStats baseStats;
+
+    private float damage;
     [SerializeField] float thrust;
     [SerializeField] float knockTime;
-    
-    private BaseStats baseStats;
-    private Rigidbody2D rb;
 
     void Start()
     {
+        enemyStats = GetComponent<EnemyStats>();
+        if(enemyStats != null){
+            damage = enemyStats.attack;
+        }
         baseStats = GameObject.Find("carrito").GetComponent<BaseStats>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -27,6 +33,8 @@ public class EnemyDamage : MonoBehaviour
         else if(collision.gameObject.tag == "Ally")
         {
             ClassStats classStats = collision.gameObject.GetComponent<ClassStats>();
+            ChefStats chefStats = collision.gameObject.GetComponent<ChefStats>();
+            
             if (classStats != null)
             {
                 rb.isKinematic = false;
@@ -36,6 +44,16 @@ public class EnemyDamage : MonoBehaviour
                 rb.AddForce(force, ForceMode2D.Impulse);
                 rb.isKinematic = true;
                 classStats.Damage(damage);
+            }
+            if (chefStats != null)
+            {
+                rb.isKinematic = false;
+                StartCoroutine(Knockback(rb));
+                Vector2 difference = (rb.transform.position - chefStats.transform.position).normalized;
+                Vector2 force = difference * thrust;
+                rb.AddForce(force, ForceMode2D.Impulse);
+                rb.isKinematic = true;
+                chefStats.Damage(damage);
             }
         }
     }

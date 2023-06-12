@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class AllyDamage : MonoBehaviour
 {
-    [SerializeField] int damage;
+    private ClassStats classStats;
+    private ChefStats chefStats;
+
+    private float damage;
+
+    void Start(){
+        classStats = GetComponent<ClassStats>();
+        chefStats = GetComponent<ChefStats>();
+        if (classStats != null){
+            damage = classStats.attack;
+        } else {
+            damage = chefStats.attack;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision) 
     {

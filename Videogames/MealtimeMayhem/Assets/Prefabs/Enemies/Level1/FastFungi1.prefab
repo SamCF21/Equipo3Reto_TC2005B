@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0c8055c147e422db6325cf9291b756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 5
+  thrust: 10
   knockTime: 0.4
 --- !u!70 &6657739635213239996
 CapsuleCollider2D:

@@ -16,13 +16,13 @@ public class VarMaster : MonoBehaviour
     public float chefHealthLvl;
     public float chefSpeedLvl;
     public float chefAttackLvl;
-
     public int path;
 
     public int tutorial;
     public int lvlOne;
     public int lvlTwo;
     public int lvlThree;
+    public int checkpoint;
 
     public int skillPoints;
 

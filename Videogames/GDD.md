@@ -158,7 +158,6 @@ Sprites:
 
 ![e1](/Videogames/imagesforGDD/enemy1.png)
 
-
    2. Type 2
 
 ![e2](/Videogames/imagesforGDD/enemy2.png)
@@ -223,8 +222,6 @@ Audio
 ## _Level Design_
 
 ---
-
-_(Note : These sections can safely be skipped if they&#39;re not relevant, or you&#39;d rather go about it another way. For most games, at least one of them should be useful. But I&#39;ll understand if you don&#39;t want to use them. It&#39;ll only hurt my feelings a little bit.)_
 
 ### **Themes**
 
@@ -295,14 +292,6 @@ _(Note : These sections can safely be skipped if they&#39;re not relevant, or yo
 
 ---
 
-### **Style Attributes**
-
-What kinds of colors will you be using? Do you have a limited palette to work with? A post-processed HSV map/image? Consistency is key for immersion.
-
-What kind of graphic style are you going for? Cartoony? Pixel-y? Cute? How, specifically? Solid, thick outlines with flat hues? Non-black outlines with limited tints/shades? Emphasize smooth curvatures over sharp angles? Describe a set of general rules depicting your style here.
-
-Well-designed feedback, both good (e.g. leveling up) and bad (e.g. being hit), are great for teaching the player how to play through trial and error, instead of scripting a lengthy tutorial. What kind of visual feedback are you going to use to let the player know they&#39;re interacting with something? That they \*can\* interact with something?
-
 ### **Graphics Needed**
 
 1. Characters
@@ -341,14 +330,6 @@ _(example)_
 
 ---
 
-### **Style Attributes**
-
-Again, consistency is key. Define that consistency here. What kind of instruments do you want to use in your music? Any particular tempo, key? Influences, genre? Mood?
-
-Stylistically, what kind of sound effects are you looking for? Do you want to exaggerate actions with lengthy, cartoony sounds (e.g. mario&#39;s jump), or use just enough to let the player know something happened (e.g. mega man&#39;s landing)? Going for realism? You can use the music style as a bit of a reference too.
-
- Remember, auditory feedback should stand out from the music and other sound effects so the player hears it well. Volume, panning, and frequency/pitch are all important aspects to consider in both music _and_ sounds - so plan accordingly!
-
 ### **Sounds Needed**
 
 1. Effects
@@ -374,42 +355,5 @@ _(example)_
 3. Creepy, slow &quot;dungeon&quot; track
 4. Happy ending credits track
 5. Rick Astley&#39;s hit #1 single &quot;Never Gonna Give You Up&quot;
-
-_(example)_
-
-
-## _Schedule_
-
----
-
-_(define the main activities and the expected dates when they should be finished. This is only a reference, and can change as the project is developed)_
-
-1. develop base classes
-    1. base entity
-        1. base player
-        2. base enemy
-        3. base block
-  2. base app state
-        1. game world
-        2. menu world
-2. develop player and basic block classes
-    1. physics / collisions
-3. find some smooth controls/physics
-4. develop other derived classes
-    1. blocks
-        1. moving
-        2. falling
-        3. breaking
-        4. cloud
-    2. enemies
-        1. soldier
-        2. rat
-        3. etc.
-5. design levels
-    1. introduce motion/jumping
-    2. introduce throwing
-    3. mind the pacing, let the player play between lessons
-6. design sounds
-7. design music
 
 _(example)_

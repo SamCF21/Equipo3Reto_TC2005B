@@ -1,4 +1,3 @@
-
 "use strict"
 
 import express from 'express'
@@ -423,4 +422,128 @@ app.post('/api/sesion', async (request, response)=>{ // se usa post porque se qu
 app.listen(port, ()=>
 {
     console.log(`App listening at http://localhost:${port}`)
+})
+
+// -------------------------------- Unity endpoints ----------------------------------------
+app.get('/unity/usuario', async (request, response)=>{ //definir un endpoint
+    let connection = null
+    //se hace la conexion y un query y después cierra la conexion
+
+    try
+    {
+        connection = await connectToDB()
+        const [results, fields] = await connection.execute('select * from Usuario')
+        //en execute le estamos pidiendo q selecciones toda la tabla de users
+        //sigue siendo una promesa entonces usamos await
+        //results es un array de objetos, cada objeto es un usuario, viene la info por query
+        //fields es un array de objetos, cada objeto es un campo de la tabla
+        console.log(`${results.length} rows returned`)//muestra los resultados en consola
+        response.json(results)
+        //formato json, cuyos atributos serán los nombres de columnas y los valores serán la info de las filas
+    }
+    catch(error)
+    {
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally //siempre se ejecuta con o sin error, cierra la conexion
+    {
+        if(connection!==null) 
+        {
+            connection.end()
+            console.log("Connection closed succesfully!")
+        }
+    }
+})
+
+app.post('/unity/usuario', async (request, response)=>{ // se usa post porque se quiere insertar algo
+
+    let connection = null
+
+    try
+    {    
+        connection = await connectToDB()
+
+        const [results, fields] = await connection.query('insert into Usuario set ?', request.body)
+        //request.body es un objeto que contiene los datos que se quieren insertar
+        
+        console.log(`${results.affectedRows} row inserted`)
+        response.json({'message': "Data inserted correctly.", "id": results.insertId})
+    }
+    catch(error)
+    {
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        if(connection!==null) 
+        {
+            connection.end()
+            console.log("Connection closed succesfully!")
+        }
+    }
+})
+app.get('/unity/personalizations', async (request, response)=>{ //definir un endpoint
+    let connection = null
+    //se hace la conexion y un query y después cierra la conexion
+
+    try
+    {
+        connection = await connectToDB()
+        const [results, fields] = await connection.execute('select * from Person_Chef')
+        //en execute le estamos pidiendo q selecciones toda la tabla de users
+        //sigue siendo una promesa entonces usamos await
+        //results es un array de objetos, cada objeto es un usuario, viene la info por query
+        //fields es un array de objetos, cada objeto es un campo de la tabla
+        console.log(`${results.length} rows returned`)//muestra los resultados en consola
+        response.json(results)
+        //formato json, cuyos atributos serán los nombres de columnas y los valores serán la info de las filas
+    }
+    catch(error)
+    {
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally //siempre se ejecuta con o sin error, cierra la conexion
+    {
+        if(connection!==null) 
+        {
+            connection.end()
+            console.log("Connection closed succesfully!")
+        }
+    }
+})
+
+app.post('/unity/personalizations', async (request, response)=>{ // se usa post porque se quiere insertar algo
+
+    let connection = null
+
+    try
+    {    
+        connection = await connectToDB()
+
+        const [results, fields] = await connection.query('insert into Person_Chef set ?', request.body)
+        //request.body es un objeto que contiene los datos que se quieren insertar
+        
+        console.log(`${results.affectedRows} row inserted`)
+        response.json({'message': "Data inserted correctly.", "id": results.insertId})
+    }
+    catch(error)
+    {
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        if(connection!==null) 
+        {
+            connection.end()
+            console.log("Connection closed succesfully!")
+        }
+    }
 })

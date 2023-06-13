@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TitleScreen.unity
-    guid: 83edfd554a4a79b4e8e9608774146e05
-  - enabled: 1
-    path: Assets/Scenes/Scenes/Login.unity
+    path: Assets/Scenes/Login.unity
     guid: 633b0b3c007013647be41af9c70a5c1c
+  - enabled: 1
+    path: Assets/Scenes/Sign Up.unity
+    guid: 8d489246195dbc244b44ab0433ade33b
   - enabled: 1
     path: Assets/Scenes/Scenes/SlotSelector.unity
     guid: a7d5d4d4f8c195644bc713d1c924e36d
@@ -27,8 +27,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Scenes/Overworld.unity
     guid: 96f0a620cb9f39c4ea397548d2a8e60f
   - enabled: 1
-    path: Assets/Scenes/Scenes/SceneCris.unity
-    guid: 2989eba97fa464507a0b10718e79c863
+    path: Assets/Scenes/Scenes/Level1.unity
+    guid: bc3f0d14515a4c7469b89c56ce333ad3
   - enabled: 1
     path: Assets/Scenes/Scenes/ChefUpgradesSkillTree.unity
     guid: 8a423acd090aec444b0e11ddb96ad01b
@@ -38,18 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scenes/WinningScreen.unity
     guid: 4bf29747bfc92b744a4f5c93b8b81ace
-  - enabled: 1
-    path: Assets/Scenes/Scenes/StartingLevel1.unity
-    guid: 2bfaf064c5299f44db35c25f126b8bb2
-  - enabled: 1
-    path: Assets/Scenes/Scenes/StartingLevel2.unity
-    guid: 7617a386aa0e6314391d727f77296883
-  - enabled: 1
-    path: Assets/Scenes/Scenes/StartingLevel3.unity
-    guid: ef6ddbf7e741f2145acb7f4f44e954f7
-  - enabled: 1
-    path: Assets/Scenes/Scenes/Level1.unity
-    guid: bc3f0d14515a4c7469b89c56ce333ad3
   - enabled: 1
     path: Assets/Scenes/Scenes/TutorialOverworld.unity
     guid: 24ba67cee7b47d744812eac9e55c6ede

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChefUpgrader : MonoBehaviour
 {
+    [SerializeField] GameObject Net;
     [SerializeField] GameObject Hat;
     [SerializeField] Sprite HatUpgrade;
     [SerializeField] GameObject Suit;
@@ -18,33 +19,37 @@ public class ChefUpgrader : MonoBehaviour
         varMaster = GameObject.FindObjectOfType<VarMaster>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if(varMaster != null){
-        if(varMaster.chefHealthLvl == 1)
-        {
-            Suit.SetActive(false);
-            ChefSuit.SetActive(true);
-        }else if(varMaster.chefHealthLvl == 2){
-            Suit.SetActive(false);
-            ChefSuit.SetActive(true);
-            SpriteRenderer chefUpgrade = ChefSuit.GetComponent<SpriteRenderer>();
-            chefUpgrade.sprite = ChefSuitUpgrade;
-        }
-        //if(VarMaster.chefSpeedLvl == 1){
-            //Hat.SetActive(true);
-        //}
-        if(varMaster.chefSpeedLvl == 2){
-            //Hat.sprite = HatUpgrade;
-            Hat.SetActive(true);
-        }
+            if(varMaster.chefHealthLvl == 1){
+                Suit.SetActive(false);
+                ChefSuit.SetActive(true);
+            }else if(varMaster.chefHealthLvl == 2){
+                Suit.SetActive(false);
+                ChefSuit.SetActive(true);
+                SpriteRenderer chefUpgrade = ChefSuit.GetComponent<SpriteRenderer>();
+                chefUpgrade.sprite = ChefSuitUpgrade;
+            }
+            
+            if(varMaster.chefSpeedLvl == 1){
+                Net.SetActive(false);
+                Hat.SetActive(true);
+            }
+            if(varMaster.chefSpeedLvl == 2){
+                SpriteRenderer hatUpg = Hat.GetComponent<SpriteRenderer>();
+                hatUpg.sprite = HatUpgrade;
+                Net.SetActive(false);
+                Hat.SetActive(true);
+            }
 
-        //if(varMaster.chefAttackLvl == 1){
-            //Weapon.sprite = WeaponUpgrade1;
-        //}else if(varMaster.chefAttackLvl == 2){
-            //Weapon.sprite = WeaponUpgrade2;
-        //}
+            if(varMaster.chefAttackLvl == 1){
+                SpriteRenderer weaponUpgrade = Weapon.GetComponent<SpriteRenderer>();
+                weaponUpgrade.sprite = WeaponUpgrade1;
+            }else if(varMaster.chefAttackLvl == 2){
+                SpriteRenderer weaponUpgrade = Weapon.GetComponent<SpriteRenderer>();
+                weaponUpgrade.sprite = WeaponUpgrade2;
+            }
         }
     }
 }

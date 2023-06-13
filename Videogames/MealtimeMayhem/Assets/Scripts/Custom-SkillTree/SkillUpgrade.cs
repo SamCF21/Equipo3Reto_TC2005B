@@ -18,6 +18,17 @@ public class SkillUpgrade : MonoBehaviour
     public bool isLocked;
     public bool isSelected;
     public bool isBought;
+    public bool checkBought;
+
+
+    [SerializeField] int level;
+    [SerializeField] bool ally;
+    [SerializeField] bool chef;
+    [SerializeField] bool cart;
+    [SerializeField] bool attack;
+    [SerializeField] bool health;
+    [SerializeField] bool speed;
+
 
     [SerializeField] SkillUpgrade nextSkill;
     [SerializeField] string titleText;
@@ -42,6 +53,7 @@ public class SkillUpgrade : MonoBehaviour
         varMaster = FindObjectOfType<VarMaster>();
         blockedText = "Upgrade the previous skill before accessing this one";
         purchaseText = "Purchased!";
+        CheckIfBought();
     }
 
     void FixedUpdate()
@@ -104,6 +116,77 @@ public class SkillUpgrade : MonoBehaviour
                 Destroy(gameObject);
             }else{
                 Destroy(gameObject);
+            }
+        }
+    }
+
+    void CheckIfBought(){
+        if(chef){
+            if(speed){
+                if(level <= varMaster.chefSpeedLvl){
+                    if(nextSkill != null){
+                        nextSkill.isLocked = false;
+                        Destroy(gameObject);
+                    }else{
+                        Destroy(gameObject);
+                    }
+                }
+            }else if(attack){
+                if(level <= varMaster.chefAttackLvl){
+                    if(nextSkill != null){
+                        nextSkill.isLocked = false;
+                        Destroy(gameObject);
+                    }else{
+                        Destroy(gameObject);
+                    }
+                }
+            }else if(health){
+                if(level <= varMaster.chefHealthLvl){
+                    if(nextSkill != null){
+                        nextSkill.isLocked = false;
+                        Destroy(gameObject);
+                    }else{
+                        Destroy(gameObject);
+                    }
+                }
+            }
+        }else if(ally){
+            if(speed){
+                if(level <= varMaster.allySpeedLvl){
+                    if(nextSkill != null){
+                        nextSkill.isLocked = false;
+                        Destroy(gameObject);
+                    }else{
+                        Destroy(gameObject);
+                    }
+                }
+            }else if(attack){
+                if(level <= varMaster.allyAttackLvl){
+                    if(nextSkill != null){
+                        nextSkill.isLocked = false;
+                        Destroy(gameObject);
+                    }else{
+                        Destroy(gameObject);
+                    }
+                }
+            }else if(health){
+                if(level <= varMaster.allyHealthLvl){
+                    if(nextSkill != null){
+                        nextSkill.isLocked = false;
+                        Destroy(gameObject);
+                    }else{
+                        Destroy(gameObject);
+                    }
+                }
+            }
+        }else if(cart){
+            if(level <= varMaster.cartLvl){
+                if(nextSkill != null){
+                    nextSkill.isLocked = false;
+                    Destroy(gameObject);
+                }else{
+                    Destroy(gameObject);
+                }
             }
         }
     }

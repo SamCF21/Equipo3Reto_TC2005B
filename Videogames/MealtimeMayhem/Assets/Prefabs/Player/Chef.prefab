@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 2359379386910277452}
   - component: {fileID: 2359379386910277453}
   m_Layer: 0
-  m_Name: Hat
+  m_Name: Net
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 2359379387285227721}
   - component: {fileID: 2359379387285227726}
   m_Layer: 0
-  m_Name: Hat2
+  m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -683,8 +683,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f212dee42d10e4382b19618a7d9fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Net: {fileID: 2359379386910277455}
   Hat: {fileID: 2359379387285227720}
-  HatUpgrade: {fileID: 0}
+  HatUpgrade: {fileID: 21300000, guid: 5df9a90132ed5934cb684d601a513616, type: 3}
   Suit: {fileID: 2359379387098271646}
   ChefSuit: {fileID: 2359379386168709930}
   ChefSuitUpgrade: {fileID: 21300000, guid: 381fd60a1fe62be4c94936b9b2ebc4d0, type: 3}

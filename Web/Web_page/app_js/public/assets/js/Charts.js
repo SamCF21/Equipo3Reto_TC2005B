@@ -51,7 +51,7 @@ function random_color(alpha = 1.0) {
   // Function to fetch data and plot the charts
   async function fetchDataAndPlotCharts() {
     try {
-      const levels_response = await fetch('http://localhost:5500/api/levels', {
+      const levels_response = await fetch('http://localhost:5500/api/chef', {
         method: 'GET',
       });
   

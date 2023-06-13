@@ -151,6 +151,7 @@ app.post('/api/users/login', async (request, response) => {
       }
     }
   });
+  //BORRAR
   app.get('/api/levels', async(request, response)=>{
     
     let connection = null;
@@ -182,13 +183,241 @@ app.post('/api/users/login', async (request, response) => {
     {
         connection.end()
     }
-})
+}) 
 app.get('/unity', (request,response)=>{
     fs.readFile('./public/Build_file_1/index.html', 'utf8', (err, html)=>{
         if(err) response.status(500).send('There was an error: ' + err)
         console.log('Loading page...')
         response.send(html)
     })
+})
+
+
+//VIEWS
+app.get('/api/chef', async(request, response)=>{
+    
+    let connection = null;
+    
+
+    try{
+
+        connection = await connectToDB();
+
+        const [results] = await connection.query('select * from SessionChefPreferences')
+        //LEADERBOARD DE NIVELES
+        //TOP 5 EN RELACIÓN A COMPLETION_RATE
+            
+            console.log("Sending data correctly.")
+            response.status(200)
+            response.json(results)
+        }
+
+        
+    
+    catch(error)
+    {
+        console.log(error)
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        connection.end()
+    }
+}) 
+//ENDPOINT PARA La VIEW DE TOP RANKED
+app.get('/api/top', async(request, response)=>{
+    
+    let connection = null;
+    
+
+    try{
+
+        connection = await connectToDB();
+
+        const [results] = await connection.query('select * from TopRankedUsers')
+        //LEADERBOARD DE NIVELES
+        //TOP 5 EN RELACIÓN A COMPLETION_RATE
+            
+            console.log("Sending data correctly.")
+            response.status(200)
+            response.json(results)
+        }
+
+        
+    
+    catch(error)
+    {
+        console.log(error)
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        connection.end()
+    }
+}) 
+
+///ENDPOINT PARA LA VIEW DE UserSessionProgress
+app.get('/api/sesion_progress', async(request, response)=>{
+    
+    let connection = null;
+    
+
+    try{
+
+        connection = await connectToDB();
+
+        const [results] = await connection.query('select * from UserSessionProgress')
+        //LEADERBOARD DE NIVELES
+        //TOP 5 EN RELACIÓN A COMPLETION_RATE
+            
+            console.log("Sending data correctly.")
+            response.status(200)
+            response.json(results)
+        }
+
+        
+    
+    catch(error)
+    {
+        console.log(error)
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        connection.end()
+    }
+}) 
+
+//ENDPOINT PARA VIEW DE MainCharacterDetails
+app.get('/api/mainchar', async(request, response)=>{
+    
+    let connection = null;
+    
+
+    try{
+
+        connection = await connectToDB();
+
+        const [results] = await connection.query('select * from MainCharacterDetails')
+        //LEADERBOARD DE NIVELES
+        //TOP 5 EN RELACIÓN A COMPLETION_RATE
+            
+            console.log("Sending data correctly.")
+            response.status(200)
+            response.json(results)
+        }
+
+        
+    
+    catch(error)
+    {
+        console.log(error)
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        connection.end()
+    }
+}) 
+
+//ENDPOINTS PARA HACER POSTS EN LAS TABLAS (tipo como el endponit para el login)
+// POST PARA PERSON_CHEF
+app.post('/api/person_chef', async (request, response)=>{ // se usa post porque se quiere insertar algo
+
+    let connection = null
+
+    try
+    {    
+        connection = await connectToDB()
+
+        const [results, fields] = await connection.query('insert into Person_Chef set ?', request.body)
+        //request.body es un objeto que contiene los datos que se quieren insertar
+        
+        console.log(`${results.affectedRows} row inserted`)
+        response.json({'message': "Data inserted correctly.", "id": results.insertId})// este mensaje se cambia de acuerdo a lo que se haya agregado en la tabla
+    }
+    catch(error)
+    {
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        if(connection!==null) 
+        {
+            connection.end()
+            console.log("Connection closed succesfully!")
+        }
+    }
+})
+//POST PARA CHECKPOINTS
+app.post('/api/checkpoints', async (request, response)=>{ // se usa post porque se quiere insertar algo
+
+    let connection = null
+
+    try
+    {    
+        connection = await connectToDB()
+
+        const [results, fields] = await connection.query('insert into Checkpoints set ?', request.body)
+        //request.body es un objeto que contiene los datos que se quieren insertar
+        
+        console.log(`${results.affectedRows} row inserted`)
+        response.json({'message': "Data inserted correctly.", "id": results.insertId})// este mensaje se cambia de acuerdo a lo que se haya agregado en la tabla
+    }
+    catch(error)
+    {
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        if(connection!==null) 
+        {
+            connection.end()
+            console.log("Connection closed succesfully!")
+        }
+    }
+})
+//POST PARA SESION
+app.post('/api/sesion', async (request, response)=>{ // se usa post porque se quiere insertar algo
+
+    let connection = null
+
+    try
+    {    
+        connection = await connectToDB()
+
+        const [results, fields] = await connection.query('insert into Sesion set ?', request.body)
+        //request.body es un objeto que contiene los datos que se quieren insertar
+        
+        console.log(`${results.affectedRows} row inserted`)
+        response.json({'message': "Data inserted correctly.", "id": results.insertId})// este mensaje se cambia de acuerdo a lo que se haya agregado en la tabla
+    }
+    catch(error)
+    {
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        if(connection!==null) 
+        {
+            connection.end()
+            console.log("Connection closed succesfully!")
+        }
+    }
 })
 //siempre borrar con where, si no borra toda la tabla
 app.listen(port, ()=>

@@ -154,6 +154,7 @@ public class APIconnection : MonoBehaviour
 
     void Start(){
         varMaster = GameObject.FindObjectOfType<VarMaster>();
+        userCheck = GameObject.FindObjectOfType<UserCheck>();
     }
     
     void Update()

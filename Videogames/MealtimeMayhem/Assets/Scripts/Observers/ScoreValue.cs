@@ -17,6 +17,7 @@ public class ScoreValue: MonoBehaviour
 
     void Start()
     {
+        varMaster = GameObject.FindObjectOfType<VarMaster>();
         scoreText = GetComponent<TextMeshProUGUI>();
     }
 

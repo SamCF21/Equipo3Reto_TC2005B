@@ -8,6 +8,7 @@ public class AllyMovement : MonoBehaviour
     public Transform prevTarget;
     public bool isSelected;
     private float speed;
+    public float margenLlegada = 0.4f;
 
     private MainStats mainStats;
     private ClassStats classStats;

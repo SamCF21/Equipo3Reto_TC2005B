@@ -565,6 +565,14 @@ MonoBehaviour:
   isLocked: 0
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 1
+  ally: 1
+  chef: 0
+  cart: 0
+  attack: 1
+  health: 0
+  speed: 0
   nextSkill: {fileID: 434537310}
   titleText: Ally Attack I
   contentText: A simple upgrade that grants your allies extra strength on battle.
@@ -926,6 +934,14 @@ MonoBehaviour:
   isLocked: 1
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 2
+  ally: 1
+  chef: 0
+  cart: 0
+  attack: 1
+  health: 0
+  speed: 0
   nextSkill: {fileID: 0}
   titleText: Ally Attack I
   contentText: A simple upgrade that grants your allies extra strength on battle.
@@ -1869,6 +1885,14 @@ MonoBehaviour:
   isLocked: 0
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 1
+  ally: 0
+  chef: 1
+  cart: 0
+  attack: 0
+  health: 0
+  speed: 1
   nextSkill: {fileID: 980390219}
   titleText: Chef Speed I
   contentText: A simple upgrade that grants your allies more speed in the battlefield.
@@ -2368,6 +2392,14 @@ MonoBehaviour:
   isLocked: 1
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 2
+  ally: 0
+  chef: 1
+  cart: 0
+  attack: 0
+  health: 0
+  speed: 1
   nextSkill: {fileID: 0}
   titleText: Ally Speed II
   contentText: A simple upgrade that grants your allies more speed in the battlefield.
@@ -3085,6 +3117,14 @@ MonoBehaviour:
   isLocked: 0
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 1
+  ally: 0
+  chef: 0
+  cart: 1
+  attack: 0
+  health: 0
+  speed: 0
   nextSkill: {fileID: 1414450716}
   titleText: FoodCart I
   contentText: A simple upgrade that grants additional health points to your food
@@ -3414,6 +3454,14 @@ MonoBehaviour:
   isLocked: 1
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 3
+  ally: 0
+  chef: 0
+  cart: 1
+  attack: 0
+  health: 0
+  speed: 0
   nextSkill: {fileID: 0}
   titleText: FoodCart III
   contentText: The last upgrade that grants additional health points to your food
@@ -3530,6 +3578,14 @@ MonoBehaviour:
   isLocked: 1
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 2
+  ally: 1
+  chef: 0
+  cart: 0
+  attack: 0
+  health: 1
+  speed: 0
   nextSkill: {fileID: 0}
   titleText: Ally Health I
   contentText: A simple upgrade that grants your allies more health in the battlefield.
@@ -3697,6 +3753,14 @@ MonoBehaviour:
   isLocked: 1
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 2
+  ally: 0
+  chef: 0
+  cart: 1
+  attack: 0
+  health: 0
+  speed: 0
   nextSkill: {fileID: 1369087279}
   titleText: FoodCart II
   contentText: A medium upgrade that grants additional health points to your food
@@ -4149,6 +4213,14 @@ MonoBehaviour:
   isLocked: 0
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 1
+  ally: 0
+  chef: 1
+  cart: 0
+  attack: 1
+  health: 0
+  speed: 0
   nextSkill: {fileID: 1827275639}
   titleText: Chef Attack I
   contentText: A simple upgrade that grants your allies extra strength on battle.
@@ -4290,6 +4362,14 @@ MonoBehaviour:
   isLocked: 0
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 1
+  ally: 1
+  chef: 0
+  cart: 0
+  attack: 0
+  health: 1
+  speed: 0
   nextSkill: {fileID: 1405931348}
   titleText: Ally Health I
   contentText: A simple upgrade that grants your allies more health in the battlefield.
@@ -4863,6 +4943,14 @@ MonoBehaviour:
   isLocked: 1
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 2
+  ally: 0
+  chef: 1
+  cart: 0
+  attack: 1
+  health: 0
+  speed: 0
   nextSkill: {fileID: 0}
   titleText: Chef Attack I
   contentText: A simple upgrade that grants your allies extra strength on battle.
@@ -5004,6 +5092,14 @@ MonoBehaviour:
   isLocked: 1
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 2
+  ally: 0
+  chef: 1
+  cart: 0
+  attack: 0
+  health: 1
+  speed: 0
   nextSkill: {fileID: 0}
   titleText: Chef Health I
   contentText: A simple upgrade that grants your allies more health in the battlefield.
@@ -5145,6 +5241,14 @@ MonoBehaviour:
   isLocked: 0
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 1
+  ally: 0
+  chef: 1
+  cart: 0
+  attack: 0
+  health: 1
+  speed: 0
   nextSkill: {fileID: 1847100465}
   titleText: Chef Health I
   contentText: A simple upgrade that grants your allies more health in the battlefield.
@@ -5286,6 +5390,14 @@ MonoBehaviour:
   isLocked: 0
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 1
+  ally: 1
+  chef: 0
+  cart: 0
+  attack: 0
+  health: 0
+  speed: 1
   nextSkill: {fileID: 2027542330}
   titleText: Ally Speed I
   contentText: A simple upgrade that grants your allies more speed in the battlefield.
@@ -5427,6 +5539,14 @@ MonoBehaviour:
   isLocked: 1
   isSelected: 0
   isBought: 0
+  checkBought: 0
+  level: 2
+  ally: 1
+  chef: 0
+  cart: 0
+  attack: 0
+  health: 0
+  speed: 1
   nextSkill: {fileID: 0}
   titleText: Ally Speed II
   contentText: A simple upgrade that grants your allies more speed in the battlefield.

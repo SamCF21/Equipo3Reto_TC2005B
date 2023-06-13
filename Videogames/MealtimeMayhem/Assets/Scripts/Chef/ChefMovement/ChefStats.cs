@@ -28,9 +28,11 @@ public class ChefStats : MonoBehaviour
 
     void Start(){
         varMaster = GameObject.FindObjectOfType<VarMaster>();
+        mainStats = GameObject.FindObjectOfType<MainStats>();
         if(varMaster != null){
             speed = (speed + varMaster.chefSpeedLvl) * mainStats.globalAllySpeed;
             attack = (attack + varMaster.chefAttackLvl) * mainStats.globalAllyAttack;
+            maxhealth = (maxhealth + varMaster.chefAttackLvl) * mainStats.globalAllyAttack;
         }
 
         health = maxhealth;
@@ -55,12 +57,10 @@ public class ChefStats : MonoBehaviour
 
     IEnumerator RegenerateHealth()
     {
-        while (true)
-        {
+        while (true){
             yield return new WaitForSeconds(regenerateHealthDelay);
 
-            if (canRegenerateHealth)
-            {
+            if (canRegenerateHealth){
                 health++;
                 health = Mathf.Clamp(health, 0, maxhealth);
                 healthBar.fillAmount = (float)health / maxhealth;
@@ -72,21 +72,15 @@ public class ChefStats : MonoBehaviour
     {
         health -= damage;
         healthBar.fillAmount = (float)health / maxhealth;
-        if (health <= 0)
-        {
+        if (health <= 0){
             EnemyMovement[] enemyMovements = FindObjectsOfType<EnemyMovement>();
-            if (enemyMovements != null && enemyMovements.Length > 0)
-            {
-                foreach (EnemyMovement enemyMovement in enemyMovements)
-                {
+            if (enemyMovements != null && enemyMovements.Length > 0){
+                foreach (EnemyMovement enemyMovement in enemyMovements){
                     enemyMovement.OnAllyKilled(transform.position);
                 }
             }
             SceneManager.LoadScene(nombreEscena);
-        }
-        else
-        {
-            // Reiniciar el temporizador de regeneración de salud
+        }else{
             StartCoroutine(ResetRegenerateHealthDelay());
         }
     }
@@ -100,12 +94,10 @@ public class ChefStats : MonoBehaviour
 
     private void FlipChildrenSprites(bool flip)
     {
-        foreach (Transform child in elementosHijos)
-        {
+        foreach (Transform child in elementosHijos){
             SpriteRenderer childRenderer = child.GetComponent<SpriteRenderer>();
 
-            if (childRenderer != null)
-            {
+            if (childRenderer != null){
                 childRenderer.flipX = flip;
             }
         }

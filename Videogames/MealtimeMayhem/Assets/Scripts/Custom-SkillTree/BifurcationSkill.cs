@@ -33,6 +33,7 @@ public class BifurcationSkill : MonoBehaviour
         varMaster = FindObjectOfType<VarMaster>();
         blockedText = "Path has been selected";
         purchaseText = "Purchased!";
+        CheckIfBought();
     }
 
     void FixedUpdate(){
@@ -79,6 +80,14 @@ public class BifurcationSkill : MonoBehaviour
                 secondSkillToBlock.isLocked = true;
                 Destroy(gameObject);
                 varMaster.path = selectedPath;
+        }
+    }
+
+    void CheckIfBought(){
+        if(selectedPath == varMaster.path){
+            skillToBlock.isLocked = true;
+            secondSkillToBlock.isLocked = true;
+            Destroy(gameObject);
         }
     }
 }

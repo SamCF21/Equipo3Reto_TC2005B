@@ -168,8 +168,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nat: 0
+  difficulty: 0
   codeEye: 0
   codeHead: 0
+  cartLvl: 0
+  allyHealthLvl: 0
+  allySpeedLvl: 0
+  allyAttackLvl: 0
+  chefHealthLvl: 0
+  chefSpeedLvl: 0
+  chefAttackLvl: 0
+  path: 0
+  tutorial: 0
+  lvlOne: 0
+  lvlTwo: 0
+  lvlThree: 0
+  checkpoint: 0
+  skillPoints: 0
   eyeColor: {r: 0, g: 0, b: 0, a: 0}
   headColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &43687396
@@ -606,6 +621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec872234992ab0c47b831693335d2031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nat: 1
+  window: 0
 --- !u!1 &160030531
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,7 +899,7 @@ SpriteRenderer:
   m_Size: {x: 4.02, y: 6.21}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &188322681
@@ -1781,74 +1798,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.85277}
   m_EdgeRadius: 0
---- !u!1 &628076736
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 628076738}
-  - component: {fileID: 628076737}
-  - component: {fileID: 628076739}
-  m_Layer: 0
-  m_Name: APIConnection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &628076737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628076736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cca8ccd410dd44f088de09dfdfc9f27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  url: localhost:5000
-  getPersonalizationsEP: /api/users
-  errorText: {fileID: 0}
-  varMaster: {fileID: 0}
-  allPersonalizations:
-    personalizations: []
---- !u!4 &628076738
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628076736}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1708123101}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &628076739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628076736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bd640e9114744e7a1589b62f6c3dc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  textPrefab: {fileID: 8059259429740111422, guid: af87a65cef85f6748bef69398a28bc81, type: 3}
-  buttonPrefab: {fileID: 6223435412183791049, guid: 89083de9080a68342912fc8ee77682ef, type: 3}
-  contentTransform: {fileID: 817588838}
-  showField: {fileID: 822456642}
 --- !u!1 &654198369
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,7 +3109,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &897736871
@@ -4382,7 +4331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfd50422d36c144a9d0175c142c0ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  api: {fileID: 628076737}
+  api: {fileID: 0}
 --- !u!4 &1504729845
 Transform:
   m_ObjectHideFlags: 0
@@ -4396,7 +4345,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1708123101}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1589377625
 GameObject:
@@ -4867,7 +4816,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 144696628}
-  - {fileID: 628076738}
   - {fileID: 1504729845}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -4953,7 +4901,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1722285197

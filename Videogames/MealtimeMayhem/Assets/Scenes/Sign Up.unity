@@ -219,7 +219,6 @@ GameObject:
   - component: {fileID: 237316183}
   - component: {fileID: 237316182}
   - component: {fileID: 237316181}
-  - component: {fileID: 237316180}
   m_Layer: 5
   m_Name: Sign Up
   m_TagString: Untagged
@@ -248,19 +247,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -500}
   m_SizeDelta: {x: 170, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &237316180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237316178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b46b2fc5134c074383a1e965db0d06e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombreEscena: SlotSelector
 --- !u!114 &237316181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,6 +917,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728457108}
   m_CullTransparentMesh: 1
+--- !u!1 &812399791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812399793}
+  - component: {fileID: 812399792}
+  m_Layer: 0
+  m_Name: check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &812399792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812399791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e344307f72f86d498dc659259ea6515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userText: {fileID: 1179397787}
+  mailText: {fileID: 1002201484}
+  passwordText: {fileID: 1295717969}
+  confirmText: {fileID: 2048354178}
+  isSendable: 0
+  user: 
+  mail: 
+  pass: 
+--- !u!4 &812399793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812399791}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.63960487, y: 0.85694003, z: 0.03869003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &863911036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   url: localhost:5500
   getPersonalizationsEP: /unity/personalizations
-  postUsersEP: /unity/Usuario
+  postUsersEP: /unity/usuario
   errorText: {fileID: 0}
   varMaster: {fileID: 0}
   userCheck: {fileID: 0}

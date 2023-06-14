@@ -21,9 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Scenes/CountrySelector.unity
     guid: 6f3fbf5335bdc6a4b9ee24d2e9ffa169
   - enabled: 1
-    path: Assets/Scenes/Scenes/Tutorial.unity
-    guid: 9a510f2553f398d40aaf6665fb7329f6
-  - enabled: 1
     path: Assets/Scenes/Scenes/Overworld.unity
     guid: 96f0a620cb9f39c4ea397548d2a8e60f
   - enabled: 1
@@ -41,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scenes/TutorialOverworld.unity
     guid: 24ba67cee7b47d744812eac9e55c6ede
+  - enabled: 1
+    path: Assets/Scenes/Scenes/TutorialLevel.unity
+    guid: 5f4c0cab5195e514c91659a32da14809
   m_configObjects: {}

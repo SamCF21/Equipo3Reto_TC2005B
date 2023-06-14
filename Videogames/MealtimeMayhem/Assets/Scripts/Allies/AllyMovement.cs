@@ -8,7 +8,7 @@ public class AllyMovement : MonoBehaviour
     public Transform prevTarget;
     public bool isSelected;
     private float speed;
-    public float margenLlegada = 0.4f;
+    public float margenLlegada;
 
     private MainStats mainStats;
     private ClassStats classStats;
@@ -24,6 +24,7 @@ public class AllyMovement : MonoBehaviour
     void Start(){
         classStats = GetComponent<ClassStats>();
         chefStats = GetComponent<ChefStats>();
+        margenLlegada = 0.01f;
 
         mainStats = GameObject.FindObjectOfType<MainStats>();
         allyMaster = GameObject.FindObjectOfType<AllyMovementMaster>();
@@ -36,7 +37,9 @@ public class AllyMovement : MonoBehaviour
             TileEmpty emptyTile = FindEmptyTile();
             if (emptyTile != null)
             {
-                target = emptyTile.transform;
+                if(classStats != null){
+                    target = emptyTile.transform;
+                }
                 emptyTile.isEmpty = false;
             }
         }
@@ -72,12 +75,22 @@ public class AllyMovement : MonoBehaviour
                 tileEmpty.isEmpty = true;
             }
         }
-        prevTarget = target;
+        
         if (target != null){
+            prevTarget = target;
             tileEmpty = target.GetComponent<TileEmpty>();
-            if (tileEmpty != null){
+        if (tileEmpty != null){
                 tileEmpty.isEmpty = false;
             }
+            float distance = Vector2.Distance(transform.position, target.position);
+
+        if (distance <= margenLlegada){
+            target = null; // Limpiar el objetivo para permitir una nueva selección
+            botas.movement = false;
+            return;
+        }
+
+            
             float actPos = transform.position.x;
             transform.position = Vector2.MoveTowards(transform.position, target.position, (speed * Time.deltaTime));
             if (actPos != transform.position.x){

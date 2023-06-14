@@ -12,7 +12,7 @@ public class ButtonActions : MonoBehaviour
 
     public void GetSesiones()
     {
-        api.QuerySesiones();
+        api.QuerySession();
     }
 
     public void AddPersonalization()
@@ -21,14 +21,14 @@ public class ButtonActions : MonoBehaviour
     }
 
     public void PostUsuarios(){
-        api.InsertNewUsuario();
+        api.InsertNewUser();
     }
 
     public void GetUsuarios(){
-        api.CheckIfLogin();
+        api.CheckLogin();
     }
 
     public void NewSesion(){
-        api.NewSesion();
+        api.NewSession();
     }
 }

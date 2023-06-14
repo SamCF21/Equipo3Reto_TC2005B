@@ -8,6 +8,7 @@ public class AllyMovementMaster : MonoBehaviour
     [SerializeField] GameObject ally;
     private AllyMovement selectedAlly;
     private AllyMovement prevAlly;
+    
     public MainStats mainStats;
 
     void Start()
@@ -37,17 +38,17 @@ public class AllyMovementMaster : MonoBehaviour
             if (hit.collider != null)
             {
                 if (hit.collider.CompareTag("Ally") || hit.collider.CompareTag("Chef"))
+            {
+                // Deseleccionar el aliado previo si existe uno
+                if (selectedAlly != null)
                 {
-                    ally = hit.collider.gameObject;
-                    selectedAlly = ally.GetComponent<AllyMovement>();
-                    if(prevAlly != null){
-                        prevAlly.isSelected = false;
-                    }
-                    if(selectedAlly != null){
-                        selectedAlly.isSelected = true;
-                        prevAlly = selectedAlly;
-                    }
+                    selectedAlly.isSelected = false;
                 }
+
+                ally = hit.collider.gameObject;
+                selectedAlly = ally.GetComponent<AllyMovement>();
+                selectedAlly.isSelected = true;
+            }
             }
         }
     }
@@ -55,8 +56,8 @@ public class AllyMovementMaster : MonoBehaviour
     void TargetSelection(){
         if (Input.GetMouseButtonDown(0))
         {
-            int layerMask2 = 1 << LayerMask.NameToLayer("Tiles");
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask2);
+            int layerMask = 1 << LayerMask.NameToLayer("Tiles");
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask);
             if (hit.collider != null && hit.collider.gameObject != ally) 
             {
                 if(ally != null){

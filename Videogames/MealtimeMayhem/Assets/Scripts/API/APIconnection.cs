@@ -33,6 +33,22 @@ public class UsuarioList{
     public List<Usuario> usuarios;
 }
 
+[System.Serializable]
+public class Sesion
+{
+    public int sso_id;
+    public int user_id;
+    //public int diff_id;
+    //public System.DateTime timestamp;
+    //public int menu_id;
+    //public int chkp_id;
+}
+
+[System.Serializable]
+public class SesionList{
+    public List<Sesion> sesiones;
+}
+
 // Class for POST request
 /*
 
@@ -80,17 +96,6 @@ public class Checkpoints
     public int user_id;
     public int points;
     public System.DateTime timestamp;
-}
-
-[System.Serializable]
-public class Sesion
-{
-    public int sso_id;
-    public int user_id;
-    public int diff_id;
-    public System.DateTime timestamp;
-    public int menu_id;
-    public int chkp_id;
 }
 
 [System.Serializable]
@@ -142,44 +147,35 @@ public class FoodTruck
 public class APIconnection : MonoBehaviour
 {
     [SerializeField] string url;
-    [SerializeField] string PersonalizationsEP;
-    [SerializeField] string UsuariosEP;
+    [SerializeField] string EP;
     [SerializeField] Text errorText;
-    public VarMaster varMaster;
-    public UserCheck userCheck;
+
+    private VarMaster varMaster;
+    private UserCheck userCheck;
+    private LoginCheck loginCheck;
 
     // This is where the information from the api will be extracted
     public PersonChefList allPersonalizations;
     public UsuarioList allUsuarios;
+    public SesionList allSesiones;
 
     void Start(){
         varMaster = GameObject.FindObjectOfType<VarMaster>();
         userCheck = GameObject.FindObjectOfType<UserCheck>();
-    }
-    
-    void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            QueryUsers();
-        }
-        if (Input.GetKeyDown(KeyCode.N)) {
-            InsertNewUser();
-        }
-        */
+        loginCheck = GameObject.FindObjectOfType<LoginCheck>();
     }
 
-    void DisplayPersonalizations()
+    void DisplaySesiones()
     {
         TMPro_Test texter = GetComponent<TMPro_Test>();
-        texter.LoadNames(allPersonalizations);
+        texter.LoadNames(allSesiones);
     }
 
     // These are the functions that must be called to interact with the API
 
-    public void QueryPersonalizations()
+    public void QuerySesiones()
     {
-        StartCoroutine(GetPersonalizations());
+        StartCoroutine(GetSesiones());
     }
 
     public void InsertNewUsuario()
@@ -196,103 +192,138 @@ public class APIconnection : MonoBehaviour
     public void CheckIfLogin()
     {   
         StartCoroutine(GetUsuarios());
+        StartCoroutine(Login());
+    }
+
+    public void NewSesion(){
+        StartCoroutine(AddSesion());
     }
 
     ////////////////////////////////////////////////////
     // These functions make the connection to the API //
     ////////////////////////////////////////////////////
 
-    IEnumerator GetPersonalizations()
-    {
-        using (UnityWebRequest www = UnityWebRequest.Get(url + PersonalizationsEP))
+    IEnumerator GetSesiones()
         {
-            yield return www.SendWebRequest();
-
-            if (www.result == UnityWebRequest.Result.Success){
-                //Debug.Log("Response: " + www.downloadHandler.text);
-                //Compose the response to llok like the object we want to extract
-                //https://answers.unity.com/questions/1503047/json-must-represent-an-object-type.html
-                string jsonString = "{ \"personalizations\": " + www.downloadHandler.text + "}";
-                allPersonalizations = JsonUtility.FromJson<PersonChefList>(jsonString);
-                DisplayPersonalizations();
-                if(errorText != null) errorText.text = "";
-            }else{
-                Debug.Log("Error: " + www.error);
-                if(errorText != null) errorText.text = "Error: " + www.error;
-            }
-        }
-    }
-
-    IEnumerator AddUsuario(){
-        if(userCheck.isSendable){
-            Usuario user = new Usuario();
-            user.username = userCheck.user;
-            user.email = userCheck.mail;
-            user.password = userCheck.pass;
-            string jsonData = JsonUtility.ToJson(user);
-            Debug.Log("BODY: " + jsonData);
-
-            using (UnityWebRequest www = UnityWebRequest.Put(url + UsuariosEP, jsonData))
+            using (UnityWebRequest www = UnityWebRequest.Get(url + EP))
             {
-                www.method = "POST";
-                www.SetRequestHeader("Content-Type", "application/json");
                 yield return www.SendWebRequest();
 
-                if (www.result == UnityWebRequest.Result.Success) {
-                    Debug.Log("Response: " + www.downloadHandler.text);
-                    if (errorText != null) errorText.text = "";
-                } else {
+                if (www.result == UnityWebRequest.Result.Success){
+                    string jsonString = "{ \"sesion\": " + www.downloadHandler.text + "}";
+                    allSesiones = JsonUtility.FromJson<SesionList>(jsonString);
+                    DisplaySesiones();
+                    if(errorText != null) errorText.text = "";
+                }else{
                     Debug.Log("Error: " + www.error);
-                    if (errorText != null) errorText.text = "Error: " + www.error;
+                    if(errorText != null) errorText.text = "Error: " + www.error;
                 }
             }
-        }else{
-            Debug.Log("No está correcto");
+        }
+    
+    IEnumerator GetUsuarios()
+        {
+            using (UnityWebRequest www = UnityWebRequest.Get(url + EP))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.result == UnityWebRequest.Result.Success)
+                {
+                    string jsonString = "{ \"usuarios\": " + www.downloadHandler.text + "}";
+                    allUsuarios = JsonUtility.FromJson<UsuarioList>(jsonString);
+                    if(errorText != null) errorText.text = "";
+                }
+                else
+                {
+                    if(errorText != null) errorText.text = "Error: " + www.error;
+                }
+            }
+        }
+    IEnumerator AddUsuario(){
+        if(userCheck != null){
+            if(userCheck.isSendable){
+                Usuario user = new Usuario();
+                user.username = userCheck.user;
+                user.email = userCheck.mail;
+                user.password = userCheck.pass;
+                string jsonData = JsonUtility.ToJson(user);
+                Debug.Log("BODY: " + jsonData);
+
+                using (UnityWebRequest www = UnityWebRequest.Put(url + EP, jsonData))
+                {
+                    www.method = "POST";
+                    www.SetRequestHeader("Content-Type", "application/json");
+                    yield return www.SendWebRequest();
+
+                    if (www.result == UnityWebRequest.Result.Success) {
+                        Debug.Log("Response: " + www.downloadHandler.text);
+                        if (errorText != null) errorText.text = "";
+                    } else {
+                        Debug.Log("Error: " + www.error);
+                        if (errorText != null) errorText.text = "Error: " + www.error;
+                    }
+                }
+            }else{
+                Debug.Log("No está correcto");
+            }
         }
     }
 
-    IEnumerator GetUsuarios(){
-        using (UnityWebRequest www = UnityWebRequest.Get(url + UsuariosEP))
+    IEnumerator AddSesion()
+    {
+        Sesion sesion = new Sesion();
+        sesion.user_id = varMaster.userID;
+        string jsonData = JsonUtility.ToJson(sesion);
+
+        using (UnityWebRequest www = UnityWebRequest.Put(url + EP, jsonData))
         {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
 
-            if (www.result == UnityWebRequest.Result.Success)
+            if (www.result == UnityWebRequest.Result.Success) {
+                Debug.Log("Response: " + www.downloadHandler.text);
+                if (errorText != null) errorText.text = "";
+            }
+            else
             {
-                string jsonString = "{ \"usuarios\": " + www.downloadHandler.text + "}";
-                allUsuarios = JsonUtility.FromJson<UsuarioList>(jsonString);
-                Debug.Log(allUsuarios);
-                if(errorText != null) errorText.text = "";
-            }else{
                 Debug.Log("Error: " + www.error);
-                if(errorText != null) errorText.text = "Error: " + www.error;
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    
+
+    IEnumerator Login(){
+        yield return new WaitForSeconds(2f);
+        if(loginCheck != null){
+            if(loginCheck.isSendable){
+                foreach (var usuario in allUsuarios.usuarios)
+                {
+                    if (usuario.username == loginCheck.user && usuario.password == loginCheck.pass)
+                    {
+                        varMaster.userID = usuario.user_id;
+                    }else{
+                        Debug.Log("no coincide");
+                    }
+                }
+            }else{
+                Debug.Log("no es mandable");
             }
         }
     }
 
     IEnumerator AddPersonalization()
     {
-        /*
-        // This should work with an API that does NOT expect JSON
-        WWWForm form = new WWWForm();
-        form.AddField("name", "newGuy" + Random.Range(1000, 9000).ToString());
-        form.AddField("surname", "Tester" + Random.Range(1000, 9000).ToString());
-        Debug.Log(form);
-        */
+        PersonChef pChef = new PersonChef();
+        pChef.color_ojos = varMaster.codeEye;
+        pChef.color_piel = varMaster.codeHead;
+        pChef.nacionalidad = varMaster.nat;
+        string jsonData = JsonUtility.ToJson(pChef);
 
-        // Create the object to be sent as json
-        PersonChef testChef = new PersonChef();
-        testChef.color_ojos = varMaster.codeEye;
-        testChef.color_piel = varMaster.codeHead;
-        //Debug.Log("USER: " + testUser);
-        string jsonData = JsonUtility.ToJson(testChef);
-        //Debug.Log("BODY: " + jsonData);
-
-        // Send using the Put method:
-        // https://stackoverflow.com/questions/68156230/unitywebrequest-post-not-sending-body
-        using (UnityWebRequest www = UnityWebRequest.Put(url + PersonalizationsEP, jsonData))
+        using (UnityWebRequest www = UnityWebRequest.Put(url + EP, jsonData))
         {
-            //UnityWebRequest www = UnityWebRequest.Post(url + getUsersEP, form);
-            // Set the method later, and indicate the encoding is JSON
             www.method = "POST";
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
@@ -307,28 +338,11 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-    ////////////////////////////////////////////////////
-    // These functions allow making a callback after the API request finishes
-    ////////////////////////////////////////////////////
-
-    // Test function to get a response and act accordingly
-    // https://answers.unity.com/questions/24640/how-do-i-return-a-value-from-a-coroutine.html
-
-    public void GetResults()
-    {
-        PersonChefList localPersonalizations;
-        //Call the IEnumerator and pass a lambda function to be called
-        StartCoroutine(GetPersonalizationsString((reply) => {
-            localPersonalizations = JsonUtility.FromJson<PersonChefList>(reply);
-            DisplayPersonalizations();
-        }));
-    }
-
      // Sending the data back to the caller of the Coroutine, using a callback
     // https://answers.unity.com/questions/24640/how-do-i-return-a-value-from-a-coroutine.html
     IEnumerator GetPersonalizationsString(System.Action<string> callback)
     {
-        using (UnityWebRequest www = UnityWebRequest.Get(url + PersonalizationsEP))
+        using (UnityWebRequest www = UnityWebRequest.Get(url + EP))
         {
             yield return www.SendWebRequest();
 

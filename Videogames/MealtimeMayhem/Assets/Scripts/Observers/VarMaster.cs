@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class VarMaster : MonoBehaviour
 {
+    //API
+    public int userID;
+
+    //Juego
     public int nat;
     public int difficulty;
     public int codeEye;

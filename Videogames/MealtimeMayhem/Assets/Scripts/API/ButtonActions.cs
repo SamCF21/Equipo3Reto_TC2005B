@@ -10,9 +10,9 @@ public class ButtonActions : MonoBehaviour
         //api = apiObject.GetComponent<APITest>();
     }
 
-    public void GetPersonalizations()
+    public void GetSesiones()
     {
-        api.QueryPersonalizations();
+        api.QuerySesiones();
     }
 
     public void AddPersonalization()
@@ -22,5 +22,13 @@ public class ButtonActions : MonoBehaviour
 
     public void PostUsuarios(){
         api.InsertNewUsuario();
+    }
+
+    public void GetUsuarios(){
+        api.CheckIfLogin();
+    }
+
+    public void NewSesion(){
+        api.NewSesion();
     }
 }

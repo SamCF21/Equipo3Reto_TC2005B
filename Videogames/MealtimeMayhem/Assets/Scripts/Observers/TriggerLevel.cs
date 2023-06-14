@@ -17,7 +17,9 @@ public class TriggerLevel : MonoBehaviour
     {
         if (collision.CompareTag("Player")) //if the player collides with the trigger
         {
-            varMaster.checkpoint = checkpoint;
+            if(varMaster != null){
+                varMaster.checkpoint = checkpoint;
+            }
             SceneManager.LoadScene(sceneToLoad); //load the scene
         }
     }

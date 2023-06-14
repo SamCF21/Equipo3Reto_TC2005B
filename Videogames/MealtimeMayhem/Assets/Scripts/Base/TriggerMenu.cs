@@ -3,7 +3,7 @@ using UnityEngine;
 public class TriggerMenu : MonoBehaviour
 {
     public GameObject objectToActivate;
-    private bool isColliding;
+    public bool isColliding;
 
     private void Start()
     {

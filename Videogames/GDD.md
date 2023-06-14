@@ -48,19 +48,17 @@ The game is a 2D top-down with RPG and real-time strategy elements, where the pl
 
 The playable ground is designed as a grid in order to aid the player regarding the positioning of the chef and his sidekicks. For the placement of the characters on the grid, the player will have to select the character followed by the desired square. Once placed, the sidekicks will remain fixed on the selected square. The chef will be able to move to the food cart in case a sidekick is defeated and a new one has to be created. In terms of the enemies (fungi), these will spawn randomly from the edges of the playable ground and move freely towards the food cart. 
 
-The levels of the game revolve around hordes of enemies (fungi) that must be defeated by the player and its food sidekicks. As they are individually defeated they release certain loot items related to the gas that the food cart uses to prepare more sidekicks, which ultimately allows for the creation of these helper characters and a certain scalability to the gameplay.
+The levels of the game revolve around hordes of enemies (fungi) that must be defeated by the player and its food sidekicks. The player must achive a certain amount of score in order to win the level. The score is obtained by defeating enemies.
 
 The attack of the characters is automatic and will be triggered whenever an enemy and a sidekick/chef encounter each other within a certain distance. The healing of the chef and sidekicks is also automatic, entering into effect a few seconds after finishing a combat.
 
-After completing a level, a certain amount of points will be given to the player based on performance, this points can be spent on the many skill trees available in the game, where you can upgrade the chef or the sidekick statistics, such as health, speed and damage
+After completing a level, the total amount of score obtained will be shown, they will transform into currency points that can be spent on the many skill trees available in the game, where you can upgrade the chef or the sidekick statistics, such as health, speed and damage. The player will also be able to upgrade the food cart, which will increase its resistance to enemy attacks.
 
-You can select some of the cosmetic elements that will affect the chef character, such as color, other cosmetics will start appearing after the evolution of the chef’s skill tree, showing improvement of their statistics.
+You can select the color of the chef's body and eyes, to have a more personalized experience. Other cosmetics will start appearing after the evolution of the chef’s skill tree, (clothes, hats) showing improvement of their statistics.
 
-The player will be able to customize the food companions, allowing for the opportunity to create strategies according to the situations that arise. If a companion is destroyed, it will not be possible to revive it, and if the chef dies, it will be game over.
 
-The chef is the main character that the entire game is based on. Its main mission is to defend his food cart from the fungi by creating his sidekicks. Likewise, he can attack his enemies with melee combat with the spatula that he has by default, when attacking opponents and collecting gas, XP among other items allows him to improve his cooking skills (to improve his sidekicks) and his own skills such as speed , stamina, life, etc.. to make him more powerful.
+The chef is the main character that the entire game is based on. Its main mission is to defend his food cart from the fungi by creating his sidekicks. Likewise, he can attack his enemies with melee combat with the spatula that he has by default, if the chef is defeated, the game will be over.
 
-To create the food that will be their sidekicks, the chef must collect gas from the fungi by killing them as this will be useful to be able to use his stall and cook his sidekicks, then to be able to improve his sidekicks with different ingredients and improve the skill tree of the chef, the xp points that the chef is obtaining for the attacks, hordes and levels won must be exchanged.
 
 ### **Mindset**
 
@@ -193,7 +191,6 @@ Note: the color of the Fungi distinguishes each type from each other, in the gam
    1. Country selection 
    1. Upgrades 
 
-Audio
 
 1. Title screen
 1. Level music
@@ -212,10 +209,6 @@ Audio
    1. The player will earn points after each level, which is won by defeating each enemy/horde. These points will be stored and can be exchanged for different upgrades like special ingredients for the sidekicks, the chef´s weapon, or the food stall (resistance).
 1. Horde management
    1. Enemies spawning - Each enemy will appear at a random position declared in a range, and if a sidekick or chef is near, they will attack each other. 
-   1. 2 hordes per level, each one more complex than the other. 
-1. Loot
-   1. Each time an enemy is defeated, it will drop gas
-   1. Gas helps players to create more sidekicks
 1. Cooking
    1. Each time the chef wants to cook a sidekick, movement or attack will be blocked for a few seconds
 
@@ -295,35 +288,25 @@ Audio
 ### **Graphics Needed**
 
 1. Characters
-    1. Human-like
-        1. Goblin (idle, walking, throwing)
-        2. Guard (idle, walking, stabbing)
-        3. Prisoner (walking, running)
-    2. Other
-        1. Wolf (idle, walking, running)
-        2. Giant Rat (idle, scurrying)
-2. Blocks
-    1. Dirt
-    2. Dirt/Grass
-    3. Stone Block
-    4. Stone Bricks
-    5. Tiled Floor
-    6. Weathered Stone Block
-    7. Weathered Stone Bricks
-3. Ambient
-    1. Tall Grass
-    2. Rodent (idle, scurrying)
-    3. Torch
-    4. Armored Suit
-    5. Chains (matching Weathered Stone Bricks)
-    6. Blood stains (matching Weathered Stone Bricks)
-4. Other
-    1. Chest
-    2. Door (matching Stone Bricks)
-    3. Gate
-    4. Button (matching Weathered Stone Bricks)
+    1. Chef (idle, walking, attacking)
+    2. Sidekick (idle, walking, attacking)
+    3. Fungi (idle, walking, attacking)
 
-_(example)_
+2. Blocks
+    1. Sand
+    2. Sand/Water
+    3. Waves
+    4. Ocean
+3. Ambient
+    1. Palm Tree
+    2. Sea shell
+    3. Crab
+    4. Armored Suit
+4. Other
+    1. Sand Castle
+    2. Stone Castle
+
+
 
 
 ## _Sounds/Music_
@@ -333,27 +316,21 @@ _(example)_
 ### **Sounds Needed**
 
 1. Effects
-    1. Soft Footsteps (dirt floor)
-    2. Sharper Footsteps (stone floor)
-    3. Soft Landing (low vertical velocity)
-    4. Hard Landing (high vertical velocity)
-    5. Glass Breaking
-    6. Chest Opening
-    7. Door Opening
-2. Feedback
-    1. Relieved &quot;Ahhhh!&quot; (health)
-    2. Shocked &quot;Ooomph!&quot; (attacked)
-    3. Happy chime (extra life)
-    4. Sad chime (died)
+    1. Sand Footsteps
+    2. Ocean Waves
+    3. Tense Moments
+    4. Checkpoint
+    5. Cooking
+    6. Win level
+    7. Loose level
+    8. Loose game
+    9. Win game
+    10. Eliminate ally
+    11. Eliminate main boss
 
-_(example)_
+
 
 ### **Music Needed**
 
-1. Slow-paced, nerve-racking &quot;forest&quot; track
-2. Exciting &quot;castle&quot; track
-3. Creepy, slow &quot;dungeon&quot; track
-4. Happy ending credits track
-5. Rick Astley&#39;s hit #1 single &quot;Never Gonna Give You Up&quot;
+1. Beach Party Island
 
-_(example)_

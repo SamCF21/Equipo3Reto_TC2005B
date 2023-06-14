@@ -37,7 +37,7 @@ app.get('/api/users', async (request, response)=>{ //definir un endpoint
     try
     {
         connection = await connectToDB()
-        const [results, fields] = await connection.execute('select * from Usuario')
+        const [results, fields] = await connection.execute('select * from User')
         //en execute le estamos pidiendo q selecciones toda la tabla de users
         //sigue siendo una promesa entonces usamos await
         //results es un array de objetos, cada objeto es un usuario, viene la info por query
@@ -70,7 +70,7 @@ app.get('/api/users/:id', async (request, response)=> // ya le manda un parámet
     {
         connection = await connectToDB()
 
-        const [results_user, _] = await connection.query('select * from Usuario where identifier= ?', [request.params.id])
+        const [results_user, _] = await connection.query('select * from User where identifier= ?', [request.params.id])
         
         console.log(`${results_user.length} rows returned`)
         response.json(results_user)
@@ -101,7 +101,7 @@ app.post('/api/users', async (request, response)=>{ // se usa post porque se qui
     {    
         connection = await connectToDB()
 
-        const [results, fields] = await connection.query('insert into Usuario set ?', request.body)
+        const [results, fields] = await connection.query('insert into User set ?', request.body)
         //request.body es un objeto que contiene los datos que se quieren insertar
         
         console.log(`${results.affectedRows} row inserted`)
@@ -131,7 +131,7 @@ app.post('/api/users/login', async (request, response) => {
     try {
       connection = await connectToDB();
   
-      const [results] = await connection.query('SELECT * FROM Usuario WHERE username = ? AND password = ?', [
+      const [results] = await connection.query('SELECT * FROM User WHERE username = ? AND password = ?', [
         username,
         password
       ]);

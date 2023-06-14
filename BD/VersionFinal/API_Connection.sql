@@ -69,3 +69,86 @@ SELECT * FROM vg_db2.Personalization;
 SELECT * FROM vg_db2.Session;
 SELECT * FROM vg_db2.Skilltree;
 SELECT * FROM vg_db2.User;
+
+-- ------------ Views -----------------
+DROP VIEW TopUsersWithSkillPoints;
+CREATE VIEW TopUsersWithSkillPoints AS
+SELECT u.username, s.skillpoints
+FROM `User` u
+JOIN `Session` s ON u.user_id = s.user_id
+ORDER BY s.skillpoints DESC
+LIMIT 5;
+
+DROP VIEW MostChosenNationalities;
+CREATE VIEW MostChosenNationalities AS
+SELECT
+  CASE p.nationality
+    WHEN 1 THEN 'Venezuelan'
+    WHEN 2 THEN 'Mexican'
+    WHEN 3 THEN 'American'
+    ELSE 'Unknown'
+  END AS nationality,
+  COUNT(*) AS count
+FROM `Personalization` p
+JOIN `Session` s ON p.person_id = s.person_id
+GROUP BY p.nationality
+ORDER BY COUNT(*) DESC;
+
+DROP VIEW MostChosenEyeAndSkinColors;
+CREATE VIEW MostChosenEyeAndSkinColors AS
+SELECT
+  'Eye Color' AS type,
+  CASE p.eyecolor
+    WHEN 1 THEN 'Red'
+    WHEN 2 THEN 'Orange'
+    WHEN 3 THEN 'Yellow'
+    WHEN 4 THEN 'Green'
+    WHEN 5 THEN 'Blue'
+    WHEN 6 THEN 'Purple'
+    WHEN 7 THEN 'Black'
+    WHEN 8 THEN 'White'
+    ELSE 'Special'
+  END AS color,
+  COUNT(*) AS count
+FROM `Personalization` p
+JOIN `Session` s ON p.person_id = s.person_id
+GROUP BY p.eyecolor
+UNION
+SELECT
+  'Skin Color' AS type,
+  CASE p.skincolor
+    WHEN 1 THEN 'Red'
+    WHEN 2 THEN 'Orange'
+    WHEN 3 THEN 'Yellow'
+    WHEN 4 THEN 'Green'
+    WHEN 5 THEN 'Blue'
+    WHEN 6 THEN 'Purple'
+    WHEN 7 THEN 'Black'
+    WHEN 8 THEN 'White'
+    ELSE 'Special'
+  END AS color,
+  COUNT(*) AS count
+FROM `Personalization` p
+JOIN `Session` s ON p.person_id = s.person_id
+GROUP BY p.skincolor
+ORDER BY type, count DESC;
+
+DROP VIEW MostChosenSkillTreeUpgrades;
+CREATE VIEW MostChosenSkillTreeUpgrades AS
+SELECT
+    CASE path
+        WHEN 1 THEN 'Life'
+        WHEN 2 THEN 'Speed'
+        WHEN 3 THEN 'Attack'
+        ELSE 'Unknown'
+    END AS upgrade,
+    COUNT(*) AS count
+FROM `Session`
+GROUP BY path
+ORDER BY count DESC;
+
+SELECT * FROM TopUsersWithSkillPoints;
+SELECT * FROM MostChosenNationalities;
+SELECT * FROM MostChosenEyeAndSkinColors;
+SELECT * FROM MostChosenSkillTreeUpgrades;
+

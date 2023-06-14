@@ -946,10 +946,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e344307f72f86d498dc659259ea6515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userText: {fileID: 1179397787}
-  mailText: {fileID: 1002201484}
-  passwordText: {fileID: 1295717969}
-  confirmText: {fileID: 2048354178}
+  userField: {fileID: 728457110}
+  mailField: {fileID: 573748825}
+  passwordField: {fileID: 1397806036}
+  confirmField: {fileID: 2052465193}
   isSendable: 0
   user: 
   mail: 
@@ -1231,18 +1231,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url: localhost:5500
-  getPersonalizationsEP: /unity/personalizations
-  postUsersEP: /unity/usuario
+  PersonalizationsEP: /unity/personalizations
+  UsuariosEP: /unity/usuario
   errorText: {fileID: 0}
   varMaster: {fileID: 0}
   userCheck: {fileID: 0}
   allPersonalizations:
     personalizations: []
   allUsuarios:
-    user_id: 0
-    username: 
-    password: 
-    email: 
+    usuarios: []
 --- !u!4 &924498585
 Transform:
   m_ObjectHideFlags: 0

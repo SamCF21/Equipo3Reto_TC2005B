@@ -6,29 +6,30 @@ using TMPro;
 
 public class UserCheck : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI userText;
-    [SerializeField] TextMeshProUGUI mailText;
-    [SerializeField] TextMeshProUGUI passwordText;
-    [SerializeField] TextMeshProUGUI confirmText;
-    
-    public bool isSendable;
-    public string user;
-    public string mail;
-    public string pass;
+    [SerializeField] TMP_InputField userField;
+    [SerializeField] TMP_InputField mailField;
+    [SerializeField] TMP_InputField passwordField;
+    [SerializeField] TMP_InputField confirmField;
+
+    public bool isSendable = false;
+    public string user = null;
+    public string mail = null;
+    public string pass = null;
+
+    void Start()
+    {
+        isSendable = false;
+    }
 
     void Update()
     {
-        user = userText.text;
-        mail = mailText.text;
-        
-        if(passwordText.text == confirmText.text){
-            pass = passwordText.text;
-        }
+        user = userField.text;
+        mail = mailField.text;
+        pass = passwordField.text;
 
-        if(user != null && mail != null && pass != null){
-            isSendable = true;
-        }else{
-            isSendable = false;
-        }
+        isSendable = !string.IsNullOrEmpty(user) &&
+                     !string.IsNullOrEmpty(mail) &&
+                     !string.IsNullOrEmpty(pass) &&
+                     pass == confirmField.text;
     }
 }

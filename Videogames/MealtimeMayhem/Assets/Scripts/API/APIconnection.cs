@@ -29,7 +29,7 @@ public class Usuario
 }
 
 [System.Serializable]
-public class UserList{
+public class UsuarioList{
     public List<Usuario> usuarios;
 }
 
@@ -142,15 +142,15 @@ public class FoodTruck
 public class APIconnection : MonoBehaviour
 {
     [SerializeField] string url;
-    [SerializeField] string getPersonalizationsEP;
-    [SerializeField] string postUsersEP;
+    [SerializeField] string PersonalizationsEP;
+    [SerializeField] string UsuariosEP;
     [SerializeField] Text errorText;
     public VarMaster varMaster;
     public UserCheck userCheck;
 
     // This is where the information from the api will be extracted
     public PersonChefList allPersonalizations;
-    public Usuario allUsuarios;
+    public UsuarioList allUsuarios;
 
     void Start(){
         varMaster = GameObject.FindObjectOfType<VarMaster>();
@@ -169,8 +169,6 @@ public class APIconnection : MonoBehaviour
         */
     }
 
-    // Show the results of the Query in the Unity UI elements,
-    // via another script that fills a scrollview
     void DisplayPersonalizations()
     {
         TMPro_Test texter = GetComponent<TMPro_Test>();
@@ -195,13 +193,18 @@ public class APIconnection : MonoBehaviour
         StartCoroutine(AddPersonalization());
     }
 
+    public void CheckIfLogin()
+    {   
+        StartCoroutine(GetUsuarios());
+    }
+
     ////////////////////////////////////////////////////
     // These functions make the connection to the API //
     ////////////////////////////////////////////////////
 
     IEnumerator GetPersonalizations()
     {
-        using (UnityWebRequest www = UnityWebRequest.Get(url + getPersonalizationsEP))
+        using (UnityWebRequest www = UnityWebRequest.Get(url + PersonalizationsEP))
         {
             yield return www.SendWebRequest();
 
@@ -220,19 +223,16 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-    IEnumerator AddUsuario()
-    {
+    IEnumerator AddUsuario(){
         if(userCheck.isSendable){
-            // Create the object to be sent as json
             Usuario user = new Usuario();
             user.username = userCheck.user;
             user.email = userCheck.mail;
             user.password = userCheck.pass;
-            //Debug.Log("USER: " + testUser);
             string jsonData = JsonUtility.ToJson(user);
-            //Debug.Log("BODY: " + jsonData);
+            Debug.Log("BODY: " + jsonData);
 
-            using (UnityWebRequest www = UnityWebRequest.Put(url + postUsersEP, jsonData))
+            using (UnityWebRequest www = UnityWebRequest.Put(url + UsuariosEP, jsonData))
             {
                 www.method = "POST";
                 www.SetRequestHeader("Content-Type", "application/json");
@@ -248,6 +248,24 @@ public class APIconnection : MonoBehaviour
             }
         }else{
             Debug.Log("No está correcto");
+        }
+    }
+
+    IEnumerator GetUsuarios(){
+        using (UnityWebRequest www = UnityWebRequest.Get(url + UsuariosEP))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string jsonString = "{ \"usuarios\": " + www.downloadHandler.text + "}";
+                allUsuarios = JsonUtility.FromJson<UsuarioList>(jsonString);
+                Debug.Log(allUsuarios);
+                if(errorText != null) errorText.text = "";
+            }else{
+                Debug.Log("Error: " + www.error);
+                if(errorText != null) errorText.text = "Error: " + www.error;
+            }
         }
     }
 
@@ -271,7 +289,7 @@ public class APIconnection : MonoBehaviour
 
         // Send using the Put method:
         // https://stackoverflow.com/questions/68156230/unitywebrequest-post-not-sending-body
-        using (UnityWebRequest www = UnityWebRequest.Put(url + getPersonalizationsEP, jsonData))
+        using (UnityWebRequest www = UnityWebRequest.Put(url + PersonalizationsEP, jsonData))
         {
             //UnityWebRequest www = UnityWebRequest.Post(url + getUsersEP, form);
             // Set the method later, and indicate the encoding is JSON
@@ -310,7 +328,7 @@ public class APIconnection : MonoBehaviour
     // https://answers.unity.com/questions/24640/how-do-i-return-a-value-from-a-coroutine.html
     IEnumerator GetPersonalizationsString(System.Action<string> callback)
     {
-        using (UnityWebRequest www = UnityWebRequest.Get(url + getPersonalizationsEP))
+        using (UnityWebRequest www = UnityWebRequest.Get(url + PersonalizationsEP))
         {
             yield return www.SendWebRequest();
 

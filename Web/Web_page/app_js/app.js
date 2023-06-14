@@ -37,7 +37,7 @@ app.get('/api/users', async (request, response)=>{ //definir un endpoint
     try
     {
         connection = await connectToDB()
-        const [results, fields] = await connection.execute('select * from Usuario')
+        const [results, fields] = await connection.execute('select * from User')
         //en execute le estamos pidiendo q selecciones toda la tabla de users
         //sigue siendo una promesa entonces usamos await
         //results es un array de objetos, cada objeto es un usuario, viene la info por query
@@ -70,7 +70,7 @@ app.get('/api/users/:id', async (request, response)=> // ya le manda un parámet
     {
         connection = await connectToDB()
 
-        const [results_user, _] = await connection.query('select * from Usuario where identifier= ?', [request.params.id])
+        const [results_user, _] = await connection.query('select * from User where identifier= ?', [request.params.id])
         
         console.log(`${results_user.length} rows returned`)
         response.json(results_user)
@@ -101,7 +101,7 @@ app.post('/api/users', async (request, response)=>{ // se usa post porque se qui
     {    
         connection = await connectToDB()
 
-        const [results, fields] = await connection.query('insert into Usuario set ?', request.body)
+        const [results, fields] = await connection.query('insert into User set ?', request.body)
         //request.body es un objeto que contiene los datos que se quieren insertar
         
         console.log(`${results.affectedRows} row inserted`)
@@ -131,7 +131,7 @@ app.post('/api/users/login', async (request, response) => {
     try {
       connection = await connectToDB();
   
-      const [results] = await connection.query('SELECT * FROM Usuario WHERE username = ? AND password = ?', [
+      const [results] = await connection.query('SELECT * FROM User WHERE username = ? AND password = ?', [
         username,
         password
       ]);
@@ -424,7 +424,10 @@ app.listen(port, ()=>
     console.log(`App listening at http://localhost:${port}`)
 })
 
+// -----------------------------------------------------------------------------------------
 // -------------------------------- Unity endpoints ----------------------------------------
+// -----------------------------------------------------------------------------------------
+
 app.get('/unity/usuario', async (request, response)=>{ //definir un endpoint
     let connection = null
     //se hace la conexion y un query y después cierra la conexion
@@ -432,7 +435,7 @@ app.get('/unity/usuario', async (request, response)=>{ //definir un endpoint
     try
     {
         connection = await connectToDB()
-        const [results, fields] = await connection.execute('select * from Usuario')
+        const [results, fields] = await connection.execute('select * from User')
         //en execute le estamos pidiendo q selecciones toda la tabla de users
         //sigue siendo una promesa entonces usamos await
         //results es un array de objetos, cada objeto es un usuario, viene la info por query
@@ -465,7 +468,7 @@ app.post('/unity/usuario', async (request, response)=>{ // se usa post porque se
     {    
         connection = await connectToDB()
 
-        const [results, fields] = await connection.query('insert into Usuario set ?', request.body)
+        const [results, fields] = await connection.query('insert into User set ?', request.body)
         //request.body es un objeto que contiene los datos que se quieren insertar
         
         console.log(`${results.affectedRows} row inserted`)
@@ -493,7 +496,7 @@ app.get('/unity/personalizations', async (request, response)=>{ //definir un end
     try
     {
         connection = await connectToDB()
-        const [results, fields] = await connection.execute('select * from Person_Chef')
+        const [results, fields] = await connection.execute('select * from Personalization')
         //en execute le estamos pidiendo q selecciones toda la tabla de users
         //sigue siendo una promesa entonces usamos await
         //results es un array de objetos, cada objeto es un usuario, viene la info por query
@@ -526,7 +529,7 @@ app.post('/unity/personalizations', async (request, response)=>{ // se usa post 
     {    
         connection = await connectToDB()
 
-        const [results, fields] = await connection.query('insert into Person_Chef set ?', request.body)
+        const [results, fields] = await connection.query('insert into Personalization set ?', request.body)
         //request.body es un objeto que contiene los datos que se quieren insertar
         
         console.log(`${results.affectedRows} row inserted`)
@@ -555,7 +558,7 @@ app.get('/unity/sesion', async (request, response)=>{ //definir un endpoint
     try
     {
         connection = await connectToDB()
-        const [results, fields] = await connection.execute('select * from Sesion')
+        const [results, fields] = await connection.execute('select * from Session')
         //en execute le estamos pidiendo q selecciones toda la tabla de users
         //sigue siendo una promesa entonces usamos await
         //results es un array de objetos, cada objeto es un usuario, viene la info por query
@@ -588,8 +591,8 @@ app.post('/unity/sesion', async (request, response)=>{ // se usa post porque se 
     {    
         connection = await connectToDB()
 
-        const [results, fields] = await connection.query('insert into Sesion (user_id) VALUES (?)', [request.body.user_id]);
-        //const [results, fields] = await connection.query('insert into Sesion set ?', request.body)
+        //const [results, fields] = await connection.query('insert into Sesion (user_id) VALUES (?)', [request.body.user_id]);
+        const [results, fields] = await connection.query('insert into Session set ?', request.body)
         //request.body es un objeto que contiene los datos que se quieren insertar
         
         console.log(`${results.affectedRows} row inserted`)
@@ -610,3 +613,67 @@ app.post('/unity/sesion', async (request, response)=>{ // se usa post porque se 
         }
     }
 })
+
+app.get('/unity/skill', async (request, response)=>{ //definir un endpoint
+    let connection = null
+    //se hace la conexion y un query y después cierra la conexion
+
+    try
+    {
+        connection = await connectToDB()
+        const [results, fields] = await connection.execute('select * from Skilltree')
+        //en execute le estamos pidiendo q selecciones toda la tabla de users
+        //sigue siendo una promesa entonces usamos await
+        //results es un array de objetos, cada objeto es un usuario, viene la info por query
+        //fields es un array de objetos, cada objeto es un campo de la tabla
+        console.log(`${results.length} rows returned`)//muestra los resultados en consola
+        response.json(results)
+        //formato json, cuyos atributos serán los nombres de columnas y los valores serán la info de las filas
+    }
+    catch(error)
+    {
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally //siempre se ejecuta con o sin error, cierra la conexion
+    {
+        if(connection!==null) 
+        {
+            connection.end()
+            console.log("Connection closed succesfully!")
+        }
+    }
+})
+
+app.post('/unity/skill', async (request, response)=>{ // se usa post porque se quiere insertar algo
+
+    let connection = null
+
+    try
+    {    
+        connection = await connectToDB()
+
+        //const [results, fields] = await connection.query('insert into Sesion (user_id) VALUES (?)', [request.body.user_id]);
+        const [results, fields] = await connection.query('insert into Skilltree set ?', request.body)
+        //request.body es un objeto que contiene los datos que se quieren insertar
+        
+        console.log(`${results.affectedRows} row inserted`)
+        response.json({'message': "Data inserted correctly.", "id": results.insertId})
+    }
+    catch(error)
+    {
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        if(connection!==null) 
+        {
+            connection.end()
+            console.log("Connection closed succesfully!")
+        }
+    }
+})
+

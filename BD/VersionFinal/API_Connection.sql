@@ -9,7 +9,9 @@ CREATE TABLE `User` (
   `password` varchar(25) NOT NULL,
   `email` varchar(65) NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_identifier_UNIQUE` (`user_id`)
+  UNIQUE KEY `user_identifier_UNIQUE` (`user_id`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `User` WRITE;
@@ -71,7 +73,7 @@ SELECT * FROM vg_db2.Skilltree;
 SELECT * FROM vg_db2.User;
 
 -- ------------ Views -----------------
-DROP VIEW TopUsersWithSkillPoints;
+DROP VIEW IF EXISTS TopUsersWithSkillPoints;
 CREATE VIEW TopUsersWithSkillPoints AS
 SELECT u.username, s.skillpoints
 FROM `User` u
@@ -79,7 +81,7 @@ JOIN `Session` s ON u.user_id = s.user_id
 ORDER BY s.skillpoints DESC
 LIMIT 5;
 
-DROP VIEW MostChosenNationalities;
+DROP VIEW IF EXISTS MostChosenNationalities;
 CREATE VIEW MostChosenNationalities AS
 SELECT
   CASE p.nationality
@@ -94,10 +96,9 @@ JOIN `Session` s ON p.person_id = s.person_id
 GROUP BY p.nationality
 ORDER BY COUNT(*) DESC;
 
-DROP VIEW MostChosenEyeAndSkinColors;
-CREATE VIEW MostChosenEyeAndSkinColors AS
+DROP VIEW IF EXISTS MostChosenEyeColors;
+CREATE VIEW MostChosenEyeColors AS
 SELECT
-  'Eye Color' AS type,
   CASE p.eyecolor
     WHEN 1 THEN 'Red'
     WHEN 2 THEN 'Orange'
@@ -108,14 +109,16 @@ SELECT
     WHEN 7 THEN 'Black'
     WHEN 8 THEN 'White'
     ELSE 'Special'
-  END AS color,
+  END AS eye_color,
   COUNT(*) AS count
 FROM `Personalization` p
 JOIN `Session` s ON p.person_id = s.person_id
 GROUP BY p.eyecolor
-UNION
+ORDER BY count DESC;
+
+DROP VIEW IF EXISTS MostChosenSkinColors;
+CREATE VIEW MostChosenSkinColors AS
 SELECT
-  'Skin Color' AS type,
   CASE p.skincolor
     WHEN 1 THEN 'Red'
     WHEN 2 THEN 'Orange'
@@ -126,20 +129,22 @@ SELECT
     WHEN 7 THEN 'Black'
     WHEN 8 THEN 'White'
     ELSE 'Special'
-  END AS color,
+  END AS skin_color,
   COUNT(*) AS count
 FROM `Personalization` p
 JOIN `Session` s ON p.person_id = s.person_id
 GROUP BY p.skincolor
-ORDER BY type, count DESC;
+ORDER BY count DESC;
 
-DROP VIEW MostChosenSkillTreeUpgrades;
+
+DROP VIEW IF EXISTS MostChosenSkillTreeUpgrades;
 CREATE VIEW MostChosenSkillTreeUpgrades AS
 SELECT
     CASE path
-        WHEN 1 THEN 'Life'
-        WHEN 2 THEN 'Speed'
-        WHEN 3 THEN 'Attack'
+		WHEN 0 THEN 'Undecided'
+        WHEN 1 THEN 'Cow'
+        WHEN 2 THEN 'Chicken'
+        WHEN 3 THEN 'Pig'
         ELSE 'Unknown'
     END AS upgrade,
     COUNT(*) AS count
@@ -149,6 +154,7 @@ ORDER BY count DESC;
 
 SELECT * FROM TopUsersWithSkillPoints;
 SELECT * FROM MostChosenNationalities;
-SELECT * FROM MostChosenEyeAndSkinColors;
+SELECT * FROM MostChosenEyeColors;
+SELECT * FROM MostChosenSkinColors;
 SELECT * FROM MostChosenSkillTreeUpgrades;
 

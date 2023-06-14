@@ -705,16 +705,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb2f4f68ebd7d84aadb8f908d32d573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: 
-  PersonalizationsEP: 
-  UsuariosEP: 
+  url: localhost/5500
+  EP: /unity/personalizations
   errorText: {fileID: 0}
-  varMaster: {fileID: 0}
-  userCheck: {fileID: 0}
   allPersonalizations:
     personalizations: []
   allUsuarios:
     usuarios: []
+  allSesiones:
+    sesiones: []
 --- !u!4 &799945814
 Transform:
   m_ObjectHideFlags: 0
@@ -722,13 +721,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799945812}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 880.9209, y: 467.6864, z: -1.1275165}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 881.14087, y: 463.2264, z: -1.1058775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1878371402}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &877616243
 GameObject:
@@ -899,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfd50422d36c144a9d0175c142c0ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  api: {fileID: 0}
+  api: {fileID: 799945813}
 --- !u!4 &974943672
 Transform:
   m_ObjectHideFlags: 0
@@ -907,13 +906,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974943670}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 880.9209, y: 467.6864, z: -1.1275165}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 881.14087, y: 463.2264, z: -1.1058775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1878371402}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1138048957
 GameObject:
@@ -2241,6 +2240,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 742514299}
+  - {fileID: 974943672}
+  - {fileID: 799945814}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2327,7 +2328,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1897892570}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 974943671}
+        m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
+        m_MethodName: AddPersonalization
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1897892570
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -239,7 +239,7 @@ Transform:
   - {fileID: 332709049}
   - {fileID: 599315881}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237316178
 GameObject:
@@ -1955,6 +1955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userID: 0
+  sesionID: 0
+  customID: 0
   nat: 0
   difficulty: 0
   codeEye: 0
@@ -1973,8 +1975,8 @@ MonoBehaviour:
   lvlThree: 0
   checkpoint: 0
   skillPoints: 0
-  eyeColor: {r: 0, g: 0, b: 0, a: 0}
-  headColor: {r: 0, g: 0, b: 0, a: 0}
+  eyeColor: {r: 0, g: 0, b: 0, a: 1}
+  headColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1850325576
 Transform:
   m_ObjectHideFlags: 0
@@ -1988,7 +1990,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863819880
 GameObject:

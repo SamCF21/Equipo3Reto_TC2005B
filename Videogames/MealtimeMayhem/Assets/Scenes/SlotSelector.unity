@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 740647152}
   - component: {fileID: 740647151}
   - component: {fileID: 740647150}
+  - component: {fileID: 740647153}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -592,6 +593,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740647147}
   m_CullTransparentMesh: 1
+--- !u!114 &740647153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740647147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b46b2fc5134c074383a1e965db0d06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreEscena: CustomChef
 --- !u!1 &781095107
 GameObject:
   m_ObjectHideFlags: 0

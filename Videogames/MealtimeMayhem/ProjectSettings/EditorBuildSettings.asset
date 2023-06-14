@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/SlotSelector.unity
     guid: a7d5d4d4f8c195644bc713d1c924e36d
   - enabled: 1
-    path: Assets/Scenes/Scenes/CustomChef.unity
+    path: Assets/Scenes/CustomChef.unity
     guid: 29e8b8f7d2b2cf04c88fc858be550752
   - enabled: 1
-    path: Assets/Scenes/Scenes/CountrySelector.unity
+    path: Assets/Scenes/CountrySelector.unity
     guid: 6f3fbf5335bdc6a4b9ee24d2e9ffa169
   - enabled: 1
     path: Assets/Scenes/Scenes/Tutorial.unity

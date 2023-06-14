@@ -6,10 +6,12 @@ public class VarMaster : MonoBehaviour
 {
     //API
     public int userID;
+    public int sesionID;
+    public int customID;
 
     //Juego
     public int nat;
-    public int difficulty;
+    public int difficulty = 2;
     public int codeEye;
     public int codeHead;
 

@@ -126,15 +126,6 @@ public class Skilltree
 }
 
 [System.Serializable]
-public class PersonChef
-{
-    public int chef_id;
-    public int color_ojos;
-    public int color_piel;
-    public int nacionalidad;
-}
-
-[System.Serializable]
 public class FoodTruck
 {
     public int truck_id;
@@ -293,27 +284,6 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-    
-
-    IEnumerator Login(){
-        yield return new WaitForSeconds(2f);
-        if(loginCheck != null){
-            if(loginCheck.isSendable){
-                foreach (var usuario in allUsuarios.usuarios)
-                {
-                    if (usuario.username == loginCheck.user && usuario.password == loginCheck.pass)
-                    {
-                        varMaster.userID = usuario.user_id;
-                    }else{
-                        Debug.Log("no coincide");
-                    }
-                }
-            }else{
-                Debug.Log("no es mandable");
-            }
-        }
-    }
-
     IEnumerator AddPersonalization()
     {
         PersonChef pChef = new PersonChef();
@@ -334,6 +304,25 @@ public class APIconnection : MonoBehaviour
             } else {
                 Debug.Log("Error: " + www.error);
                 if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    IEnumerator Login(){
+        yield return new WaitForSeconds(2f);
+        if(loginCheck != null){
+            if(loginCheck.isSendable){
+                foreach (var usuario in allUsuarios.usuarios)
+                {
+                    if (usuario.username == loginCheck.user && usuario.password == loginCheck.pass)
+                    {
+                        varMaster.userID = usuario.user_id;
+                    }else{
+                        Debug.Log("no coincide");
+                    }
+                }
+            }else{
+                Debug.Log("no es mandable");
             }
         }
     }

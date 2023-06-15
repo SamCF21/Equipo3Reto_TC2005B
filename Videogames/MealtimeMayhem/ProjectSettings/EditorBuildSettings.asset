@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CountrySelector.unity
     guid: 6f3fbf5335bdc6a4b9ee24d2e9ffa169
   - enabled: 1
-    path: Assets/Scenes/Scenes/Overworld.unity
+    path: Assets/Scenes/Overworld.unity
     guid: 96f0a620cb9f39c4ea397548d2a8e60f
   - enabled: 1
     path: Assets/Scenes/Level1.unity
@@ -30,15 +30,15 @@ EditorBuildSettings:
     path: Assets/Scenes/ChefUpgradesSkillTree.unity
     guid: 8a423acd090aec444b0e11ddb96ad01b
   - enabled: 1
-    path: Assets/Scenes/Scenes/LoosingScreen.unity
+    path: Assets/Scenes/LoosingScreen.unity
     guid: 25b62562ec758d2429284ce6cf028434
   - enabled: 1
-    path: Assets/Scenes/Scenes/WinningScreen.unity
+    path: Assets/Scenes/WinningScreen.unity
     guid: 4bf29747bfc92b744a4f5c93b8b81ace
   - enabled: 1
-    path: Assets/Scenes/Scenes/TutorialOverworld.unity
+    path: Assets/Scenes/TutorialOverworld.unity
     guid: 24ba67cee7b47d744812eac9e55c6ede
   - enabled: 1
-    path: Assets/Scenes/Scenes/TutorialLevel.unity
+    path: Assets/Scenes/TutorialLevel.unity
     guid: 5f4c0cab5195e514c91659a32da14809
   m_configObjects: {}

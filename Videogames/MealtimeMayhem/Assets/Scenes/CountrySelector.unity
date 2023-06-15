@@ -990,7 +990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 309, y: 405}
+  m_AnchoredPosition: {x: 238, y: 405}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138048959
@@ -1076,7 +1076,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -81.068054, w: 0}
+  m_margin: {x: 0, y: 0, z: -266.11548, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1102,9 +1102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70babcee00271c64ea3ac7c0c447ea0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text1: Venezuelan
-  text2: Mexican
-  text3: American
+  text1: Venezuelan Food
+  text2: Mexican Food
+  text3: American Food
 --- !u!1 &1142098994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,8 +1561,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 201, y: 278}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 192, y: 213}
+  m_SizeDelta: {x: 200, y: 267.6489}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1439994290
 MonoBehaviour:
@@ -1611,14 +1611,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1647,7 +1647,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -240.78644, w: 0}
+  m_margin: {x: -43.177895, y: 0, z: -384.8134, w: -351.77173}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1673,9 +1673,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70babcee00271c64ea3ac7c0c447ea0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text1: Venezuelan food grants allies a boost in speed.
-  text2: Mexican food grants allies a boost in attack.
-  text3: American food grants allies a boost in health.
+  text1: "Introducing the Arepa, a lightning-fast hero from Venezuela! This cornbread
+    champion combines incredible speed with a culinary twist. Need a quick energy
+    boost? The Arepa whips up mouthwatering arepas between battles, ensuring you
+    never go hungry. With their super speed and gastronomic delights, this character
+    brings both laughter and deliciousness to your game. Prepare for a zesty, speedy,
+    and satisfying gaming experience\_like\_no\_other!"
+  text2: "Introducing the Taco, the fiery hero from Mexico! This versatile character
+    is a go-to option for any occasion, adding spice to your gameplay. Choose the
+    Taco for more powerful attacks, thanks to its spicy essence. In addition, enjoy
+    a quick and satisfying break with a wide variety of delicious tacos. Prepare
+    for a flavor-packed gaming experience that will leave your opponents in awe.
+    The Taco: where spice meets strength for an unforgettable\_adventure!"
+  text3: "Introducing the Bread, the hero fueled by carbohydrates for superior health!
+    Choose this character if you want a high level of vitality and endurance. With
+    the Bread, you can enjoy the benefits of a hearty diet, as it replenishes health
+    and grants a significant advantage in battles. Embrace the power of bread and
+    conquer your gaming challenges with unbeatable stamina. The Bread: where carbs
+    meet resilience for an epic gaming\_adventure!"
 --- !u!1 &1530329480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2429,7 +2444,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1897892566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b716b22df3f41c4997118691844c859, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b46b2fc5134c074383a1e965db0d06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nombreEscena: TutorialOverworld

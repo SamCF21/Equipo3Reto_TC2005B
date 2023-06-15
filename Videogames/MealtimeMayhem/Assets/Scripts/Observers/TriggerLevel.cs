@@ -5,23 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class TriggerLevel : MonoBehaviour
 {
-    public string sceneToLoad; //defining the scene to load
     private VarMaster varMaster;
     [SerializeField] int checkpoint;
+    [SerializeField] GameObject panel;
+    [SerializeField] GameObject text2trig;
 
-    void Start(){
+    void Start()
+    {
         varMaster = GameObject.FindObjectOfType<VarMaster>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) //when the player collides with the trigger
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) //if the player collides with the trigger
+        if (collision.CompareTag("Player"))
         {
-            if(varMaster != null){
+            if (varMaster != null)
+            {
                 varMaster.checkpoint = checkpoint;
             }
-            SceneManager.LoadScene(sceneToLoad); //load the scene
+            panel.SetActive(true);
+            text2trig.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            panel.SetActive(false);
+            text2trig.SetActive(false);
         }
     }
 }
-

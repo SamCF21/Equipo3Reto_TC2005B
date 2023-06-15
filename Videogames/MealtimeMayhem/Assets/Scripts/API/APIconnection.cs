@@ -18,11 +18,14 @@ public class Session
 {
     public int sso_id;
     public int user_id;
-    public System.DateTime timestamp;
     public int lastcheck;
     public int skillpoints;
+    public int points;
     public int person_id;
-    public int path;
+    public int tree_id;
+    public int ally_id;
+    public int truck_id;
+    public int score_id;
 }
 
 [System.Serializable]
@@ -38,6 +41,7 @@ public class Personalization
 [System.Serializable]
 public class Skilltree
 {
+    public int tree_id;
     public int path;
     public int attack;
     public int speed;
@@ -45,25 +49,24 @@ public class Skilltree
 }
 
 [System.Serializable]
-public class UserList{
-    public List<User> users;
+public class Ally
+{
+    public int ally_id;
+    public int attack;
+    public int speed;
+    public int life;
+}
+
+[System.Serializable]
+public class Foodtruck
+{
+    public int truck_id;
+    public int life;
 }
 
 [System.Serializable]
 public class SessionList{
     public List<Session> sessions;
-}
-
-[System.Serializable]
-public class PersonalizationList
-{
-    public List<Personalization> personalizations;
-}
-
-[System.Serializable]
-public class SkilltreeList
-{
-    public List<Skilltree> skilltrees;
 }
 
 // Class for POST request
@@ -81,8 +84,6 @@ public class APIconnection : MonoBehaviour
     private UserCheck userCheck;
     private LoginCheck loginCheck;
 
-    public PersonalizationList allPersonalizations;
-    public UserList allUsers;
     public SessionList allSessions;
 
     void Start(){
@@ -110,12 +111,9 @@ public class APIconnection : MonoBehaviour
         StartCoroutine(AddPersonalization());
     }
 
-    public void CheckLogin()
-    {   
-        StartCoroutine(GetUsers());
-        StartCoroutine(GetSessions());
-        StartCoroutine(GetPersonalizations());
-        StartCoroutine(Login());
+    public void GetSessionData(int sso_id)
+    {
+        StartCoroutine(GetSession(sso_id));
     }
 
     ////////////////////////////////////////////////////
@@ -138,46 +136,27 @@ public class APIconnection : MonoBehaviour
                 }
             }
         }
-    
-    IEnumerator GetUsers()
-        {
-            using (UnityWebRequest www = UnityWebRequest.Get(url + UserEP))
-            {
-                yield return www.SendWebRequest();
 
-                if (www.result == UnityWebRequest.Result.Success)
-                {
-                    string jsonString = "{ \"users\": " + www.downloadHandler.text + "}";
-                    allUsers = JsonUtility.FromJson<UserList>(jsonString);
-                    if(errorText != null) errorText.text = "";
-                    Debug.Log("hola");
-                }
-                else
-                {
-                    if(errorText != null) errorText.text = "Error: " + www.error;
-                }
+    private IEnumerator GetSession(int sso_id)
+    {
+        string endpoint = $"{SessionEP}/{sso_id}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url + endpoint))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string json = www.downloadHandler.text;
+                Session session = JsonUtility.FromJson<Session>(json);
+                Debug.Log("Session ID: " + session.sso_id);
+                Debug.Log("User ID: " + session.user_id);
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
             }
         }
-
-    IEnumerator GetPersonalizations()
-        {
-            using (UnityWebRequest www = UnityWebRequest.Get(url + PersonalizationEP))
-            {
-                yield return www.SendWebRequest();
-
-                if (www.result == UnityWebRequest.Result.Success)
-                {
-                    string jsonString = "{ \"personalizations\": " + www.downloadHandler.text + "}";
-                    allPersonalizations = JsonUtility.FromJson<PersonalizationList>(jsonString);
-                    if(errorText != null) errorText.text = "";
-                    Debug.Log("hola");
-                }
-                else
-                {
-                    if(errorText != null) errorText.text = "Error: " + www.error;
-                }
-            }
-        }
+    }
 
     IEnumerator AddUser(){
         if(userCheck != null){
@@ -214,8 +193,12 @@ public class APIconnection : MonoBehaviour
         session.user_id = varMaster.userID;
         session.lastcheck = 0;
         session.skillpoints = 0;
-        session.person_id = 1;
-        session.path = 0;
+        session.points = 0;
+        session.person_id = varMaster.personID;
+        session.tree_id = varMaster.treeID;
+        session.ally_id = varMaster.allyID;
+        session.truck_id = varMaster.truckID;
+        session.score_id = varMaster.scoreID;
         string jsonData = JsonUtility.ToJson(session);
 
         using (UnityWebRequest www = UnityWebRequest.Put(url + SessionEP, jsonData))
@@ -265,18 +248,17 @@ public class APIconnection : MonoBehaviour
         yield return new WaitForSeconds(2f);
         if(loginCheck != null){
             if(loginCheck.isSendable){
-                foreach (var users in allUsers.users)
-                {
-                    if (users.username == loginCheck.user && users.password == loginCheck.pass)
-                    {
-                        varMaster.userID = users.user_id;
-                    }else{
-                        Debug.Log("no coincide");
-                    }
+                //foreach (var users in allUsers.users)
+                //{
+                //    if (users.username == loginCheck.user && users.password == loginCheck.pass)
+                //    {
+                //        varMaster.userID = users.user_id;
+                //    }else{
+                //        Debug.Log("no coincide");
+                //    }
                 }
             }else{
                 Debug.Log("no es mandable");
             }
         }
-    }
 }

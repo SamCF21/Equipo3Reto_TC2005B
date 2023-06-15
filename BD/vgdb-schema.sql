@@ -1,0 +1,11 @@
+DROP SCHEMA IF EXISTS vgdb;
+CREATE SCHEMA vgdb;
+USE vgdb;
+
+CREATE TABLE User_data (
+Identifier INT NOT NULL PRIMARY KEY,
+Username VARCHAR(20),
+Passkey INT NOT NULL,
+Email INT NOT NULL
+);
+

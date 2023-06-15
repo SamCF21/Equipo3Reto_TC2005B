@@ -16,6 +16,8 @@ public class ButtonInfo : MonoBehaviour
     [SerializeField] private GameObject taco;
     [SerializeField] private GameObject pan;
 
+    public AudioSource cookingSound;
+
     void Start()
     {
         varMaster = GameObject.FindObjectOfType<VarMaster>();
@@ -41,5 +43,9 @@ public class ButtonInfo : MonoBehaviour
                 FoodManager.GetComponent<FoodManager>().totalFood = FoodManager.GetComponent<FoodManager>().totalFood + 1;
             }
         }
+         if (cookingSound != null)
+            {
+                cookingSound.Play();
+            }
     }
 }

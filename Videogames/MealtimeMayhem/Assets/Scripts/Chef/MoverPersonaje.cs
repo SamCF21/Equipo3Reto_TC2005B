@@ -9,7 +9,7 @@ public class MoverPersonaje : MonoBehaviour
 
     private Vector2 destino; // Destino del personaje
     private bool isMoving; // Indica si el personaje está en movimiento
-    [SerializeField] BootChange botas;
+    [SerializeField] Boots botas;
     public bool dialogTrigger;
 
     // Variables para el ajuste de posición de los elementos hijos

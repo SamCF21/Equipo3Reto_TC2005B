@@ -9,6 +9,7 @@ public class BootChange : MonoBehaviour
     public bool movement;
     private bool isWalking = false;
 
+
     private void Start()
     {
         movement = false;
@@ -34,7 +35,6 @@ public class BootChange : MonoBehaviour
             spriteRenderer.sprite = standboot;
             yield return new WaitForSeconds(0.2f);
         }
-
         isWalking = false;
     }
 }

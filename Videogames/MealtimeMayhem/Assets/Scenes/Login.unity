@@ -338,7 +338,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 237316182}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 332709048}
+        m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
+        m_MethodName: TestPer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &237316182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,7 +604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b716b22df3f41c4997118691844c859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreEscena: CustomChef
+  nombreEscena: Overworld
+  noPersonalizado: CustomChef
+  button: {fileID: 1161662311}
 --- !u!1 &728457108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,16 +1046,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   url: localhost:5500
   UserEP: /unity/login
-  SessionEP: /unity/sesion
-  PersonalizationEP: /unity/personalizations
-  SkilltreeEP: /unity/skill
+  SessionEP: /unity/session
+  PersonalizationEP: /unity/personalization
+  TreeEP: /unity/skill
+  AllyEP: /unity/ally
+  TruckEP: /unity/truck
+  ScoreEP: /unity/score
   errorText: {fileID: 0}
-  allPersonalizations:
-    personalizations: []
-  allUsers:
-    users: []
-  allSessions:
-    sessions: []
 --- !u!4 &915043564
 Transform:
   m_ObjectHideFlags: 0
@@ -1299,7 +1310,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 332709048}
         m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
-        m_MethodName: GetUsuarios
+        m_MethodName: Login
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1959,25 +1970,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userID: 0
   sesionID: 0
-  customID: 0
-  nat: 0
-  difficulty: 0
+  personID: 0
+  treeID: 0
+  allyID: 0
+  truckID: 0
+  scoreID: 0
+  checkpoint: 0
+  skillPoints: 0
+  totalScore: 0
+  difficulty: 2
   codeEye: 0
   codeHead: 0
-  cartLvl: 0
-  allyHealthLvl: 0
-  allySpeedLvl: 0
-  allyAttackLvl: 0
-  chefHealthLvl: 0
-  chefSpeedLvl: 0
-  chefAttackLvl: 0
+  nat: 1
   path: 0
+  chefAttackLvl: 0
+  chefSpeedLvl: 0
+  chefHealthLvl: 0
+  allyAttackLvl: 0
+  allySpeedLvl: 0
+  allyHealthLvl: 0
+  cartLvl: 0
   tutorial: 0
   lvlOne: 0
   lvlTwo: 0
   lvlThree: 0
-  checkpoint: 0
-  skillPoints: 0
   eyeColor: {r: 0, g: 0, b: 0, a: 1}
   headColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1850325576

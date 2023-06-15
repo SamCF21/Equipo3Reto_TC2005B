@@ -605,8 +605,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombreEscena: Overworld
-  noPersonalizado: CustomChef
-  button: {fileID: 1161662311}
 --- !u!1 &728457108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,11 +1046,10 @@ MonoBehaviour:
   UserEP: /unity/login
   SessionEP: /unity/session
   PersonalizationEP: /unity/personalization
-  TreeEP: /unity/skill
-  AllyEP: /unity/ally
-  TruckEP: /unity/truck
-  ScoreEP: /unity/score
+  SkilltreeEP: 
   errorText: {fileID: 0}
+  allSessions:
+    sessions: []
 --- !u!4 &915043564
 Transform:
   m_ObjectHideFlags: 0
@@ -1236,6 +1233,7 @@ GameObject:
   - component: {fileID: 1161662313}
   - component: {fileID: 1161662312}
   - component: {fileID: 1161662311}
+  - component: {fileID: 1161662314}
   m_Layer: 5
   m_Name: Login
   m_TagString: Untagged
@@ -1358,6 +1356,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161662308}
   m_CullTransparentMesh: 1
+--- !u!114 &1161662314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161662308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b46b2fc5134c074383a1e965db0d06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreEscena: CustomChef
 --- !u!1 &1179397785
 GameObject:
   m_ObjectHideFlags: 0

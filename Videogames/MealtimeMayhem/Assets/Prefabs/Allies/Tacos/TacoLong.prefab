@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  maxhealth: 15
-  attack: 1
+  maxhealth: 4
+  attack: 2
   flip: 0
   health: 0
   healthBar: {fileID: 2359791312719642816}
@@ -195,6 +195,7 @@ MonoBehaviour:
   target: {fileID: 0}
   prevTarget: {fileID: 0}
   isSelected: 0
+  margenLlegada: 0
   botas: {fileID: 1117038232625673306}
 --- !u!114 &2359791312049721466
 MonoBehaviour:
@@ -273,7 +274,7 @@ RectTransform:
   m_GameObject: {fileID: 2359791312719642819}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.333333, y: 3.333333, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2359791312049721469}
@@ -467,6 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet_prefab: {fileID: 7469622413185460964, guid: ac7dcc595837d4320a63691f479852b0, type: 3}
+  obj: {fileID: 2359791312049721446}
   speed: 5
   fireRate: 5
 --- !u!58 &6728469439306760925

@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet_prefab: {fileID: 7469622413185460964, guid: 87b116c7065184fa397705444b576663, type: 3}
+  obj: {fileID: 6084878585429791036}
   speed: 5
   fireRate: 2
 --- !u!58 &6701684973424665933
@@ -242,8 +243,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6084878586163771957}
-  - component: {fileID: 6084878585429791034}
   - component: {fileID: 6084878585429791036}
+  - component: {fileID: 6084878585429791034}
   - component: {fileID: 6084878585429791037}
   - component: {fileID: 6084878585429790976}
   - component: {fileID: 6084878585429790977}
@@ -274,6 +275,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6084878585429791036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6084878585429790978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7718251a1fdda2f41a197279d249f4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
+  maxhealth: 11
+  attack: 1
+  flip: 0
+  health: 0
+  healthBar: {fileID: 6084878586263449503}
+  regenerateHealthDelay: 5
+  elementosHijos:
+  - {fileID: 4808665962099258929}
+  - {fileID: 7779624902545053175}
+  - {fileID: 7323016062589377969}
+  posicionesOriginales: []
 --- !u!212 &6084878585429791034
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -326,30 +351,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6084878585429791036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6084878585429790978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7718251a1fdda2f41a197279d249f4db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  maxhealth: 15
-  attack: 1
-  flip: 0
-  health: 0
-  healthBar: {fileID: 6084878586263449503}
-  regenerateHealthDelay: 5
-  elementosHijos:
-  - {fileID: 4808665962099258929}
-  - {fileID: 7779624902545053175}
-  - {fileID: 7323016062589377969}
-  posicionesOriginales: []
 --- !u!114 &6084878585429791037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5f106a02a9f4158accf50f20165521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
 --- !u!114 &6084878585429790976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +378,7 @@ MonoBehaviour:
   target: {fileID: 0}
   prevTarget: {fileID: 0}
   isSelected: 0
+  margenLlegada: 0.4
   botas: {fileID: 1152773509261464003}
 --- !u!50 &6084878585429790977
 Rigidbody2D:
@@ -444,7 +445,7 @@ RectTransform:
   m_GameObject: {fileID: 6084878586263449570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.3333328, y: 3.3333328, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6084878586163771957}

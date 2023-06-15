@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b716b22df3f41c4997118691844c859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreEscena: SlotSelector
+  nombreEscena: CustomChef
 --- !u!1 &728457108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,14 +1031,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url: localhost:5500
-  EP: /unity/usuario
+  UserEP: /unity/login
+  SessionEP: /unity/sesion
+  PersonalizationEP: /unity/personalizations
+  SkilltreeEP: /unity/skill
   errorText: {fileID: 0}
   allPersonalizations:
     personalizations: []
-  allUsuarios:
-    usuarios: []
-  allSesiones:
-    sesiones: []
+  allUsers:
+    users: []
+  allSessions:
+    sessions: []
 --- !u!4 &915043564
 Transform:
   m_ObjectHideFlags: 0

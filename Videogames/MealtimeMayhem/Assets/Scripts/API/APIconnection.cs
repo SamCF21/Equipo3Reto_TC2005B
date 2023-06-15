@@ -113,6 +113,8 @@ public class APIconnection : MonoBehaviour
     public void CheckLogin()
     {   
         StartCoroutine(GetUsers());
+        StartCoroutine(GetSessions());
+        StartCoroutine(GetPersonalizations());
         StartCoroutine(Login());
     }
 
@@ -127,7 +129,7 @@ public class APIconnection : MonoBehaviour
                 yield return www.SendWebRequest();
 
                 if (www.result == UnityWebRequest.Result.Success){
-                    string jsonString = "{ \"sesion\": " + www.downloadHandler.text + "}";
+                    string jsonString = "{ \"sessions\": " + www.downloadHandler.text + "}";
                     allSessions = JsonUtility.FromJson<SessionList>(jsonString);
                     if(errorText != null) errorText.text = "";
                 }else{
@@ -145,9 +147,30 @@ public class APIconnection : MonoBehaviour
 
                 if (www.result == UnityWebRequest.Result.Success)
                 {
-                    string jsonString = "{ \"usuarios\": " + www.downloadHandler.text + "}";
+                    string jsonString = "{ \"users\": " + www.downloadHandler.text + "}";
                     allUsers = JsonUtility.FromJson<UserList>(jsonString);
                     if(errorText != null) errorText.text = "";
+                    Debug.Log("hola");
+                }
+                else
+                {
+                    if(errorText != null) errorText.text = "Error: " + www.error;
+                }
+            }
+        }
+
+    IEnumerator GetPersonalizations()
+        {
+            using (UnityWebRequest www = UnityWebRequest.Get(url + PersonalizationEP))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.result == UnityWebRequest.Result.Success)
+                {
+                    string jsonString = "{ \"personalizations\": " + www.downloadHandler.text + "}";
+                    allPersonalizations = JsonUtility.FromJson<PersonalizationList>(jsonString);
+                    if(errorText != null) errorText.text = "";
+                    Debug.Log("hola");
                 }
                 else
                 {

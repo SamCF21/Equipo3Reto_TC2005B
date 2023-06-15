@@ -62,62 +62,78 @@ public class AllyMovement : MonoBehaviour
         return null;
     }
 
-    void MovePos(){
-        if(classStats != null){
-            speed = classStats.speed * mainStats.globalSpeed;
-        }
-        if(chefStats != null){
-            speed = chefStats.speed * mainStats.globalSpeed;
-        }
-        if (prevTarget != null){
-            tileEmpty = prevTarget.GetComponent<TileEmpty>();
-            if(tileEmpty != null){
-                tileEmpty.isEmpty = true;
-            }
-        }
-        
-        if (target != null){
-            prevTarget = target;
-            tileEmpty = target.GetComponent<TileEmpty>();
-        if (tileEmpty != null){
-                tileEmpty.isEmpty = false;
-            }
-            float distance = Vector2.Distance(transform.position, target.position);
+void MovePos()
+{
+    if (classStats != null)
+    {
+        speed = classStats.speed * mainStats.globalSpeed;
+    }
+    if (chefStats != null)
+    {
+        speed = chefStats.speed * mainStats.globalSpeed;
+    }
 
-        if (distance <= margenLlegada){
+    if (target != null)
+    {
+        tileEmpty = target.GetComponent<TileEmpty>();
+        if (tileEmpty != null)
+        {
+            tileEmpty.isEmpty = true;
+        }
+
+        float distance = Vector2.Distance(transform.position, target.position);
+
+        if (distance <= margenLlegada)
+        {
+            prevTarget = target;
             target = null; // Limpiar el objetivo para permitir una nueva selección
             botas.movement = false;
             return;
         }
 
-            
-            float actPos = transform.position.x;
-            transform.position = Vector2.MoveTowards(transform.position, target.position, (speed * Time.deltaTime));
-            if (actPos != transform.position.x){
-                isSelected = false;
-                mainStats.globalSpeed = 1;
-                botas.movement = true;
-            }else{
-                botas.movement = false;
+        float actPos = transform.position.x;
+        transform.position = Vector2.MoveTowards(transform.position, target.position, (speed * Time.deltaTime));
+        if (actPos != transform.position.x)
+        {
+            isSelected = false;
+            mainStats.globalSpeed = 1;
+            botas.movement = true;
+        }
+        else
+        {
+            botas.movement = false;
+        }
+        if (actPos > transform.position.x)
+        {
+            if (classStats != null)
+            {
+                classStats.flip = true;
             }
-            if(actPos > transform.position.x){
-                if(classStats != null){
-                    classStats.flip = true;
-                }
-                if(chefStats != null){
-                    chefStats.flip = true;
-                }
+            if (chefStats != null)
+            {
+                chefStats.flip = true;
             }
-            if(actPos < transform.position.x){
-                if(classStats != null){
-                    classStats.flip = false;
-                }
-                if(chefStats != null){
-                    chefStats.flip = false;
-                }
+        }
+        if (actPos < transform.position.x)
+        {
+            if (classStats != null)
+            {
+                classStats.flip = false;
+            }
+            if (chefStats != null)
+            {
+                chefStats.flip = false;
             }
         }
     }
+
+    if (tileEmpty != null)
+    {
+        tileEmpty.isEmpty = false;
+    }
+}
+
+
 
     void Selection(){
         if(isSelected){

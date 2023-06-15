@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4760404057581440090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.67, y: 5.81, z: 0}
-  m_LocalScale: {x: 0.3354237, y: 0.3453809, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 360450931
   m_SortingLayer: 1
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 806ceb768834baa4fa4c2f7d721b2077, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14a97ee5ad12f9c44a81520f05e999b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,7 +132,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.33405986}
+  m_Offset: {x: 0, y: 0.55}
   serializedVersion: 2
   m_Radius: 7
 --- !u!114 &1302375700067291875
@@ -162,8 +162,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.46394926}
-  m_Size: {x: 4.02, y: 3.9973118}
+  m_Offset: {x: 0, y: 0.55}
+  m_Size: {x: 4.02, y: 3.9993715}
   m_Direction: 0
 --- !u!50 &-8529493600698130825
 Rigidbody2D:
@@ -173,7 +173,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4760404057581440090}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

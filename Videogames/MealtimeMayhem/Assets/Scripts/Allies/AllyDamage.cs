@@ -6,12 +6,14 @@ public class AllyDamage : MonoBehaviour
 {
     private ClassStats classStats;
     private ChefStats chefStats;
+    private Rigidbody2D rb;
 
     private float damage;
 
     void Start(){
         classStats = GetComponent<ClassStats>();
         chefStats = GetComponent<ChefStats>();
+        rb = GetComponent<Rigidbody2D>();
         if (classStats != null){
             damage = classStats.attack;
         } else {

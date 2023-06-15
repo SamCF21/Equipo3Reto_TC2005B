@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet_prefab: {fileID: 7469622413185460964, guid: 87b116c7065184fa397705444b576663, type: 3}
+  obj: {fileID: 6084878585429791036}
   speed: 5
   fireRate: 2
 --- !u!58 &4976615479657858281
@@ -285,9 +286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7718251a1fdda2f41a197279d249f4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  maxhealth: 15
-  attack: 1
+  speed: 1.5
+  maxhealth: 8
+  attack: 2
   flip: 0
   health: 0
   healthBar: {fileID: 6084878586263449503}
@@ -309,7 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5f106a02a9f4158accf50f20165521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
 --- !u!114 &6084878585429790976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +325,7 @@ MonoBehaviour:
   target: {fileID: 0}
   prevTarget: {fileID: 0}
   isSelected: 0
+  margenLlegada: 0
   botas: {fileID: 6723706924162780652}
 --- !u!50 &6084878585429790977
 Rigidbody2D:
@@ -391,7 +392,7 @@ RectTransform:
   m_GameObject: {fileID: 6084878586263449570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.3333328, y: 3.3333328, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6084878586163771957}

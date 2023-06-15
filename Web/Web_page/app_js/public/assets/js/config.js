@@ -276,7 +276,7 @@
 				
 				
 				// YOUTUBE URL
-				var option_hero_background_youtube_url = "https://youtu.be/GBZkBvdN3wU";
+				var option_hero_background_youtube_url = "https://youtu.be/GpxzIBI74hU";
 				
 				
 				

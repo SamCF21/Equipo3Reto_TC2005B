@@ -50,5 +50,3 @@ FROM
     INNER JOIN Sesion s ON u.user_id = s.user_id
     INNER JOIN Checkpoints c ON s.chkp_id = c.chkp_id
     INNER JOIN Person_Chef pc ON c.user_id = pc.chef_id;
-
-

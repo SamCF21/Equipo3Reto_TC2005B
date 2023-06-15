@@ -1,5 +1,6 @@
+DROP SCHEMA vg_db;
 DROP SCHEMA IF EXISTS vg_db;
-CREATE DATABASE IF NOT EXISTS vg_db DEFAULT CHARACTER SET utf8mb4;
+CREATE DATABASE vg_db DEFAULT CHARACTER SET utf8mb4;
 USE vg_db;
 
 
@@ -152,7 +153,7 @@ INSERT INTO `Session` VALUES (1, 1, 1, 5, 100, 1, 1, 1, 1, 1), (2, 2, 2, 3, 200,
 UNLOCK TABLES;
 
 SELECT * FROM vg_db2.User;
-SELECT * FROM vg_db2.Session;
+SELECT * FROM vg_db.Session;
 SELECT * FROM vg_db2.Personalization;
 SELECT * FROM vg_db2.Skilltree;
 SELECT * FROM vg_db2.Ally;

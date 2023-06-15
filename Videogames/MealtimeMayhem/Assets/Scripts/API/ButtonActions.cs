@@ -24,10 +24,6 @@ public class ButtonActions : MonoBehaviour
         api.InsertNewUser();
     }
 
-    public void GetUsuarios(){
-        api.CheckLogin();
-    }
-
     public void NewSesion(){
         api.NewSession();
     }

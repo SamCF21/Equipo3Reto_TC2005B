@@ -7,36 +7,49 @@ public class VarMaster : MonoBehaviour
     //API
     public int userID;
     public int sesionID;
-    public int customID;
+    public int personID;
+    public int treeID;
+    public int allyID;
+    public int truckID;
+    public int scoreID;
 
     //Juego
-    public int nat;
+
+    //Session
+    public int checkpoint;
+    public int skillPoints;
+    public int totalScore; 
+
+    //Personalization
     public int difficulty = 2;
     public int codeEye;
     public int codeHead;
-
-    public int cartLvl;
-    public float allyHealthLvl;
-    public float allySpeedLvl;
-    public float allyAttackLvl;
-    public float chefHealthLvl;
-    public float chefSpeedLvl;
-    public float chefAttackLvl;
+    public int nat;
+    
+    //Skilltree
     public int path;
+    public float chefAttackLvl;
+    public float chefSpeedLvl;
+    public float chefHealthLvl;
 
+    //Ally
+    public float allyAttackLvl;
+    public float allySpeedLvl;
+    public float allyHealthLvl;
+    
+    //Foodtruck
+    public int cartLvl;
+    
     public int tutorial;
     public int lvlOne;
     public int lvlTwo;
     public int lvlThree;
-    public int checkpoint;
-
-    public int skillPoints;
-
     public Color eyeColor;
     public Color headColor;
 
     void Update()
     {
+        totalScore = lvlOne + lvlTwo + lvlThree;
         DontDestroyOnLoad(gameObject);
         CheckEyeColor();
         CheckHeadColor();

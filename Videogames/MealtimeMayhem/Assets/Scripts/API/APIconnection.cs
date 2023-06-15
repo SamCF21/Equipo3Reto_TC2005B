@@ -5,22 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 [System.Serializable]
-public class PersonChef
-{
-    public int chef_id;
-    public int color_ojos;
-    public int color_piel;
-    public int nacionalidad;
-}
-
-[System.Serializable]
-public class PersonChefList
-{
-    public List<PersonChef> personalizations;
-}
-
-[System.Serializable]
-public class Usuario
+public class User
 {
     public int user_id;
     public string username;
@@ -29,135 +14,76 @@ public class Usuario
 }
 
 [System.Serializable]
-public class UsuarioList{
-    public List<Usuario> usuarios;
-}
-
-[System.Serializable]
-public class Sesion
+public class Session
 {
     public int sso_id;
     public int user_id;
-    //public int diff_id;
-    //public System.DateTime timestamp;
-    //public int menu_id;
-    //public int chkp_id;
-}
-
-[System.Serializable]
-public class SesionList{
-    public List<Sesion> sesiones;
-}
-
-// Class for POST request
-/*
-
-[System.Serializable]
-public class Menu
-{
-    public int menu_id;
-    public int volume;
-    public bool music;
-    public int user_id;
-}
-
-[System.Serializable]
-public class Enemy
-{
-    public int enmy_id;
-    public int attack;
-    public int speed;
-    public int life;
-}
-
-[System.Serializable]
-public class FinalBoss
-{
-    public int fb_id;
-    public int attack;
-    public int speed;
-    public int life;
-}
-
-[System.Serializable]
-public class Dificultad
-{
-    public int diff_id;
-    public int Valor;
-    public int enmy_id;
-    public int fb_id;
-}
-
-[System.Serializable]
-public class Checkpoints
-{
-    public int chkp_id;
-    public int location;
-    public int user_id;
-    public int points;
     public System.DateTime timestamp;
+    public int lastcheck;
+    public int skillpoints;
+    public int person_id;
+    public int path;
 }
 
 [System.Serializable]
-public class MainCharacter
+public class Personalization
 {
-    public int mc_id;
-    public int attack;
-    public int speed;
-    public int life;
-}
-
-[System.Serializable]
-public class Ally
-{
-    public int ally_id;
-    public int attack;
-    public int speed;
-    public int life;
+    public int person_id;
+    public int difficulty;
+    public int eyecolor;
+    public int skincolor;
+    public int nationality;
 }
 
 [System.Serializable]
 public class Skilltree
 {
-    public int tree_id;
-    public int mc_id;
-    public int ally_id;
-    public int truck;
-}
-
-[System.Serializable]
-public class PersonChef
-{
-    public int chef_id;
-    public int color_ojos;
-    public int color_piel;
-    public int nacionalidad;
-}
-
-[System.Serializable]
-public class FoodTruck
-{
-    public int truck_id;
+    public int path;
+    public int attack;
+    public int speed;
     public int life;
-    public int gen_allies;
 }
-*/
 
+[System.Serializable]
+public class UserList{
+    public List<User> users;
+}
+
+[System.Serializable]
+public class SessionList{
+    public List<Session> sessions;
+}
+
+[System.Serializable]
+public class PersonalizationList
+{
+    public List<Personalization> personalizations;
+}
+
+[System.Serializable]
+public class SkilltreeList
+{
+    public List<Skilltree> skilltrees;
+}
+
+// Class for POST request
 
 public class APIconnection : MonoBehaviour
 {
     [SerializeField] string url;
-    [SerializeField] string EP;
+    [SerializeField] string UserEP;
+    [SerializeField] string SessionEP;
+    [SerializeField] string PersonalizationEP;
+    [SerializeField] string SkilltreeEP;
     [SerializeField] Text errorText;
 
     private VarMaster varMaster;
     private UserCheck userCheck;
     private LoginCheck loginCheck;
 
-    // This is where the information from the api will be extracted
-    public PersonChefList allPersonalizations;
-    public UsuarioList allUsuarios;
-    public SesionList allSesiones;
+    public PersonalizationList allPersonalizations;
+    public UserList allUsers;
+    public SessionList allSessions;
 
     void Start(){
         varMaster = GameObject.FindObjectOfType<VarMaster>();
@@ -165,54 +91,46 @@ public class APIconnection : MonoBehaviour
         loginCheck = GameObject.FindObjectOfType<LoginCheck>();
     }
 
-    void DisplaySesiones()
+    public void QuerySession()
     {
-        TMPro_Test texter = GetComponent<TMPro_Test>();
-        texter.LoadNames(allSesiones);
+        StartCoroutine(GetSessions());
     }
 
-    // These are the functions that must be called to interact with the API
-
-    public void QuerySesiones()
+    public void InsertNewUser()
     {
-        StartCoroutine(GetSesiones());
+        StartCoroutine(AddUser());
     }
 
-    public void InsertNewUsuario()
-    {
-        StartCoroutine(AddUsuario());
+    public void NewSession(){
+        StartCoroutine(AddSession());
     }
-
 
     public void InsertNewPersonalization()
     {
         StartCoroutine(AddPersonalization());
     }
 
-    public void CheckIfLogin()
+    public void CheckLogin()
     {   
-        StartCoroutine(GetUsuarios());
+        StartCoroutine(GetUsers());
+        StartCoroutine(GetSessions());
+        StartCoroutine(GetPersonalizations());
         StartCoroutine(Login());
-    }
-
-    public void NewSesion(){
-        StartCoroutine(AddSesion());
     }
 
     ////////////////////////////////////////////////////
     // These functions make the connection to the API //
     ////////////////////////////////////////////////////
 
-    IEnumerator GetSesiones()
+    IEnumerator GetSessions()
         {
-            using (UnityWebRequest www = UnityWebRequest.Get(url + EP))
+            using (UnityWebRequest www = UnityWebRequest.Get(url + SessionEP))
             {
                 yield return www.SendWebRequest();
 
                 if (www.result == UnityWebRequest.Result.Success){
-                    string jsonString = "{ \"sesion\": " + www.downloadHandler.text + "}";
-                    allSesiones = JsonUtility.FromJson<SesionList>(jsonString);
-                    DisplaySesiones();
+                    string jsonString = "{ \"sessions\": " + www.downloadHandler.text + "}";
+                    allSessions = JsonUtility.FromJson<SessionList>(jsonString);
                     if(errorText != null) errorText.text = "";
                 }else{
                     Debug.Log("Error: " + www.error);
@@ -221,17 +139,18 @@ public class APIconnection : MonoBehaviour
             }
         }
     
-    IEnumerator GetUsuarios()
+    IEnumerator GetUsers()
         {
-            using (UnityWebRequest www = UnityWebRequest.Get(url + EP))
+            using (UnityWebRequest www = UnityWebRequest.Get(url + UserEP))
             {
                 yield return www.SendWebRequest();
 
                 if (www.result == UnityWebRequest.Result.Success)
                 {
-                    string jsonString = "{ \"usuarios\": " + www.downloadHandler.text + "}";
-                    allUsuarios = JsonUtility.FromJson<UsuarioList>(jsonString);
+                    string jsonString = "{ \"users\": " + www.downloadHandler.text + "}";
+                    allUsers = JsonUtility.FromJson<UserList>(jsonString);
                     if(errorText != null) errorText.text = "";
+                    Debug.Log("hola");
                 }
                 else
                 {
@@ -239,17 +158,38 @@ public class APIconnection : MonoBehaviour
                 }
             }
         }
-    IEnumerator AddUsuario(){
+
+    IEnumerator GetPersonalizations()
+        {
+            using (UnityWebRequest www = UnityWebRequest.Get(url + PersonalizationEP))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.result == UnityWebRequest.Result.Success)
+                {
+                    string jsonString = "{ \"personalizations\": " + www.downloadHandler.text + "}";
+                    allPersonalizations = JsonUtility.FromJson<PersonalizationList>(jsonString);
+                    if(errorText != null) errorText.text = "";
+                    Debug.Log("hola");
+                }
+                else
+                {
+                    if(errorText != null) errorText.text = "Error: " + www.error;
+                }
+            }
+        }
+
+    IEnumerator AddUser(){
         if(userCheck != null){
             if(userCheck.isSendable){
-                Usuario user = new Usuario();
+                User user = new User();
                 user.username = userCheck.user;
-                user.email = userCheck.mail;
                 user.password = userCheck.pass;
+                user.email = userCheck.mail;
                 string jsonData = JsonUtility.ToJson(user);
                 Debug.Log("BODY: " + jsonData);
 
-                using (UnityWebRequest www = UnityWebRequest.Put(url + EP, jsonData))
+                using (UnityWebRequest www = UnityWebRequest.Put(url + UserEP, jsonData))
                 {
                     www.method = "POST";
                     www.SetRequestHeader("Content-Type", "application/json");
@@ -269,13 +209,16 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-    IEnumerator AddSesion()
-    {
-        Sesion sesion = new Sesion();
-        sesion.user_id = varMaster.userID;
-        string jsonData = JsonUtility.ToJson(sesion);
+    IEnumerator AddSession(){
+        Session session = new Session();
+        session.user_id = varMaster.userID;
+        session.lastcheck = 0;
+        session.skillpoints = 0;
+        session.person_id = 1;
+        session.path = 0;
+        string jsonData = JsonUtility.ToJson(session);
 
-        using (UnityWebRequest www = UnityWebRequest.Put(url + EP, jsonData))
+        using (UnityWebRequest www = UnityWebRequest.Put(url + SessionEP, jsonData))
         {
             www.method = "POST";
             www.SetRequestHeader("Content-Type", "application/json");
@@ -293,36 +236,16 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-    
-
-    IEnumerator Login(){
-        yield return new WaitForSeconds(2f);
-        if(loginCheck != null){
-            if(loginCheck.isSendable){
-                foreach (var usuario in allUsuarios.usuarios)
-                {
-                    if (usuario.username == loginCheck.user && usuario.password == loginCheck.pass)
-                    {
-                        varMaster.userID = usuario.user_id;
-                    }else{
-                        Debug.Log("no coincide");
-                    }
-                }
-            }else{
-                Debug.Log("no es mandable");
-            }
-        }
-    }
-
     IEnumerator AddPersonalization()
     {
-        PersonChef pChef = new PersonChef();
-        pChef.color_ojos = varMaster.codeEye;
-        pChef.color_piel = varMaster.codeHead;
-        pChef.nacionalidad = varMaster.nat;
+        Personalization pChef = new Personalization();
+        pChef.difficulty = 2;
+        pChef.eyecolor = varMaster.codeEye;
+        pChef.skincolor = varMaster.codeHead;
+        pChef.nationality = varMaster.nat;
         string jsonData = JsonUtility.ToJson(pChef);
 
-        using (UnityWebRequest www = UnityWebRequest.Put(url + EP, jsonData))
+        using (UnityWebRequest www = UnityWebRequest.Put(url + PersonalizationEP, jsonData))
         {
             www.method = "POST";
             www.SetRequestHeader("Content-Type", "application/json");
@@ -338,24 +261,21 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-     // Sending the data back to the caller of the Coroutine, using a callback
-    // https://answers.unity.com/questions/24640/how-do-i-return-a-value-from-a-coroutine.html
-    IEnumerator GetPersonalizationsString(System.Action<string> callback)
-    {
-        using (UnityWebRequest www = UnityWebRequest.Get(url + EP))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.result == UnityWebRequest.Result.Success) {
-                //Debug.Log("Response: " + www.downloadHandler.text);
-                // Compose the response to look like the object we want to extract
-                // https://answers.unity.com/questions/1503047/json-must-represent-an-object-type.html
-                string jsonString = "{\"personalizations\":" + www.downloadHandler.text + "}";
-                callback(jsonString);
-                if (errorText != null) errorText.text = "";
-            } else {
-                Debug.Log("Error: " + www.error);
-                if (errorText != null) errorText.text = "Error: " + www.error;
+    IEnumerator Login(){
+        yield return new WaitForSeconds(2f);
+        if(loginCheck != null){
+            if(loginCheck.isSendable){
+                foreach (var users in allUsers.users)
+                {
+                    if (users.username == loginCheck.user && users.password == loginCheck.pass)
+                    {
+                        varMaster.userID = users.user_id;
+                    }else{
+                        Debug.Log("no coincide");
+                    }
+                }
+            }else{
+                Debug.Log("no es mandable");
             }
         }
     }

@@ -231,8 +231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet_prefab: {fileID: 7469622413185460964, guid: 87b116c7065184fa397705444b576663, type: 3}
+  obj: {fileID: 6084878585429791036}
   speed: 5
-  fireRate: 2
+  fireRate: 3
 --- !u!58 &8961451388560015284
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -258,8 +259,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6084878586163771957}
-  - component: {fileID: 6084878585429791034}
   - component: {fileID: 6084878585429791036}
+  - component: {fileID: 6084878585429791034}
   - component: {fileID: 6084878585429791037}
   - component: {fileID: 6084878585429791038}
   - component: {fileID: 6084878585429790976}
@@ -291,6 +292,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6084878585429791036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6084878585429790978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7718251a1fdda2f41a197279d249f4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
+  maxhealth: 8
+  attack: 1
+  flip: 0
+  health: 0
+  healthBar: {fileID: 6084878586263449503}
+  regenerateHealthDelay: 5
+  elementosHijos:
+  - {fileID: 844028520176705647}
+  - {fileID: 5419702732835808591}
+  - {fileID: 3876079230746924581}
+  posicionesOriginales: []
 --- !u!212 &6084878585429791034
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -343,30 +368,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6084878585429791036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6084878585429790978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7718251a1fdda2f41a197279d249f4db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  maxhealth: 15
-  attack: 1
-  flip: 0
-  health: 0
-  healthBar: {fileID: 6084878586263449503}
-  regenerateHealthDelay: 5
-  elementosHijos:
-  - {fileID: 844028520176705647}
-  - {fileID: 5419702732835808591}
-  - {fileID: 3876079230746924581}
-  posicionesOriginales: []
 --- !u!114 &6084878585429791037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5f106a02a9f4158accf50f20165521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
 --- !u!114 &6084878585429791038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +410,7 @@ MonoBehaviour:
   target: {fileID: 0}
   prevTarget: {fileID: 0}
   isSelected: 0
+  margenLlegada: 0.4
   botas: {fileID: 6868527193019785647}
 --- !u!50 &6084878585429790977
 Rigidbody2D:

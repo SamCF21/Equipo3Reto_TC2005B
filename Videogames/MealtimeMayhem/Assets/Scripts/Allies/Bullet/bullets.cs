@@ -5,6 +5,8 @@ using UnityEngine;
 public class bullets : MonoBehaviour
 {
     public GameObject bullet_prefab;
+    [SerializeField] ClassStats obj;
+    private float damage;
     public float speed = 10f;
     Rigidbody2D rb;
     
@@ -15,7 +17,6 @@ public class bullets : MonoBehaviour
 
     bool enemyInRange = false;
     Transform enemyTarget;
-
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -46,10 +47,14 @@ public class bullets : MonoBehaviour
 
     void Fire()
     {
-
+        damage = obj.attack;
         if (Time.time > nextFire)
         {
             GameObject bullet = Instantiate(bullet_prefab, transform.position, Quaternion.identity);
+            BulletDamage bd = bullet.GetComponent<BulletDamage>();
+            if(bd != null){
+                bd.damage= damage;
+            }
             rb = bullet.GetComponent<Rigidbody2D>();
             moveDirection = (enemyTarget.position - transform.position).normalized * speed;
             rb.velocity = new Vector2(moveDirection.x, moveDirection.y);

@@ -32,6 +32,7 @@ public class NPC2 : MonoBehaviour
         dialogTexts.Add(new DialogData("Ahoy, matey! You've set sail on the culinary seas to defeat the fungi menace, haven't ya?/wait:2.5//close/", "NPC"));
         dialogTexts.Add(new DialogData("Well, I'll let you in on a secret: those mushrooms are about as dangerous as a ticklish crab!/wait:2.5//close/", "NPC"));
         dialogTexts.Add(new DialogData("But don't let your guard down. Keep your spatula handy and give 'em a taste of your culinary skills to send 'em back to the compost heap where they belong!/wait:3.0//close/", "NPC"));
+        dialogTexts.Add(new DialogData("Create your allies, defeat the fungi and earn a high score to use it as skill points for future upgrades!/wait:3.0//close/", "NPC"));
         DialogManager.Show(dialogTexts); // Se muestra el diálogo utilizando el DialogManager y la lista de diálogos
         yield return new WaitUntil(() => DialogManager.state == State.Deactivate);
         movPers.dialogTrigger = false;

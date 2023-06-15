@@ -202,7 +202,7 @@ app.get('/api/chef', async(request, response)=>{
 
         connection = await connectToDB();
 
-        const [results] = await connection.query('select * from SessionChefPreferences')
+        const [results] = await connection.query('select * from MostChosenEyeColors')
         //LEADERBOARD DE NIVELES
         //TOP 5 EN RELACIÓN A COMPLETION_RATE
             
@@ -225,7 +225,41 @@ app.get('/api/chef', async(request, response)=>{
         connection.end()
     }
 }) 
-//ENDPOINT PARA La VIEW DE TOP RANKED
+
+app.get('/api/chef2', async(request, response)=>{
+    
+    let connection = null;
+    
+
+    try{
+
+        connection = await connectToDB();
+
+        const [results] = await connection.query('select * from MostChosenSkinColors')
+        //LEADERBOARD DE NIVELES
+        //TOP 5 EN RELACIÓN A COMPLETION_RATE
+            
+            console.log("Sending data correctly.")
+            response.status(200)
+            response.json(results)
+        }
+
+        
+    
+    catch(error)
+    {
+        console.log(error)
+        response.status(500)
+        response.json(error)
+        console.log(error)
+    }
+    finally
+    {
+        connection.end()
+    }
+}) 
+
+//ENDPOINT PARA La VIEW DE TopUserByPoints
 app.get('/api/top', async(request, response)=>{
     
     let connection = null;
@@ -235,7 +269,7 @@ app.get('/api/top', async(request, response)=>{
 
         connection = await connectToDB();
 
-        const [results] = await connection.query('select * from TopRankedUsers')
+        const [results] = await connection.query('select * from TopUsersByPoints')
         //LEADERBOARD DE NIVELES
         //TOP 5 EN RELACIÓN A COMPLETION_RATE
             
@@ -259,8 +293,8 @@ app.get('/api/top', async(request, response)=>{
     }
 }) 
 
-///ENDPOINT PARA LA VIEW DE UserSessionProgress
-app.get('/api/sesion_progress', async(request, response)=>{
+///ENDPOINT PARA LA VIEW DE MostChosenNationalities
+app.get('/api/nationality', async(request, response)=>{
     
     let connection = null;
     
@@ -269,7 +303,7 @@ app.get('/api/sesion_progress', async(request, response)=>{
 
         connection = await connectToDB();
 
-        const [results] = await connection.query('select * from UserSessionProgress')
+        const [results] = await connection.query('select * from MostChosenNationalities')
         //LEADERBOARD DE NIVELES
         //TOP 5 EN RELACIÓN A COMPLETION_RATE
             
@@ -293,8 +327,8 @@ app.get('/api/sesion_progress', async(request, response)=>{
     }
 }) 
 
-//ENDPOINT PARA VIEW DE MainCharacterDetails
-app.get('/api/mainchar', async(request, response)=>{
+//ENDPOINT PARA VIEW DE MostChosenSkillTreeUpgrades
+app.get('/api/SKTRUP', async(request, response)=>{
     
     let connection = null;
     
@@ -303,7 +337,7 @@ app.get('/api/mainchar', async(request, response)=>{
 
         connection = await connectToDB();
 
-        const [results] = await connection.query('select * from MainCharacterDetails')
+        const [results] = await connection.query('select * from MostChosenSkillTreeUpgrades')
         //LEADERBOARD DE NIVELES
         //TOP 5 EN RELACIÓN A COMPLETION_RATE
             
@@ -676,4 +710,4 @@ app.post('/unity/skill', async (request, response)=>{ // se usa post porque se q
         }
     }
 })
-
+//AÑADIR A PARTIR DE AQUI

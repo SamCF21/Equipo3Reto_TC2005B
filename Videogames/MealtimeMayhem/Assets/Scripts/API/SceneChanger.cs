@@ -15,7 +15,7 @@ public class SceneChanger : MonoBehaviour
 
     void Update()
     {
-        if(varMaster.userID != 0){
+        if(varMaster.userID != 0 && varMaster.sesionID != 0){
             SceneManager.LoadScene(nombreEscena);
         }
     }

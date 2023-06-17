@@ -71,7 +71,7 @@ $( document ).ready(function() {
 		singlePageAnimation: "fade",
         singlePageStickyNavigation: false,
         singlePageCallback: function(url, element) {
-            var t = this;
+            let t = this;
             $.ajax({
                     url: url,
                     type: "GET",
@@ -120,7 +120,7 @@ $( document ).ready(function() {
 	
 	function animateProcess() {
 		
-		var isDown = false;
+		let isDown = false;
 		
 		$(".slider-process .cbp-wrapper").mousedown(function(){
          
@@ -188,7 +188,7 @@ $( document ).ready(function() {
 		singlePageDelegate: null,
         singlePageInlineInFocus: false,
         singlePageInlineCallback: function(url, element) {
-            var t = this;
+            let t = this;
             $.ajax({
                     url: url,
                     type: "GET",

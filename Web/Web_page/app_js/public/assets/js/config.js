@@ -54,7 +54,7 @@
 		// "sticky" = STICKY NAVIGATION
 		// "popup" = POPUP NAVIGATION
 		
-		var option_navigation_mode = "sticky";
+		let option_navigation_mode = "sticky";
 		
 		
 		
@@ -63,7 +63,7 @@
 		// "on" = OPTION ACTIVATED
 		// "off" = OPTION DEACTIVATED
 		
-		var option_animate_content_on_scroll = "on";
+		let option_animate_content_on_scroll = "on";
 		
 		
 		
@@ -72,17 +72,17 @@
 		// "on" = OPTION ACTIVATED
 		// "off" = OPTION DEACTIVATED
 		
-		var option_parallax_scrolling = "on";
+		let option_parallax_scrolling = "on";
 
 
 
         // GOOGLE MAPS API KEY
-        var option_google_maps_api_key = "AIzaSyBibXe8KqGeC6orbxHN_32X2drJUN8WokWXE";
+        let option_google_maps_api_key = "AIzaSyBibXe8KqGeC6orbxHN_32X2drJUN8WokWXE";
 
 
 
         // GOOGLE MAPS COORDINATE
-        var option_google_maps_coordinates = [40.761418, -73.977622];
+        let option_google_maps_coordinates = [40.761418, -73.977622];
 
 
 
@@ -96,7 +96,7 @@
 		// "on" = OPTION ACTIVATED
 		// "off" = OPTION DEACTIVATED
 		
-		var option_hero_animate_content_on_scroll = "on";
+		let option_hero_animate_content_on_scroll = "on";
 		
 		
 		
@@ -105,7 +105,7 @@
 		// "on" = OPTION ACTIVATED
 		// "off" = OPTION DEACTIVATED
 		
-		var option_hero_3d_hover_effect = "on";
+		let option_hero_3d_hover_effect = "on";
 		
 		
 		
@@ -113,7 +113,7 @@
 		
 		// "on" = OPTION ACTIVATED
 		// "off" = OPTION DEACTIVATED
-		var option_hero_parallax_hover_effect = "on";
+		let option_hero_parallax_hover_effect = "on";
 		
 		
 		
@@ -122,7 +122,7 @@
 		// "on" = OPTION ACTIVATED
 		// "off" = OPTION DEACTIVATED
 		
-		var option_hero_gravity_effect = "on";
+		let option_hero_gravity_effect = "on";
 		
 		
 		
@@ -142,7 +142,7 @@
         // "glitch" = GLITCH BACKGROUND
 		// "custom" = CUSTOM BACKGROUND
 		
-		var option_hero_background_mode = "youtube";
+		let option_hero_background_mode = "youtube";
 
 
 
@@ -152,7 +152,7 @@
 				
 				
 				// IMAGE PATH / URL
-				var option_hero_background_image_path = [{src:'assets/images/1.jpg'}];
+				let option_hero_background_image_path = [{src:'assets/images/1.jpg'}];
 		
 		
 		
@@ -162,12 +162,12 @@
 
 					
 				// IMAGES PATH / URL
-				var option_hero_background_slider_path = [{src:"assets/images/1.jpg"},{src: "assets/images/2.jpg"},{src: "assets/images/3.jpg"}];
+				let option_hero_background_slider_path = [{src:"assets/images/1.jpg"},{src: "assets/images/2.jpg"},{src: "assets/images/3.jpg"}];
 				
 				
 				
 				// SLIDE DELAY / TIMEOUT IN MS
-				var option_hero_background_slider_delay = 6000;
+				let option_hero_background_slider_delay = 6000;
 				
 				
 				
@@ -204,12 +204,12 @@
 				// flash = FLASH TRANSITION
 				// flash2 = FLASH 2 TRANSITION
 				
-				var option_hero_background_slider_transition = "slideDown";
+				let option_hero_background_slider_transition = "slideDown";
 				
 				
 				
 				// TRANSITION DURATION IN MS
-				var option_hero_background_slider_transitionDuration = 800;
+				let option_hero_background_slider_transitionDuration = 800;
 
 
 
@@ -219,12 +219,12 @@
 				
 				
 				// IMAGES PATH / URL
-				var option_hero_background_kenburns_path = [{src:"assets/images/1.jpg"},{src: "assets/images/2.jpg"},{src: "assets/images/3.jpg"}];
+				let option_hero_background_kenburns_path = [{src:"assets/images/1.jpg"},{src: "assets/images/2.jpg"},{src: "assets/images/3.jpg"}];
 				
 				
 				
 				// SLIDE DELAY / TIMEOUT IN MS
-				var option_hero_background_kenburns_delay = 6000;
+				let option_hero_background_kenburns_delay = 6000;
 				
 				
 				
@@ -261,12 +261,12 @@
 				// flash = FLASH TRANSITION
 				// flash2 = FLASH 2 TRANSITION
 				
-				var option_hero_background_kenburns_transition = "slideDown";
+				let option_hero_background_kenburns_transition = "slideDown";
 				
 				
 				
 				// TRANSITION DURATION IN MS
-				var option_hero_background_kenburns_transitionDuration = 800;
+				let option_hero_background_kenburns_transitionDuration = 800;
 		
 		
 		
@@ -276,17 +276,17 @@
 				
 				
 				// YOUTUBE URL
-				var option_hero_background_youtube_url = "https://youtu.be/GpxzIBI74hU";
+				let option_hero_background_youtube_url = "https://youtu.be/GpxzIBI74hU";
 				
 				
 				
 				// START POINT IN SECONDS
-				var option_hero_background_youtube_startPoint = 3;
+				let option_hero_background_youtube_startPoint = 3;
 				
 				
 				
 				// END POINT IN SECONDS
-				var option_hero_background_youtube_endPoint = 90;
+				let option_hero_background_youtube_endPoint = 90;
 				
 				
 				
@@ -295,7 +295,7 @@
 				// "on" = VIDEO IS MUTED
 				// "off" = VIDEO IS NOT MUTED
 				
-				var option_hero_background_youtube_mute = "off"
+				let option_hero_background_youtube_mute = "off"
 
 
 
@@ -304,7 +304,7 @@
 				// "on" = ENDLESS REPLAY LOOP
 				// "off" = NO ENDLESS REPLAY LOOP
 				
-				var option_hero_background_youtube_loop = "on";
+				let option_hero_background_youtube_loop = "on";
 
 
 				// SHOW CONTROLS - [ "on" : "off" ]
@@ -312,7 +312,7 @@
 				// "on" = SHOW VIDEO CONTROLS
 				// "off" = HIDE VIDEO CONTROLS
 				
-				var option_hero_background_youtube_controls = "on";
+				let option_hero_background_youtube_controls = "on";
 
 
 
@@ -321,7 +321,7 @@
 				// "on" = VIDEO WILL BE PAUSED WHEN OUT OF VIEWPORT
 				// "off" = VIDEO WILL NOT BE PAUSED WHEN OUT OF VIEWPORT
 				
-				var option_hero_background_youtube_smart_pause = "on"; 
+				let option_hero_background_youtube_smart_pause = "on"; 
 				
 				
 				
@@ -335,7 +335,7 @@
 				
 				
 				// CUSTOM COLOR ( FORMAT: ALL CSS FORMATS FOR COLORS )
-				var option_hero_background_color_custom_color = "#6e00ff";
+				let option_hero_background_color_custom_color = "#6e00ff";
 				
 				
 		
@@ -345,12 +345,12 @@
 		
 		
 				// COLOR ARRAY ( FORMAT: RGB )
-				var option_hero_background_gradient_colorArray = new Array( [62,35,255], [60,255,60], [255,35,98], [45,175,230], [255,0,255], [255,128,0] );
+				let option_hero_background_gradient_colorArray = new Array( [62,35,255], [60,255,60], [255,35,98], [45,175,230], [255,0,255], [255,128,0] );
 				
 				
 				
 				// TRANSITION SPEED
-				var option_hero_background_gradient_stransitionSpeed = 8;
+				let option_hero_background_gradient_stransitionSpeed = 8;
 		
 		
 		
@@ -360,27 +360,27 @@
 		
 		
 				// OBJECT DISTANCE
-				var option_hero_background_sphere_distance = 300;
+				let option_hero_background_sphere_distance = 300;
 				
 				
 				
 				// OBJECT ROTATION SPEED
-				var option_hero_background_sphere_rotation_speed = 0.2;
+				let option_hero_background_sphere_rotation_speed = 0.2;
 
 
 
 				// SPHERE LINE COLOR
-				var option_hero_background_sphere_line_color = "#ffffff";
+				let option_hero_background_sphere_line_color = "#ffffff";
 
 
 
 				// SPHERE DOT COLOR
-				var option_hero_background_sphere_dot_color = "#ffffff";
+				let option_hero_background_sphere_dot_color = "#ffffff";
 
 
 
 				// BACKGROUND COLOR
-				var option_hero_background_sphere_background_color = "#000000";
+				let option_hero_background_sphere_background_color = "#000000";
 		
 						
 		
@@ -390,32 +390,32 @@
 		
 		
 				// OBJECT DISTANCE
-				var option_hero_background_waves_distance = 1500;
+				let option_hero_background_waves_distance = 1500;
 				
 				
 				
 				// DOT SPACING
-				var option_hero_background_waves_dotSpacing = 120;
+				let option_hero_background_waves_dotSpacing = 120;
 				
 				
 				
 				// DOT AMOUNT ON X AXIS
-				var option_hero_background_waves_dotAmountX = 20;
+				let option_hero_background_waves_dotAmountX = 20;
 				
 				
 				
 				// DOT AMOUNT ON Y AXIS
-				var option_hero_background_waves_dotAmountY = 60;
+				let option_hero_background_waves_dotAmountY = 60;
 
 
 
 				// DOT COLOR
-				var option_hero_background_waves_dot_color = "#ffffff";
+				let option_hero_background_waves_dot_color = "#ffffff";
 
 
 
 				// BACKGROUND COLOR
-				var option_hero_background_waves_background_color = "#000000";
+				let option_hero_background_waves_background_color = "#000000";
 				
 				
 				
@@ -425,17 +425,17 @@
 		
 		
 				// MESH COLOR
-				var option_hero_background_mesh_color = "#ffffff";
+				let option_hero_background_mesh_color = "#ffffff";
 
 
 
 				// BACKGROUND COLOR
-				var option_hero_background_mesh_background_color = "#111111";
+				let option_hero_background_mesh_background_color = "#111111";
 				
 				
 				
 				// MESH SPOTLIGHT SIZE
-				var option_hero_background_mesh_spotlight_size = 600;
+				let option_hero_background_mesh_spotlight_size = 600;
 		
 		
 		
@@ -445,21 +445,21 @@
 		
 		
 				// STAR AMOUNT
-				var option_hero_background_space_star_amount = 512;
+				let option_hero_background_space_star_amount = 512;
 				
 				
 				
 				// STAR MINIMUM SPEED
-				var option_hero_background_space_star_speed = 2.5;
+				let option_hero_background_space_star_speed = 2.5;
 
 
 
 				// STAR COLOR
-				var option_hero_background_star_star_color = "#ffffff";
+				let option_hero_background_star_star_color = "#ffffff";
 
 
 				// BACKGROUND COLOR
-				var option_hero_background_star_background_color = "#000000";
+				let option_hero_background_star_background_color = "#000000";
 
 
 
@@ -469,22 +469,22 @@
 
 
 				// BACKGROUND COLOR
-				var option_hero_background_abstract_bg_color = "#d1c395";
+				let option_hero_background_abstract_bg_color = "#d1c395";
 
 
 
 				// MOVEMENT SPEED
-				var option_hero_background_move_speed = 10;
+				let option_hero_background_move_speed = 10;
 
 
 
 				// BLACK MASS CORE WIDTH IN % (  MAX: 100 )
-				var option_hero_background_width = 75;
+				let option_hero_background_width = 75;
 
 
 
 				// BLACK MASS EXPANSION
-				var option_hero_background_width_expansion = 0.8;
+				let option_hero_background_width_expansion = 0.8;
 
 
 
@@ -494,7 +494,7 @@
 
 
 				// GLITCH IMAGE
-				var option_hero_background_glitch_image = "assets/images/4.jpg";
+				let option_hero_background_glitch_image = "assets/images/4.jpg";
 
 
 
@@ -524,11 +524,11 @@
 		// "on" = GOOGLE ANALYTICS ON
 		// "off" = GOOGLE ANALYTICS OFF
 		
-		var option_analytics_tracking = "off";
+		let option_analytics_tracking = "off";
 
 
 
 		// TRACKING ID
-		var option_analytics_tracking_id = "UA-XXXXXXXX-X";
+		let option_analytics_tracking_id = "UA-XXXXXXXX-X";
 
 

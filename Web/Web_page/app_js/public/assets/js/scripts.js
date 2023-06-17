@@ -58,8 +58,8 @@ jQuery( window ).load(function() {
 // LOAD SCRIPT
 function loadScript(url, callback) {
 
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
+    let head = document.getElementsByTagName('head')[0];
+    let script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = url;
     script.onreadystatechange = callback;
@@ -106,7 +106,7 @@ jQuery( document ).ready(function() {
 	// BUTTON SCROLL TOP
 	$(".scroll-top").on("click", function() {
 		
-		var scrollDone = false,
+		let scrollDone = false,
 		button = $(this);
 		button.addClass("active");
 		
@@ -260,7 +260,7 @@ jQuery( document ).ready(function() {
 		singlePageAnimation: "fade",
         singlePageStickyNavigation: true,
         singlePageCallback: function(url, element) {
-            var t = this;
+            let t = this;
             $.ajax({
                     url: url,
                     type: "GET",
@@ -287,7 +287,7 @@ jQuery( document ).ready(function() {
 		singlePageAnimation: "fade",
         singlePageStickyNavigation: false,
         singlePageCallback: function(url, element) {
-            var t = this;
+            let t = this;
             $.ajax({
                     url: url,
                     type: "GET",
@@ -311,7 +311,7 @@ jQuery( document ).ready(function() {
 		  
 		setTimeout(function(){
 			
-			var windowHeight = $(window).height(),
+			let windowHeight = $(window).height(),
 				introHeight = $(".popup .container-intro").outerHeight(),
 				marginValue =(windowHeight - introHeight) / 2;
 			  
@@ -332,7 +332,7 @@ jQuery( document ).ready(function() {
 	// AFTER SINGLE PAGE IS LOADED
 	$(".cbp").on("updateSinglePageComplete.cbp", function() {
 		
-		var $elems = $(".popup").find("img, iframe"),
+		let $elems = $(".popup").find("img, iframe"),
 		    elemsCount = $elems.length,
 		    loadedCount = 0;
 		
@@ -468,16 +468,16 @@ jQuery( document ).ready(function() {
 	
 if ( option_analytics_tracking == "on" ) {
 
-	var _gaq = _gaq || [];
+	let _gaq = _gaq || [];
 
 	function loadtracking() {
 			window._gaq.push(['_setAccount', option_analytics_tracking_id]);
 			window._gaq.push(['_trackPageview']);
 
 			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				let ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				let s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 			})();
 	}
 

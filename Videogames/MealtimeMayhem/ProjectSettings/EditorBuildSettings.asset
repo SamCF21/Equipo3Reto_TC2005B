@@ -11,15 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sign Up.unity
     guid: 8d489246195dbc244b44ab0433ade33b
-  - enabled: 0
-    path: Assets/Scenes/SlotSelector.unity
-    guid: a7d5d4d4f8c195644bc713d1c924e36d
   - enabled: 1
     path: Assets/Scenes/CustomChef.unity
     guid: 29e8b8f7d2b2cf04c88fc858be550752
-  - enabled: 0
-    path: Assets/Scenes/Scenes/CountrySelector.unity
-    guid: 6f3fbf5335bdc6a4b9ee24d2e9ffa169
   - enabled: 1
     path: Assets/Scenes/Overworld.unity
     guid: 96f0a620cb9f39c4ea397548d2a8e60f
@@ -47,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CountrySelector.unity
     guid: db0181d0d8f0d4a3287a254d114762d4
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 7eb6ed728876a9d419f6f755f56813f2
   m_configObjects: {}

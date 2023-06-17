@@ -29,11 +29,11 @@ jQuery(document).ready(function() {
 	// ANIMATE FRONT CONTENT ON SCROLL
 	if (option_hero_animate_content_on_scroll == "on") {	
 	
-		var windowHeight = $(window).height();
+		let windowHeight = $(window).height();
 		
 		$(window).scroll(function() {
 		
-			var scrollOffset = $(window).scrollTop(),
+			let scrollOffset = $(window).scrollTop(),
 				calculatedOpacity = 1 - (scrollOffset / windowHeight)*2.8;
 			
 			if (scrollOffset < windowHeight) {
@@ -120,7 +120,7 @@ jQuery(document).ready(function() {
 		
 		});
 		
-		var stBtnCheck = true;
+		let stBtnCheck = true;
 		
 		// DO SOMETHING WHEN PLAYER IS PAUSED
 		$("#bg-youtube").on("YTPPause",function(){
@@ -154,7 +154,7 @@ jQuery(document).ready(function() {
             
             jQuery( window ).load(function() {
         
-                var wasPlayerPaused = false,
+                let wasPlayerPaused = false,
                     wasPlayerMuted;
 
                 $("#bg-youtube").on("YTPPlay", function(){
@@ -190,7 +190,7 @@ jQuery(document).ready(function() {
 
                 $(window).scroll(function() {
 
-                    var scrollOffset = $(window).scrollTop(),
+                    let scrollOffset = $(window).scrollTop(),
                         windowHeight = $(".hero").height(),
                         precentageStage = 100 - scrollOffset / ( windowHeight / 100 );
 
@@ -245,20 +245,20 @@ jQuery(document).ready(function() {
 		$(".hero .background-content .bg-overlay").css("z-index","2");
 	
 		// THREE.JS BASED
-		var SEPARATION = option_hero_background_waves_dotSpacing, AMOUNTX = option_hero_background_waves_dotAmountX, AMOUNTY = option_hero_background_waves_dotAmountY;
+		let SEPARATION = option_hero_background_waves_dotSpacing, AMOUNTX = option_hero_background_waves_dotAmountX, AMOUNTY = option_hero_background_waves_dotAmountY;
 
-			var SCREEN_WIDTH = $(".hero .level-1").width(),
+			let SCREEN_WIDTH = $(".hero .level-1").width(),
 				SCREEN_HEIGHT = $(".hero .level-1").height();
 				
-			var container;
-			var camera, scene, renderer;
+			let container;
+			let camera, scene, renderer;
 
-			var particles, particle, count = 0;
+			let particles, particle, count = 0;
 
-			var mouseX = 0, mouseY = 0;
+			let mouseX = 0, mouseY = 0;
 
-			var windowHalfX = SCREEN_WIDTH / 2;
-			var windowHalfY = SCREEN_HEIGHT / 2;
+			let windowHalfX = SCREEN_WIDTH / 2;
+			let windowHalfY = SCREEN_HEIGHT / 2;
 
 			init();
 			animate();
@@ -275,8 +275,8 @@ jQuery(document).ready(function() {
 
 				particles = new Array();
 
-				var PI2 = Math.PI * 2;
-				var material = new THREE.SpriteCanvasMaterial( {
+				let PI2 = Math.PI * 2;
+				let material = new THREE.SpriteCanvasMaterial( {
 
 					color: option_hero_background_waves_dot_color,
 					program: function ( context ) {
@@ -289,11 +289,11 @@ jQuery(document).ready(function() {
 
 				} );
 
-				var i = 0;
+				let i = 0;
 
-				for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+				for ( let ix = 0; ix < AMOUNTX; ix ++ ) {
 
-					for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+					for ( let iy = 0; iy < AMOUNTY; iy ++ ) {
 
 						particle = particles[ i ++ ] = new THREE.Sprite( material );
 						particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
@@ -320,7 +320,7 @@ jQuery(document).ready(function() {
 
 			function onWindowResize() {
 				
-				var SCREEN_WIDTH = $(".hero .level-1").width(),
+				let SCREEN_WIDTH = $(".hero .level-1").width(),
 					SCREEN_HEIGHT = $(".hero .level-1").height();
 				
 				windowHalfX = SCREEN_WIDTH / 2;
@@ -384,11 +384,11 @@ jQuery(document).ready(function() {
 					camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
 					camera.lookAt( scene.position );
 	
-					var i = 0;
+					let i = 0;
 	
-					for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+					for ( let ix = 0; ix < AMOUNTX; ix ++ ) {
 	
-						for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+						for ( let iy = 0; iy < AMOUNTY; iy ++ ) {
 	
 							particle = particles[ i++ ];
 							particle.position.y = ( Math.sin( ( ix + count ) * 0.3 ) * 50 ) +
@@ -412,7 +412,7 @@ jQuery(document).ready(function() {
 			}
 			
 			// PAUSE WHEN NOT IN VIEWPORT
-			var lem = true;
+			let lem = true;
 			
 			$( document ).scroll(function() {
 			
@@ -432,7 +432,7 @@ jQuery(document).ready(function() {
 	// CANVAS MESH BACKGROUND FUNCTION
 	function meshBackground() {
 		
-		var c,
+		let c,
 			ctx,
 			w,
 			h,
@@ -467,7 +467,7 @@ jQuery(document).ready(function() {
 			this.x = this.xBase + this.dir * Math.sin( ( tick + this.offset ) / this.duration ) * this.range;
 			this.y = this.yBase + this.dir * Math.cos( ( tick + this.offset ) / this.duration ) * this.range;
 			
-			var angle = angleTo( this, mouse );
+			let angle = angleTo( this, mouse );
 			 
 			this.x = this.x + Math.cos( angle )	* 100;
 			this.y = this.y + Math.sin( angle )	* 100;
@@ -480,7 +480,7 @@ jQuery(document).ready(function() {
 		
 		function dist( p1, p2 ) {
 			
-			var dx = p1.x - p2.x,
+			let dx = p1.x - p2.x,
 				dy = p1.y - p2.y;
 				
 			return Math.sqrt( dx * dx + dy * dy );
@@ -489,7 +489,7 @@ jQuery(document).ready(function() {
 		
 		function angleTo( p1, p2 ) {
 			
-			var dx = p1.x - p2.x,
+			let dx = p1.x - p2.x,
 				dy = p1.y - p2.y;
 				
 			return Math.atan2( dy, dx );
@@ -532,11 +532,11 @@ jQuery(document).ready(function() {
 		
 		function create() {
 			
-			for( var x = -spacing / 2; x < w + spacing; x += spacing ) {
+			for( let x = -spacing / 2; x < w + spacing; x += spacing ) {
 				
 				cols++;
 				
-				for( var y = -spacing / 2; y < h + spacing; y += spacing ) {
+				for( let y = -spacing / 2; y < h + spacing; y += spacing ) {
 					
 					if( x == -spacing / 2 ) {
 						rows++;
@@ -577,9 +577,9 @@ jQuery(document).ready(function() {
 			ctx.clearRect( 0, 0, w, h );
 			ctx.beginPath();
 			
-			for( var x = 0; x < cols; x++ ) {
+			for( let x = 0; x < cols; x++ ) {
 				
-				for( var y = 0; y < rows; y++ ) {
+				for( let y = 0; y < rows; y++ ) {
 					
 					basePoint = points[ x * rows + y ];
 					rightPoint = x === cols - 1 ? null : points[ ( x + 1 ) * rows + y ];
@@ -619,7 +619,7 @@ jQuery(document).ready(function() {
 				
 			});
 			
-			var grad = ctx.createRadialGradient( mouse.x, mouse.y, 0, mouse.x, mouse.y, option_hero_background_mesh_spotlight_size );
+			let grad = ctx.createRadialGradient( mouse.x, mouse.y, 0, mouse.x, mouse.y, option_hero_background_mesh_spotlight_size );
 			
 			grad.addColorStop( 0, 'hsla(0, 0%, 0%, 0)' );
 			grad.addColorStop( 1, 'hsla(0, 0%, 0%, 0.93)' );
@@ -669,7 +669,7 @@ jQuery(document).ready(function() {
 		(function($, window, document, undefined) {
             
 		  // Plugin constructor
-		  var Starfield = function(el, options) {
+		  let Starfield = function(el, options) {
               
 			this.el = el;
 			this.$el = $(el);
@@ -679,11 +679,11 @@ jQuery(document).ready(function() {
               
 		  };
 		
-		  var isPlaying;
-		  var isInited = false;
-		  var canCanvas = false;
-		  var animId;
-		  var that;
+		  let isPlaying;
+		  let isInited = false;
+		  let canCanvas = false;
+		  let animId;
+		  let that;
 		
 		  // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 		  // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
@@ -694,9 +694,9 @@ jQuery(document).ready(function() {
 		
 		  (function() {
               
-			var lastTime = 0;
-			var vendors = ['ms', 'moz', 'webkit', 'o'];
-			for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+			let lastTime = 0;
+			let vendors = ['ms', 'moz', 'webkit', 'o'];
+			for (let x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
 			  window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
 			  window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||
 				window[vendors[x] + 'CancelRequestAnimationFrame'];
@@ -704,9 +704,9 @@ jQuery(document).ready(function() {
 		
 			if (!window.requestAnimationFrame)
 			  window.requestAnimationFrame = function(callback, element) {
-				var currTime = new Date().getTime();
-				var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-				var id = window.setTimeout(function() {
+				let currTime = new Date().getTime();
+				let timeToCall = Math.max(0, 16 - (currTime - lastTime));
+				let id = window.setTimeout(function() {
 					callback(currTime + timeToCall);
 				  },
 				  timeToCall);
@@ -738,22 +738,22 @@ jQuery(document).ready(function() {
 		
             resizer: function() {
                 
-                var oldStar				= this.star;
-                var initW				= this.context.canvas.width;
-                var initH				= this.context.canvas.height;
+                let oldStar				= this.star;
+                let initW				= this.context.canvas.width;
+                let initH				= this.context.canvas.height;
 
                 this.w					= this.$el.width();
                 this.h					= this.$el.height();
                 this.x					= Math.round(this.w / 2);
                 this.y					= Math.round(this.h / 2);
                 
-                var ratX 				= this.w / initW;
-                var ratY				= this.h / initH;
+                let ratX 				= this.w / initW;
+                let ratY				= this.h / initH;
 
                 this.context.canvas.width	= this.w;
                 this.context.canvas.height	= this.h;
                 
-                for(var i = 0; i < this.n; i++) {
+                for(let i = 0; i < this.n; i++) {
                     
                     this.star[i][0]	= oldStar[i][0] * ratX;
                     this.star[i][1]	= oldStar[i][1] * ratY;
@@ -772,7 +772,7 @@ jQuery(document).ready(function() {
                 
 			  this.settings = $.extend({}, this.defaults, this.options);
                 
-			  var url = document.location.href;
+			  let url = document.location.href;
 			  this.n = parseInt(
                   
 				(url.indexOf('n=') != -1) ? url.substring(url.indexOf('n=') + 2, (
@@ -819,7 +819,7 @@ jQuery(document).ready(function() {
 			  this.orientationSupport = window.DeviceOrientationEvent !== undefined;
 			  this.portrait = null;
                 
-			  var canvasInit = function() {
+			  let canvasInit = function() {
 				that.w = that.$el.width();
 				that.h = that.$el.height();
 		
@@ -845,7 +845,7 @@ jQuery(document).ready(function() {
 			  }
 			  canvasInit();
                 
-			  var starInit = function() {
+			  let starInit = function() {
                   
 				if (canCanvas) { 
                     
@@ -856,7 +856,7 @@ jQuery(document).ready(function() {
 				  that.cursor_x = that.x;
 				  that.cursor_y = that.y;
                     
-				  for (var i = 0; i < that.n; i++) {
+				  for (let i = 0; i < that.n; i++) {
                       
 					that.star[i] = new Array(5);
 		
@@ -885,7 +885,7 @@ jQuery(document).ready(function() {
 			  this.mouse_y = this.cursor_y - this.y;
 			  this.context.fillRect(0, 0, this.w, this.h);
 		
-			  for (var i = 0; i < this.n; i++) {
+			  for (let i = 0; i < this.n; i++) {
 				this.test = true;
 				this.star_x_save = this.star[i][3];
 				this.star_y_save = this.star[i][4];
@@ -960,7 +960,7 @@ jQuery(document).ready(function() {
 		
 			move: function() {
                 
-			  var doc = document.documentElement;
+			  let doc = document.documentElement;
 		
 			  if (this.orientationSupport && !this.desktop) {
 				window.addEventListener('deviceorientation', handleOrientation, false);
@@ -973,7 +973,7 @@ jQuery(document).ready(function() {
                   
 				if (event.beta !== null && event.gamma !== null) {
                     
-				  var x = event.gamma,
+				  let x = event.gamma,
 					y = event.beta;
 		
 				  if (!that.portrait) {
@@ -1055,7 +1055,7 @@ jQuery(document).ready(function() {
 		$(".hero .bg-pattern").remove();
 		$(".hero .bg-overlay").remove();
 		
-		var bgInterval = setInterval(function(){
+		let bgInterval = setInterval(function(){
 			
 			if( $(".hero .level-1 #canvas").offset().top <= 0 ) {
 				
@@ -1068,7 +1068,7 @@ jQuery(document).ready(function() {
 			
 		}, 50);
 		
-		var MESH = {
+		let MESH = {
 			width: option_hero_background_width / 100,
 			height: 1.8,
 			depth: 60,
@@ -1082,7 +1082,7 @@ jQuery(document).ready(function() {
 			speed: option_hero_background_move_speed / 10000
 		};
 		
-		var LIGHT = {
+		let LIGHT = {
 			count: 2,
 			xyScalar: 1,
 			zOffset: 100,
@@ -1105,18 +1105,18 @@ jQuery(document).ready(function() {
 			)
 		};
 		
-		var RENDER = {
+		let RENDER = {
 			renderer: 'canvas'
 		};
 		
-		var now, start = Date.now();
-		var center = FSS.Vector3.create();
-		var attractor = FSS.Vector3.create();
-		var container = document.getElementById('canvas');
-		var output = document.getElementById('canvas');
-		var renderer, scene, mesh, geometry, material;
-		var canvasRenderer;
-		var gui, autopilotController;
+		let now, start = Date.now();
+		let center = FSS.Vector3.create();
+		let attractor = FSS.Vector3.create();
+		let container = document.getElementById('canvas');
+		let output = document.getElementById('canvas');
+		let renderer, scene, mesh, geometry, material;
+		let canvasRenderer;
+		let gui, autopilotController;
 		
 		function initialise() {
             
@@ -1164,7 +1164,7 @@ jQuery(document).ready(function() {
 			scene.add(mesh);
 
 			// Augment vertices for animation
-			var v, vertex;
+			let v, vertex;
 			for (v = geometry.vertices.length - 1; v >= 0; v--) {
 				
 				vertex = geometry.vertices[v];
@@ -1182,7 +1182,7 @@ jQuery(document).ready(function() {
 
 		function createLights() {
 			
-			var l, light;
+			let l, light;
 			for (l = scene.lights.length - 1; l >= 0; l--) {
                 
 				light = scene.lights[l];
@@ -1240,7 +1240,7 @@ jQuery(document).ready(function() {
 
 		function update() {
 			
-			var ox, oy, oz, l, light, v, vertex, offset = MESH.depth/2;
+			let ox, oy, oz, l, light, v, vertex, offset = MESH.depth/2;
 
 			// Update Bounds
 			FSS.Vector3.copy(LIGHT.bounds, center);
@@ -1268,8 +1268,8 @@ jQuery(document).ready(function() {
 			  FSS.Vector3.setZ(light.position, LIGHT.zOffset);
 
 			  // Calculate the force Luke!
-			  var D = Math.clamp(FSS.Vector3.distanceSquared(light.position, attractor), LIGHT.minDistance, LIGHT.maxDistance);
-			  var F = LIGHT.gravity * light.mass / D;
+			  let D = Math.clamp(FSS.Vector3.distanceSquared(light.position, attractor), LIGHT.minDistance, LIGHT.maxDistance);
+			  let F = LIGHT.gravity * light.mass / D;
 			  FSS.Vector3.subtractVectors(light.force, attractor, light.position);
 			  FSS.Vector3.normalise(light.force);
 			  FSS.Vector3.multiplyScalar(light.force, F);
@@ -1310,7 +1310,7 @@ jQuery(document).ready(function() {
 			// Draw Lights
 			if (LIGHT.draw) {
 
-			  var l, lx, ly, light;
+			  let l, lx, ly, light;
 			  for (l = scene.lights.length - 1; l >= 0; l--) {
 				  
 				light = scene.lights[l];
@@ -1350,8 +1350,8 @@ jQuery(document).ready(function() {
 
 		if (canvas.getContext) {
 			
-			var ctx = canvas.getContext('2d');
-			var left = true;
+			let ctx = canvas.getContext('2d');
+			let left = true;
 
 			canvas.height = screen.height - 60;
 			canvas.width = screen.width + 20;
@@ -1359,9 +1359,9 @@ jQuery(document).ready(function() {
 			initialize();
 			initialize();
 
-			var timer = setInterval(function () {
+			let timer = setInterval(function () {
 
-				for (var i = 1; i <= 1000; i++) {
+				for (let i = 1; i <= 1000; i++) {
 					
 					ctx.beginPath();
 					if (left) {
@@ -1513,7 +1513,7 @@ jQuery(document).ready(function() {
 	if ( option_hero_parallax_hover_effect == "on") {
 		
 		// PARALLAX HOVER EFFECT
-		var $scene = $(".hero").parallax({
+		let $scene = $(".hero").parallax({
 		
 			scalarX: 24,
 			scalarY: 15,
@@ -1542,18 +1542,18 @@ jQuery(document).ready(function() {
     // 3D HOVER EFFECT
 	if ( option_hero_3d_hover_effect == "on") { 
 	
-		var dimenson = $(".3d-hover");
-		var level = 8;
+		let dimenson = $(".3d-hover");
+		let level = 8;
 		
 		$(".hero").on("mousemove",function(e) { 
 		
-			var inheight = $(window).innerWidth();
-			var inwidth = $(window).innerHeight();
+			let inheight = $(window).innerWidth();
+			let inwidth = $(window).innerHeight();
 			
-			var force = inheight/level;
+			let force = inheight/level;
 			
-			var ax = -(inheight/2- e.pageX)/force;
-			var ay = -(inwidth/2- e.pageY)/force*0;
+			let ax = -(inheight/2- e.pageX)/force;
+			let ay = -(inwidth/2- e.pageY)/force*0;
 			
 			dimenson.attr("style", "transform: rotateY("+ax+"deg) rotateX("+ay+"deg);-webkit-transform: rotateY("+ax+"deg) rotateX("+ay+"deg);-moz-transform: rotateY("+ax+"deg) rotateX("+ay+"deg)");
 		
@@ -1567,7 +1567,7 @@ jQuery(document).ready(function() {
 			
 			function Constellation (canvas, options) {
 				
-				var screenpointSplitt = 14000,
+				let screenpointSplitt = 14000,
 					movingSpeed = 0.2,
 					viewportWidth = $(".hero .level-1").width(),
 					viewportHeight = $(".hero .level-1").height(),
@@ -1613,10 +1613,10 @@ jQuery(document).ready(function() {
 		
 					animate: function(){
 						
-						var i;
+						let i;
 						for (i = 0; i < config.length; i++) {
 		
-							var star = config.stars[i];
+							let star = config.stars[i];
 		
 							if (star.y < 0 || star.y > canvas.height) {
 								
@@ -1638,7 +1638,7 @@ jQuery(document).ready(function() {
 		
 					line: function(){
 						
-						var length = config.length,
+						let length = config.length,
 							iStar,
 							jStar,
 							i,
@@ -1688,7 +1688,7 @@ jQuery(document).ready(function() {
 	
 				this.createStars = function () {
 					
-					var length = config.length,
+					let length = config.length,
 						star,
 						i;
 					
@@ -1767,7 +1767,7 @@ jQuery(document).ready(function() {
 				
 				return this.each(function () {
 					
-					var c = new Constellation(this, options);
+					let c = new Constellation(this, options);
 					c.init();
 					
 				});
@@ -1779,9 +1779,9 @@ jQuery(document).ready(function() {
 		
 	  
 		
-		var waitForFinalEvent = (function () {
+		let waitForFinalEvent = (function () {
 			
-		  var timers = {};
+		  let timers = {};
 		  
 		  return function (callback, ms, uniqueId) {
 			  
@@ -1817,9 +1817,9 @@ jQuery(document).ready(function() {
 /**	4. CYCLE
  *****************************************************/
 	
-	// VARIBABLES
-	var cycleDuration = 800;
-	var cycleDelay = 6000;
+	// letIBABLES
+	let cycleDuration = 800;
+	let cycleDelay = 6000;
 	
 	
 	

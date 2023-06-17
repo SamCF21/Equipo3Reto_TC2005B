@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodID: 1
-  FoodManager: {fileID: 0}
+  FoodManager: {fileID: 1484100842}
   nat: 0
   arepa: {fileID: 1420970020946257270, guid: 21f60e19d0bc4401a87d8b4771e29829, type: 3}
   taco: {fileID: 1420970020946257270, guid: 4e8b30a120749134aa6c15538eac890b, type: 3}
@@ -337,9 +337,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1484100842}
         m_TargetAssemblyTypeName: FoodManager, Assembly-CSharp
-        m_MethodName: FoodBuy
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2809,7 +2809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ccfa2dc8ec83544e866dc943cbd0901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreEscena: 
+  nombreEscena: LoosingScene
   maxhealth: 10
   speed: 2
   attack: 1
@@ -5302,7 +5302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0fea931129b80438d27ca638fcdf33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToActivate: {fileID: 0}
+  objectToActivate: {fileID: 925296499}
   isColliding: 0
 --- !u!1 &997736335
 GameObject:
@@ -6471,7 +6471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodID: 2
-  FoodManager: {fileID: 0}
+  FoodManager: {fileID: 1484100842}
   nat: 0
   arepa: {fileID: 6084878585429790978, guid: 7c6a4c9af6514405fa716fad35fa6e3a, type: 3}
   taco: {fileID: 6084878585429790978, guid: ad2ffed2885c60c4cbb1e4e15216f459, type: 3}
@@ -7836,8 +7836,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalFood: 0
   totalDeath: 0
-  totalText: {fileID: 0}
-  deathFood: {fileID: 0}
+  totalText: {fileID: 508526146}
+  deathFood: {fileID: 1443051005}
 --- !u!1 &1484207093
 GameObject:
   m_ObjectHideFlags: 0
@@ -9392,7 +9392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodID: 3
-  FoodManager: {fileID: 0}
+  FoodManager: {fileID: 1484100842}
   nat: 0
   arepa: {fileID: 2359791312340219567, guid: 894e92540fc0b694f9ef10afdef0243d, type: 3}
   taco: {fileID: 2359791312340219567, guid: d6a385d89eb36ef419e9a62a9cf31781, type: 3}
@@ -10763,7 +10763,7 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   winningScore: 4500
   lvlPlayed: 3
-  nombreEscena: WinningScreen
+  nombreEscena: Credits
 --- !u!114 &2078644201
 MonoBehaviour:
   m_ObjectHideFlags: 0

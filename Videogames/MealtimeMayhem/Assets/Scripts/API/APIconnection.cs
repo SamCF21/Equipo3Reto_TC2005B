@@ -121,6 +121,12 @@ public class APIconnection : MonoBehaviour
     [SerializeField] string AllyEP = "/unity/ally";
     [SerializeField] string FoodtruckEP = "/unity/foodtruck";
     [SerializeField] string LevelScoreEP = "/unity/levelscore";
+    [SerializeField] string SessionInsEP = "/unity/update/session";
+    [SerializeField] string PersonalizationInsEP = "/unity/update/personalization";
+    [SerializeField] string SkilltreeInsEP = "/unity/update/skilltree";
+    [SerializeField] string AllyInsEP = "/unity/update/ally";
+    [SerializeField] string FoodtruckInsEP = "/unity/update/foodtruck";
+    [SerializeField] string LevelScoreInsEP = "/unity/update/levelscore";
     [SerializeField] string LastIDEP= "/unity/signup/last";
     [SerializeField] Text errorText;
 
@@ -151,8 +157,28 @@ public class APIconnection : MonoBehaviour
         StartCoroutine(AddUser());
     }
 
-    public void Insert(){
+    public void UpdatePersonalization(){
+        StartCoroutine(InsertPersonalization());
+    }
+
+    public void UpdateSkilltree(){
+        StartCoroutine(InsertSkilltree());
+    }
+
+    public void UpdateAlly(){
         StartCoroutine(InsertAlly());
+    }
+
+    public void UpdateFoodtruck(){
+        StartCoroutine(InsertFoodtruck());
+    }
+
+    public void UpdateLevelScore(){
+        StartCoroutine(InsertLevelScore());
+    }
+
+    public void UpdateSession(){
+        StartCoroutine(InsertSession());
     }
 
     private IEnumerator GetUserID(){
@@ -180,7 +206,7 @@ public class APIconnection : MonoBehaviour
                 }
                 
             }else{
-                Debug.Log("unos pedillos");
+                Debug.Log("Error de conexion");
             }
         }
     }
@@ -198,6 +224,7 @@ public class APIconnection : MonoBehaviour
                 string jsonString = "{ \"sessions\": " + www.downloadHandler.text + "}";
                 allSessions = JsonUtility.FromJson<SessionList>(jsonString);
                 Session session = allSessions.sessions[0];
+                varMaster.sesionID = session.sso_id;
                 varMaster.personID = session.person_id;
                 StartCoroutine(GetPersonalization(varMaster.personID));
                 varMaster.treeID = session.tree_id;
@@ -538,11 +565,11 @@ public class APIconnection : MonoBehaviour
         pChef.skincolor = varMaster.codeHead;
         pChef.nationality = varMaster.nat;
         string jsonData = JsonUtility.ToJson(pChef);
-        string EP = $"{PersonalizationEP}/{varMaster.personID}";
+        string EP = $"{PersonalizationInsEP}/{varMaster.personID}";
 
         using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
         {
-            www.method = "PUT";
+            www.method = "POST";
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
 
@@ -564,11 +591,11 @@ public class APIconnection : MonoBehaviour
         skill.speed = (int)varMaster.chefSpeedLvl;
         skill.life = (int)varMaster.chefHealthLvl;
         string jsonData = JsonUtility.ToJson(skill);
-        string EP = $"{SkilltreeEP}/{varMaster.treeID}";
+        string EP = $"{SkilltreeInsEP}/{varMaster.treeID}";
 
         using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
         {
-            www.method = "PUT";
+            www.method = "POST";
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
 
@@ -588,11 +615,11 @@ public class APIconnection : MonoBehaviour
         ally.speed = (int)varMaster.allySpeedLvl;
         ally.life = (int)varMaster.allyHealthLvl;
         string jsonData = JsonUtility.ToJson(ally);
-        string EP = $"{AllyEP}/{varMaster.allyID}";
+        string EP = $"{AllyInsEP}/{varMaster.allyID}";
 
         using (UnityWebRequest www = UnityWebRequest.Post(EP, jsonData))
         {
-            www.method = "PUT";
+            www.method = "POST";
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
 
@@ -614,11 +641,11 @@ public class APIconnection : MonoBehaviour
         Foodtruck foodtruck = new Foodtruck();
         foodtruck.life = varMaster.cartLvl;
         string jsonData = JsonUtility.ToJson(foodtruck);
-        string EP = $"{FoodtruckEP}/{varMaster.truckID}";
+        string EP = $"{FoodtruckInsEP}/{varMaster.truckID}";
 
         using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
         {
-            www.method = "PUT";
+            www.method = "POST";
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
 
@@ -638,11 +665,11 @@ public class APIconnection : MonoBehaviour
         levelscore.level2 = varMaster.lvlTwo;
         levelscore.level3 = varMaster.lvlThree;
         string jsonData = JsonUtility.ToJson(levelscore);
-        string EP = $"{LevelScoreEP}/{varMaster.scoreID}";
+        string EP = $"{LevelScoreInsEP}/{varMaster.scoreID}";
 
         using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
         {
-            www.method = "PUT";
+            www.method = "POST";
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
 
@@ -655,14 +682,14 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-    IEnumerator insertSession(){
+    IEnumerator InsertSession(){
         Session session = new Session();
         session.user_id = varMaster.userID;
         session.lastcheck = varMaster.sesionID;
         session.skillpoints = varMaster.skillPoints;
         session.points = varMaster.totalScore;
         string jsonData = JsonUtility.ToJson(session);
-        string EP = $"{SessionEP}/{varMaster.sesionID}";
+        string EP = $"{SessionInsEP}/{varMaster.sesionID}";
 
         using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
         {
@@ -692,6 +719,7 @@ public class APIconnection : MonoBehaviour
                     string jsonString = "{ \"personalizations\": " + www.downloadHandler.text + "}";
                     allPersonalizations = JsonUtility.FromJson<PersonalizationList>(jsonString);
                     Personalization personalization = allPersonalizations.personalizations[0];
+                    varMaster.sesionID = personalization.person_id;
                     varMaster.personID = personalization.person_id;
                     varMaster.treeID = personalization.person_id;
                     varMaster.allyID = personalization.person_id;

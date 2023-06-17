@@ -19,7 +19,27 @@ public class ButtonActions : MonoBehaviour
         api.SignUp();
     }
 
-    public void TestUpdate(){
-        api.Insert();
+    public void InsPers(){
+        api.UpdatePersonalization();
+    }
+
+    public void InsSkilltree(){
+        api.UpdateSkilltree();
+    }
+
+    public void InsAlly(){
+        api.UpdateAlly();
+    }
+
+    public void InsFoodtruck(){
+        api.UpdateFoodtruck();
+    }
+
+    public void InsLevelScore(){
+        api.UpdateLevelScore();
+    }
+
+    public void InsSession(){
+        api.UpdateSession();
     }
 }

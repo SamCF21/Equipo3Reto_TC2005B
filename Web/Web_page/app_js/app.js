@@ -150,39 +150,7 @@ app.post('/api/users/login', async (request, response) => {
       }
     }
   });
-  //BORRAR
-  app.get('/api/levels', async(request, response)=>{
-    
-    let connection = null;
-    
-
-    try{
-
-        connection = await connectToDB();
-
-        const [results] = await connection.query('select * from level where completion_rate is not null order by completion_rate desc limit 5')
-        //LEADERBOARD DE NIVELES
-        //TOP 5 EN RELACIÓN A COMPLETION_RATE
-            
-            console.log("Sending data correctly.")
-            response.status(200)
-            response.json(results)
-        }
-
-        
-    
-    catch(error)
-    {
-        console.log(error)
-        response.status(500)
-        response.json(error)
-        console.log(error)
-    }
-    finally
-    {
-        connection.end()
-    }
-}) 
+  
 app.get('/unity', (request,response)=>{
     fs.readFile('./public/Build_file_Final/index.html', 'utf8', (err, html)=>{
         if(err) response.status(500).send('There was an error: ' + err)
@@ -361,97 +329,6 @@ app.get('/api/SKTRUP', async(request, response)=>{
     }
 }) 
 
-//ENDPOINTS PARA HACER POSTS EN LAS TABLAS (tipo como el endponit para el login)
-// POST PARA PERSON_CHEF
-app.post('/api/person_chef', async (request, response)=>{ // se usa post porque se quiere insertar algo
-
-    let connection = null
-
-    try
-    {    
-        connection = await connectToDB()
-
-        const [results, fields] = await connection.query('insert into Person_Chef set ?', request.body)
-        //request.body es un objeto que contiene los datos que se quieren insertar
-        
-        console.log(`${results.affectedRows} row inserted`)
-        response.json({'message': "Data inserted correctly.", "id": results.insertId})// este mensaje se cambia de acuerdo a lo que se haya agregado en la tabla
-    }
-    catch(error)
-    {
-        response.status(500)
-        response.json(error)
-        console.log(error)
-    }
-    finally
-    {
-        if(connection!==null) 
-        {
-            connection.end()
-            console.log("Connection closed succesfully!")
-        }
-    }
-})
-//POST PARA CHECKPOINTS
-app.post('/api/checkpoints', async (request, response)=>{ // se usa post porque se quiere insertar algo
-
-    let connection = null
-
-    try
-    {    
-        connection = await connectToDB()
-
-        const [results, fields] = await connection.query('insert into Checkpoints set ?', request.body)
-        //request.body es un objeto que contiene los datos que se quieren insertar
-        
-        console.log(`${results.affectedRows} row inserted`)
-        response.json({'message': "Data inserted correctly.", "id": results.insertId})// este mensaje se cambia de acuerdo a lo que se haya agregado en la tabla
-    }
-    catch(error)
-    {
-        response.status(500)
-        response.json(error)
-        console.log(error)
-    }
-    finally
-    {
-        if(connection!==null) 
-        {
-            connection.end()
-            console.log("Connection closed succesfully!")
-        }
-    }
-})
-//POST PARA SESION
-app.post('/api/sesion', async (request, response)=>{ // se usa post porque se quiere insertar algo
-
-    let connection = null
-
-    try
-    {    
-        connection = await connectToDB()
-
-        const [results, fields] = await connection.query('insert into Sesion set ?', request.body)
-        //request.body es un objeto que contiene los datos que se quieren insertar
-        
-        console.log(`${results.affectedRows} row inserted`)
-        response.json({'message': "Data inserted correctly.", "id": results.insertId})// este mensaje se cambia de acuerdo a lo que se haya agregado en la tabla
-    }
-    catch(error)
-    {
-        response.status(500)
-        response.json(error)
-        console.log(error)
-    }
-    finally
-    {
-        if(connection!==null) 
-        {
-            connection.end()
-            console.log("Connection closed succesfully!")
-        }
-    }
-})
 //siempre borrar con where, si no borra toda la tabla
 app.listen(port, ()=>
 {
@@ -462,7 +339,7 @@ app.listen(port, ()=>
 // -------------------------------- Unity endpoints ----------------------------------------
 // -----------------------------------------------------------------------------------------
 
-app.get('/unity/login', async (request, response)=>{ //definir un endpoint
+app.get('/unity/users', async (request, response)=>{ //definir un endpoint
     let connection = null
     //se hace la conexion y un query y después cierra la conexion
 
@@ -494,7 +371,7 @@ app.get('/unity/login', async (request, response)=>{ //definir un endpoint
     }
 })
 
-app.post('/unity/login', async (request, response)=>{ // se usa post porque se quiere insertar algo
+app.post('/unity/signup', async (request, response)=>{ // se usa post porque se quiere insertar algo
 
     let connection = null
 
@@ -523,7 +400,7 @@ app.post('/unity/login', async (request, response)=>{ // se usa post porque se q
         }
     }
 })
-app.get('/unity/personalizations', async (request, response)=>{ //definir un endpoint
+app.get('/unity/personalization', async (request, response)=>{ //definir un endpoint
     let connection = null
     //se hace la conexion y un query y después cierra la conexion
 
@@ -555,7 +432,7 @@ app.get('/unity/personalizations', async (request, response)=>{ //definir un end
     }
 })
 
-app.post('/unity/personalizations', async (request, response)=>{ // se usa post porque se quiere insertar algo
+app.post('/unity/personalization', async (request, response)=>{ // se usa post porque se quiere insertar algo
 
     let connection = null
 
@@ -585,7 +462,7 @@ app.post('/unity/personalizations', async (request, response)=>{ // se usa post 
     }
 })
 
-app.get('/unity/sesion', async (request, response)=>{ //definir un endpoint
+app.get('/unity/session', async (request, response)=>{ //definir un endpoint
     let connection = null
     //se hace la conexion y un query y después cierra la conexion
 
@@ -617,7 +494,7 @@ app.get('/unity/sesion', async (request, response)=>{ //definir un endpoint
     }
 })
 
-app.post('/unity/sesion', async (request, response)=>{ // se usa post porque se quiere insertar algo
+app.post('/unity/session', async (request, response)=>{ // se usa post porque se quiere insertar algo
 
     let connection = null
 
@@ -625,7 +502,7 @@ app.post('/unity/sesion', async (request, response)=>{ // se usa post porque se 
     {    
         connection = await connectToDB()
 
-        //const [results, fields] = await connection.query('insert into Sesion (user_id) VALUES (?)', [request.body.user_id]);
+        //const [results, fields] = await connection.query('insert into Session (user_id) VALUES (?)', [request.body.user_id]);
         const [results, fields] = await connection.query('insert into Session set ?', request.body)
         //request.body es un objeto que contiene los datos que se quieren insertar
         
@@ -649,7 +526,7 @@ app.post('/unity/sesion', async (request, response)=>{ // se usa post porque se 
 })
 
 // Método GET para obtener los datos de Skilltree
-app.get('/unity/skill/:tree_id', async (request, response) => {
+app.get('/unity/skilltree/:tree_id', async (request, response) => {
     let connection = null;
   
     try {
@@ -670,7 +547,7 @@ app.get('/unity/skill/:tree_id', async (request, response) => {
   });
   
   // Método POST para insertar o actualizar datos en Skilltree
-  app.post('/unity/skill', async (request, response) => {
+  app.post('/unity/insert/skilltree', async (request, response) => {
     let connection = null;
   
     try {
@@ -729,49 +606,6 @@ app.get('/unity/session/:id', async (request, response) => {
   });
 
 // Método POST para insertar o actualizar datos en Session
-app.post('/unity/session', async (request, response) => {
-    let connection = null;
-  
-    try {
-      connection = await connectToDB();
-      const [results, fields] = await connection.query('SELECT * FROM Session WHERE sso_id = ?', [request.body.sso_id]);
-      console.log(`${results.length} rows returned`);
-  
-      if (results.length > 0) {
-        const session = results[0];
-        const dataToInsert = [
-          session.sso_id,
-          request.body.user_id || session.user_id,
-          request.body.lastcheck || session.lastcheck,
-          request.body.skillpoints || session.skillpoints,
-          request.body.points || session.points,
-          request.body.person_id || session.person_id,
-          request.body.tree_id || session.tree_id,
-          request.body.ally_id || session.ally_id,
-          request.body.truck_id || session.truck_id,
-          request.body.score_id || session.score_id
-        ];
-  
-        if (dataToInsert.some(field => field !== null && field !== '')) {
-          await connection.query('REPLACE INTO Session (sso_id, user_id, lastcheck, skillpoints, points, person_id, tree_id, ally_id, truck_id, score_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', dataToInsert);
-          console.log('Data inserted successfully!');
-        } else {
-          console.log('Data is empty. Skipping insertion.');
-        }
-      }
-  
-      response.json({ 'message': 'Data inserted correctly.', 'id': results.insertId });
-    } catch (error) {
-      response.status(500);
-      response.json(error);
-      console.log(error);
-    } finally {
-      if (connection !== null) {
-        connection.end();
-        console.log('Connection closed successfully!');
-      }
-    }
-  });
 
   app.get('/unity/personalization/:id', async (request, response) => {
     let connection = null;
@@ -792,38 +626,24 @@ app.post('/unity/session', async (request, response) => {
     }
   });
   
-  app.post("/unity/logincheck", async (request, response) => {
-    const credentials = request.body;
-    const { username, password } = credentials;
+  app.get('/unity/login/:username', async (request, response) => {
     let connection = null;
+  
     try {
-        connection = await connectToDB();
-        const [results, fields] = await connection.query("select * from User where username = ? and password = ?", [username, password]);
-        console.log(results);
-        
-        const validUser = results && results.length > 0 ? results[0] : null;
-
-        if (validUser) {
-        response.status(200).json(validUser);
-        } else {
-        response.status(400).send("Invalid credentials");
-        }
-
-    } 
-    catch (error) 
-    {
-        response.status(500)
-        response.json(error)
-        console.log(error)
-    } 
-    finally 
-    {
-        if (connection!==null) 
-        {
-            connection.end();
-            console.log("Connection closed succesfully!");
-     }
-}
+      connection = await connectToDB();
+      const [results, fields] = await connection.query('SELECT * FROM User WHERE username = ?', [request.params.username]);
+      console.log(`${results.length} rows returned`);
+      response.json(results);
+    } catch (error) {
+      response.status(500);
+      response.json(error);
+      console.log(error);
+    } finally {
+      if (connection !== null) {
+        connection.end();
+        console.log('Connection closed successfully!');
+      }
+    }
 });
 
 app.get('/unity/ally/:id', async (request, response) => {
@@ -845,7 +665,7 @@ app.get('/unity/ally/:id', async (request, response) => {
     }
   });
 
-  app.get('/unity/truck/:id', async (request, response) => {
+  app.get('/unity/foodtruck/:id', async (request, response) => {
     let connection = null;
     try {
       connection = await connectToDB();
@@ -864,7 +684,7 @@ app.get('/unity/ally/:id', async (request, response) => {
     }
   });
 
-  app.get('/unity/score/:id', async (request, response) => {
+  app.get('/unity/levelscore/:id', async (request, response) => {
     let connection = null;
     try {
       connection = await connectToDB();
@@ -912,7 +732,7 @@ app.get('/unity/ally/:id', async (request, response) => {
         }
     }
 })
-app.post('/unity/skill', async (request, response)=>{ // se usa post porque se quiere insertar algo
+app.post('/unity/skilltree', async (request, response)=>{ // se usa post porque se quiere insertar algo
 
     let connection = null
 
@@ -970,7 +790,7 @@ app.post('/unity/ally', async (request, response)=>{ // se usa post porque se qu
         }
     }
 })
-app.post('/unity/truck', async (request, response)=>{ // se usa post porque se quiere insertar algo
+app.post('/unity/foodtruck', async (request, response)=>{ // se usa post porque se quiere insertar algo
 
     let connection = null
 
@@ -999,7 +819,7 @@ app.post('/unity/truck', async (request, response)=>{ // se usa post porque se q
         }
     }
 })
-app.post('/unity/score', async (request, response)=>{ // se usa post porque se quiere insertar algo
+app.post('/unity/levelscore', async (request, response)=>{ // se usa post porque se quiere insertar algo
 
     let connection = null
 
@@ -1028,19 +848,22 @@ app.post('/unity/score', async (request, response)=>{ // se usa post porque se q
         }
     }
 })
- app.post('/unity/session', async (request, response)=>{ // se usa post porque se quiere insertar algo
 
+app.get('/unity/signup/last', async (request, response)=>{ //definir un endpoint
     let connection = null
+    //se hace la conexion y un query y después cierra la conexion
 
     try
-    {    
+    {
         connection = await connectToDB()
-
-        const [results, fields] = await connection.query('insert into Session set ?', request.body)
-        //request.body es un objeto que contiene los datos que se quieren insertar
-        
-        console.log(`${results.affectedRows} row inserted`)
-        response.json({'message': "Data inserted correctly.", "id": results.insertId})
+        const [results, fields] = await connection.execute('select * from Personalization order by person_id desc limit 1')
+        //en execute le estamos pidiendo q selecciones toda la tabla de users
+        //sigue siendo una promesa entonces usamos await
+        //results es un array de objetos, cada objeto es un usuario, viene la info por query
+        //fields es un array de objetos, cada objeto es un campo de la tabla
+        console.log(`${results.length} rows returned`)//muestra los resultados en consola
+        response.json(results)
+        //formato json, cuyos atributos serán los nombres de columnas y los valores serán la info de las filas
     }
     catch(error)
     {
@@ -1048,7 +871,7 @@ app.post('/unity/score', async (request, response)=>{ // se usa post porque se q
         response.json(error)
         console.log(error)
     }
-    finally
+    finally //siempre se ejecuta con o sin error, cierra la conexion
     {
         if(connection!==null) 
         {
@@ -1057,4 +880,134 @@ app.post('/unity/score', async (request, response)=>{ // se usa post porque se q
         }
     }
 })
-  
+
+app.put('/unity/update/personalization/:id', async (request, response) => {
+    let connection = null;
+
+    try {
+        connection = await connectToDB();
+
+        const { difficulty, eyecolor, skincolor, nationality } = request.body;
+        const personId = request.params.id;
+
+        const [results, fields] = await connection.query(
+        'UPDATE Personalization SET difficulty=?, eyecolor=?, skincolor=?, nationality=? WHERE person_id=?',
+        [difficulty, eyecolor, skincolor, nationality, personId]
+        );
+
+        console.log(`${results.affectedRows} row(s) updated`);
+        response.json({ message: 'Data updated correctly.' });
+    } catch (error) {
+        response.status(500).json(error);
+        console.log(error);
+    } finally {
+        if (connection !== null) {
+        connection.end();
+        console.log('Connection closed successfully!');
+        }
+    }
+});
+app.put('/unity/update/skilltree/:id', async (request, response) => {
+    let connection = null;
+
+    try {
+        connection = await connectToDB();
+
+        const { path, attack, speed, life } = request.body;
+        const treeId = request.params.id;
+
+        const [results, fields] = await connection.query(
+        'UPDATE Skilltree SET path=?, attack=?, speed=?, life=? WHERE tree_id=?',
+        [path, attack, speed, life, treeId]
+        );
+
+        console.log(`${results.affectedRows} row(s) updated`);
+        response.json({ message: 'Data updated correctly.' });
+    } catch (error) {
+        response.status(500).json(error);
+        console.log(error);
+    } finally {
+        if (connection !== null) {
+        connection.end();
+        console.log('Connection closed successfully!');
+        }
+    }
+});
+app.put('/unity/update/ally/:id', async (request, response) => {
+    let connection = null;
+
+    try {
+        connection = await connectToDB();
+
+        const { attack, speed, life } = request.body;
+        const allyId = request.params.id;
+
+        const [results, fields] = await connection.query(
+        'UPDATE Ally SET attack=?, speed=?, life=? WHERE tree_id=?',
+        [attack, speed, life, allyId]
+        );
+
+        console.log(`${results.affectedRows} row(s) updated`);
+        response.json({ message: 'Data updated correctly.' });
+    } catch (error) {
+        response.status(500).json(error);
+        console.log(error);
+    } finally {
+        if (connection !== null) {
+        connection.end();
+        console.log('Connection closed successfully!');
+        }
+    }
+});
+app.put('/unity/update/foodtruck/:id', async (request, response) => {
+    let connection = null;
+
+    try {
+        connection = await connectToDB();
+
+        const { life } = request.body;
+        const truckId = request.params.id;
+
+        const [results, fields] = await connection.query(
+        'UPDATE Foodtruck SET life=? WHERE truck_id=?',
+        [life, truckId]
+        );
+
+        console.log(`${results.affectedRows} row(s) updated`);
+        response.json({ message: 'Data updated correctly.' });
+    } catch (error) {
+        response.status(500).json(error);
+        console.log(error);
+    } finally {
+        if (connection !== null) {
+        connection.end();
+        console.log('Connection closed successfully!');
+        }
+    }
+});
+app.put('/unity/update/levelscore/:id', async (request, response) => {
+    let connection = null;
+
+    try {
+        connection = await connectToDB();
+
+        const { level1, level2, level3 } = request.body;
+        const scoreId = request.params.id;
+
+        const [results, fields] = await connection.query(
+        'UPDATE LevelScore SET level1=?, level2=?, level3=? WHERE score_id=?',
+        [attack, speed, life, scoreId]
+        );
+
+        console.log(`${results.affectedRows} row(s) updated`);
+        response.json({ message: 'Data updated correctly.' });
+    } catch (error) {
+        response.status(500).json(error);
+        console.log(error);
+    } finally {
+        if (connection !== null) {
+        connection.end();
+        console.log('Connection closed successfully!');
+        }
+    }
+});

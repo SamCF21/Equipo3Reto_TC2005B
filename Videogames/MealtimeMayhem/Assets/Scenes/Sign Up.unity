@@ -293,7 +293,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1443901241}
         m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
-        m_MethodName: PostUsuarios
+        m_MethodName: UserSignUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1231,14 +1231,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url: localhost:5500
-  UserEP: /unity/login
+  LoginEP: /unity/login
+  SignUpEP: /unity/signup
   SessionEP: /unity/session
   PersonalizationEP: /unity/personalization
-  TreeEP: /unity/skill
+  SkilltreeEP: /unity/skilltree
   AllyEP: /unity/ally
-  TruckEP: /unity/truck
-  ScoreEP: /unity/score
+  FoodtruckEP: /unity/foodtruck
+  LevelScoreEP: /unity/levelscore
   errorText: {fileID: 0}
+  allSessions:
+    sessions: []
+  allUsers:
+    users: []
+  allPersonalizations:
+    personalizations: []
+  allSkilltrees:
+    skilltrees: []
+  allAllys:
+    allys: []
+  allFoodtrucks:
+    foodtrucks: []
+  allLevelscores:
+    levelscores: []
 --- !u!4 &924498585
 Transform:
   m_ObjectHideFlags: 0
@@ -2873,6 +2888,78 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2020615721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2020615723}
+  - component: {fileID: 2020615722}
+  m_Layer: 0
+  m_Name: varMaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2020615722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020615721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d23facbcd483ee4f9c1a882c150388a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userID: 0
+  sesionID: 0
+  personID: 0
+  treeID: 0
+  allyID: 0
+  truckID: 0
+  scoreID: 0
+  checkpoint: 0
+  skillPoints: 0
+  totalScore: 0
+  difficulty: 2
+  codeEye: 0
+  codeHead: 0
+  nat: 0
+  path: 0
+  chefAttackLvl: 0
+  chefSpeedLvl: 0
+  chefHealthLvl: 0
+  allyAttackLvl: 0
+  allySpeedLvl: 0
+  allyHealthLvl: 0
+  cartLvl: 0
+  tutorial: 0
+  lvlOne: 0
+  lvlTwo: 0
+  lvlThree: 0
+  eyeColor: {r: 0, g: 0, b: 0, a: 0}
+  headColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!4 &2020615723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020615721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1740.7231, y: 1114.7332, z: -13.268078}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2048354176
 GameObject:
   m_ObjectHideFlags: 0

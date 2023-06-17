@@ -599,7 +599,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599315880}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b716b22df3f41c4997118691844c859, type: 3}
   m_Name: 
@@ -1043,13 +1043,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url: localhost:5500
-  UserEP: /unity/login
+  LoginEP: /unity/login
+  SignUpEP: /unity/signup
   SessionEP: /unity/session
   PersonalizationEP: /unity/personalization
-  SkilltreeEP: 
+  SkilltreeEP: /unity/skilltree
+  AllyEP: /unity/ally
+  FoodtruckEP: /unity/foodtruck
+  LevelScoreEP: /unity/levelscore
   errorText: {fileID: 0}
   allSessions:
     sessions: []
+  allUsers:
+    users: []
+  allPersonalizations:
+    personalizations: []
+  allSkilltrees:
+    skilltrees: []
+  allAllys:
+    allys: []
+  allFoodtrucks:
+    foodtrucks: []
+  allLevelscores:
+    levelscores: []
 --- !u!4 &915043564
 Transform:
   m_ObjectHideFlags: 0
@@ -1233,7 +1249,6 @@ GameObject:
   - component: {fileID: 1161662313}
   - component: {fileID: 1161662312}
   - component: {fileID: 1161662311}
-  - component: {fileID: 1161662314}
   m_Layer: 5
   m_Name: Login
   m_TagString: Untagged
@@ -1308,7 +1323,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 332709048}
         m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
-        m_MethodName: Login
+        m_MethodName: UserLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1356,19 +1371,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161662308}
   m_CullTransparentMesh: 1
---- !u!114 &1161662314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1161662308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b46b2fc5134c074383a1e965db0d06e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombreEscena: CustomChef
 --- !u!1 &1179397785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,7 +1994,7 @@ MonoBehaviour:
   difficulty: 2
   codeEye: 0
   codeHead: 0
-  nat: 1
+  nat: 0
   path: 0
   chefAttackLvl: 0
   chefSpeedLvl: 0

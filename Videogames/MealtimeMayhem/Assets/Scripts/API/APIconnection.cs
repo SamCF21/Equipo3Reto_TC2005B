@@ -65,19 +65,63 @@ public class Foodtruck
 }
 
 [System.Serializable]
+public class LevelScore
+{
+    public int score_id;
+    public int level1;
+    public int level2;
+    public int level3;
+}
+
+[System.Serializable]
+public class UserList{
+    public List<User> users;
+}
+
+[System.Serializable]
 public class SessionList{
     public List<Session> sessions;
+}
+
+[System.Serializable]
+public class PersonalizationList{
+    public List<Personalization> personalizations;
+}
+
+[System.Serializable]
+public class SkilltreeList{
+    public List<Skilltree> skilltrees;
+}
+
+[System.Serializable]
+public class AllyList{
+    public List<Ally> allys;
+}
+
+[System.Serializable]
+public class FoodtruckList{
+    public List<Foodtruck> foodtrucks;
+}
+
+[System.Serializable]
+public class LevelScoreList{
+    public List<LevelScore> levelscores;
 }
 
 // Class for POST request
 
 public class APIconnection : MonoBehaviour
 {
-    [SerializeField] string url;
-    [SerializeField] string UserEP;
-    [SerializeField] string SessionEP;
-    [SerializeField] string PersonalizationEP;
-    [SerializeField] string SkilltreeEP;
+    [SerializeField] string url = "localhost:5500";
+    [SerializeField] string LoginEP = "/unity/login";
+    [SerializeField] string SignUpEP = "/unity/signup";
+    [SerializeField] string SessionEP = "/unity/session";
+    [SerializeField] string PersonalizationEP = "/unity/personalization";
+    [SerializeField] string SkilltreeEP = "/unity/skilltree";
+    [SerializeField] string AllyEP = "/unity/ally";
+    [SerializeField] string FoodtruckEP = "/unity/foodtruck";
+    [SerializeField] string LevelScoreEP = "/unity/levelscore";
+    [SerializeField] string LastIDEP= "/unity/signup/last";
     [SerializeField] Text errorText;
 
     private VarMaster varMaster;
@@ -85,57 +129,62 @@ public class APIconnection : MonoBehaviour
     private LoginCheck loginCheck;
 
     public SessionList allSessions;
+    public UserList allUsers;
+    public PersonalizationList allPersonalizations;
+    public SkilltreeList allSkilltrees;
+    public AllyList allAllys;
+    public FoodtruckList allFoodtrucks;
+    public LevelScoreList allLevelscores;
 
     void Start(){
         varMaster = GameObject.FindObjectOfType<VarMaster>();
         userCheck = GameObject.FindObjectOfType<UserCheck>();
         loginCheck = GameObject.FindObjectOfType<LoginCheck>();
+        userCheck = GameObject.FindObjectOfType<UserCheck>();
     }
 
-    public void QuerySession()
-    {
-        StartCoroutine(GetSessions());
+    public void Login(){
+        StartCoroutine(GetUserID());
     }
 
-    public void InsertNewUser()
-    {
+    public void SignUp(){
         StartCoroutine(AddUser());
     }
 
-    public void NewSession(){
-        StartCoroutine(AddSession());
+    public void Insert(){
+        StartCoroutine(InsertAlly());
     }
 
-    public void InsertNewPersonalization()
-    {
-        StartCoroutine(AddPersonalization());
-    }
-
-    public void GetSessionData(int sso_id)
-    {
-        StartCoroutine(GetSession(sso_id));
-    }
-
-    ////////////////////////////////////////////////////
-    // These functions make the connection to the API //
-    ////////////////////////////////////////////////////
-
-    IEnumerator GetSessions()
+    private IEnumerator GetUserID(){
+        string endpoint = $"{LoginEP}/{loginCheck.user}";
+        Debug.Log(endpoint);
+        using (UnityWebRequest www = UnityWebRequest.Get(url + endpoint))
         {
-            using (UnityWebRequest www = UnityWebRequest.Get(url + SessionEP))
-            {
-                yield return www.SendWebRequest();
+            yield return www.SendWebRequest();
 
-                if (www.result == UnityWebRequest.Result.Success){
-                    string jsonString = "{ \"sessions\": " + www.downloadHandler.text + "}";
-                    allSessions = JsonUtility.FromJson<SessionList>(jsonString);
-                    if(errorText != null) errorText.text = "";
+            if(www.result == UnityWebRequest.Result.Success)
+            {
+                string json = www.downloadHandler.text;
+                if(json != "[]"){
+                    string jsonString = "{ \"users\": " + www.downloadHandler.text + "}";
+                    allUsers = JsonUtility.FromJson<UserList>(jsonString);
+                    User user = allUsers.users[0];
+                    if(user.password == loginCheck.pass){
+                        varMaster.userID = user.user_id;
+                        StartCoroutine(GetSession(varMaster.userID));
+                    }else{
+                        Debug.Log("Password incorrecto");
+                    }
                 }else{
-                    Debug.Log("Error: " + www.error);
-                    if(errorText != null) errorText.text = "Error: " + www.error;
+                    Debug.Log("Username doesn't exist");
                 }
+                
+            }else{
+                Debug.Log("unos pedillos");
             }
         }
+    }
+
 
     private IEnumerator GetSession(int sso_id)
     {
@@ -146,10 +195,19 @@ public class APIconnection : MonoBehaviour
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                string json = www.downloadHandler.text;
-                Session session = JsonUtility.FromJson<Session>(json);
-                Debug.Log("Session ID: " + session.sso_id);
-                Debug.Log("User ID: " + session.user_id);
+                string jsonString = "{ \"sessions\": " + www.downloadHandler.text + "}";
+                allSessions = JsonUtility.FromJson<SessionList>(jsonString);
+                Session session = allSessions.sessions[0];
+                varMaster.personID = session.person_id;
+                StartCoroutine(GetPersonalization(varMaster.personID));
+                varMaster.treeID = session.tree_id;
+                StartCoroutine(GetSkilltree(varMaster.treeID));
+                varMaster.allyID = session.ally_id;
+                StartCoroutine(GetAlly(varMaster.allyID));
+                varMaster.truckID = session.truck_id;
+                StartCoroutine(GetFoodtruck(varMaster.truckID));
+                varMaster.scoreID = session.score_id;
+                StartCoroutine(GetLevelScore(varMaster.scoreID));
             }
             else
             {
@@ -158,7 +216,123 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-    IEnumerator AddUser(){
+    private IEnumerator GetPersonalization(int person_id)
+    {
+        string endpoint = $"{PersonalizationEP}/{person_id}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url + endpoint))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string jsonString = "{ \"personalizations\": " + www.downloadHandler.text + "}";
+                allPersonalizations = JsonUtility.FromJson<PersonalizationList>(jsonString);
+                Personalization personalization = allPersonalizations.personalizations[0];
+                varMaster.difficulty = personalization.difficulty;
+                varMaster.codeEye = personalization.eyecolor;
+                varMaster.codeHead = personalization.skincolor;
+                varMaster.nat = personalization.nationality;
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+            }
+        }
+    }
+
+    private IEnumerator GetSkilltree(int skill_id)
+    {
+        string endpoint = $"{SkilltreeEP}/{skill_id}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url + endpoint))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string jsonString = "{ \"skilltrees\": " + www.downloadHandler.text + "}";
+                allSkilltrees = JsonUtility.FromJson<SkilltreeList>(jsonString);
+                Skilltree skilltree = allSkilltrees.skilltrees[0];
+                varMaster.path = skilltree.path;
+                varMaster.chefAttackLvl = skilltree.attack;
+                varMaster.chefSpeedLvl = skilltree.speed;
+                varMaster.chefHealthLvl = skilltree.life;
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+            }
+        }
+    }
+
+    private IEnumerator GetAlly(int ally_id)
+    {
+        string endpoint = $"{AllyEP}/{ally_id}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url + endpoint))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string jsonString = "{ \"allys\": " + www.downloadHandler.text + "}";
+                allAllys = JsonUtility.FromJson<AllyList>(jsonString);
+                Ally ally = allAllys.allys[0];
+                varMaster.allyAttackLvl = ally.attack;
+                varMaster.allySpeedLvl = ally.speed;
+                varMaster.allyHealthLvl = ally.life;
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+            }
+        }
+    }
+
+    private IEnumerator GetFoodtruck(int truck_id)
+    {
+        string endpoint = $"{FoodtruckEP}/{truck_id}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url + endpoint))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string jsonString = "{ \"foodtrucks\": " + www.downloadHandler.text + "}";
+                allFoodtrucks = JsonUtility.FromJson<FoodtruckList>(jsonString);
+                Foodtruck foodtruck = allFoodtrucks.foodtrucks[0];
+                varMaster.cartLvl = foodtruck.life;
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+            }
+        }
+    }
+
+    private IEnumerator GetLevelScore(int score_id)
+    {
+        string endpoint = $"{LevelScoreEP}/{score_id}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url + endpoint))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string jsonString = "{ \"levelscores\": " + www.downloadHandler.text + "}";
+                allLevelscores = JsonUtility.FromJson<LevelScoreList>(jsonString);
+                LevelScore levelscore = allLevelscores.levelscores[0];
+                varMaster.lvlOne = levelscore.level1;
+                varMaster.lvlTwo = levelscore.level2;
+                varMaster.lvlThree = levelscore.level3;
+            }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+            }
+        }
+    }
+
+    IEnumerator AddUser()
+    {
         if(userCheck != null){
             if(userCheck.isSendable){
                 User user = new User();
@@ -166,16 +340,14 @@ public class APIconnection : MonoBehaviour
                 user.password = userCheck.pass;
                 user.email = userCheck.mail;
                 string jsonData = JsonUtility.ToJson(user);
-                Debug.Log("BODY: " + jsonData);
-
-                using (UnityWebRequest www = UnityWebRequest.Put(url + UserEP, jsonData))
+                using (UnityWebRequest www = UnityWebRequest.Put(url + SignUpEP, jsonData))
                 {
                     www.method = "POST";
                     www.SetRequestHeader("Content-Type", "application/json");
                     yield return www.SendWebRequest();
 
                     if (www.result == UnityWebRequest.Result.Success) {
-                        Debug.Log("Response: " + www.downloadHandler.text);
+                        StartCoroutine(GetSignUpID());
                         if (errorText != null) errorText.text = "";
                     } else {
                         Debug.Log("Error: " + www.error);
@@ -188,12 +360,154 @@ public class APIconnection : MonoBehaviour
         }
     }
 
+    private IEnumerator GetSignUpID(){
+        string endpoint = $"{LoginEP}/{userCheck.user}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url + endpoint))
+        {
+            yield return www.SendWebRequest();
+
+            if(www.result == UnityWebRequest.Result.Success)
+            {
+                string json = www.downloadHandler.text;
+                if(json != "[]"){
+                    string jsonString = "{ \"users\": " + www.downloadHandler.text + "}";
+                    allUsers = JsonUtility.FromJson<UserList>(jsonString);
+                    User user = allUsers.users[0];
+                    varMaster.userID = user.user_id;
+                    StartCoroutine(AddPersonalization());
+                }else{
+                    Debug.Log("Username doesn't exist");
+                }
+                
+            }else{
+                Debug.Log("El usuario ya existe o correo ya está registrado");
+            }
+        }
+    }
+
+    IEnumerator AddPersonalization()
+    {
+        Personalization pChef = new Personalization();
+        pChef.difficulty = varMaster.difficulty;
+        pChef.eyecolor = varMaster.codeEye;
+        pChef.skincolor = varMaster.codeHead;
+        pChef.nationality = varMaster.nat;
+        string jsonData = JsonUtility.ToJson(pChef);
+
+        using (UnityWebRequest www = UnityWebRequest.Put(url + PersonalizationEP, jsonData))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success) {
+                StartCoroutine(GetCreationID());
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    IEnumerator AddSkilltree()
+    {
+        Skilltree skill = new Skilltree();
+        skill.path = varMaster.path;
+        skill.attack = (int)varMaster.chefAttackLvl;
+        skill.speed = (int)varMaster.chefSpeedLvl;
+        skill.life = (int)varMaster.chefHealthLvl;
+        string jsonData = JsonUtility.ToJson(skill);
+        Debug.Log(jsonData);
+
+        using (UnityWebRequest www = UnityWebRequest.Put(url + SkilltreeEP, jsonData))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success) {
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    IEnumerator AddAlly()
+    {
+        Ally ally = new Ally();
+        ally.attack = (int)varMaster.allyAttackLvl;
+        ally.speed = (int)varMaster.allySpeedLvl;
+        ally.life = (int)varMaster.allyHealthLvl;
+        string jsonData = JsonUtility.ToJson(ally);
+
+        using (UnityWebRequest www = UnityWebRequest.Put(url + AllyEP, jsonData))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success) {
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    IEnumerator AddFoodtruck()
+    {
+        Foodtruck foodtruck = new Foodtruck();
+        foodtruck.life = varMaster.cartLvl;
+        string jsonData = JsonUtility.ToJson(foodtruck);
+
+        using (UnityWebRequest www = UnityWebRequest.Put(url + FoodtruckEP, jsonData))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success) {
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    IEnumerator AddLevelScore()
+    {
+        LevelScore levelscore = new LevelScore();
+        levelscore.level1 = varMaster.lvlOne;
+        levelscore.level2 = varMaster.lvlTwo;
+        levelscore.level3 = varMaster.lvlThree;
+        string jsonData = JsonUtility.ToJson(levelscore);
+
+        using (UnityWebRequest www = UnityWebRequest.Put(url + LevelScoreEP, jsonData))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success) {
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
     IEnumerator AddSession(){
         Session session = new Session();
         session.user_id = varMaster.userID;
-        session.lastcheck = 0;
-        session.skillpoints = 0;
-        session.points = 0;
+        session.lastcheck = varMaster.sesionID;
+        session.skillpoints = varMaster.skillPoints;
+        session.points = varMaster.totalScore;
         session.person_id = varMaster.personID;
         session.tree_id = varMaster.treeID;
         session.ally_id = varMaster.allyID;
@@ -208,7 +522,82 @@ public class APIconnection : MonoBehaviour
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success) {
-                Debug.Log("Response: " + www.downloadHandler.text);
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    IEnumerator InsertPersonalization()
+    {
+        Personalization pChef = new Personalization();
+        pChef.difficulty = varMaster.difficulty;
+        pChef.eyecolor = varMaster.codeEye;
+        pChef.skincolor = varMaster.codeHead;
+        pChef.nationality = varMaster.nat;
+        string jsonData = JsonUtility.ToJson(pChef);
+        string EP = $"{PersonalizationEP}/{varMaster.personID}";
+
+        using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
+        {
+            www.method = "PUT";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success) {
+                StartCoroutine(GetCreationID());
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    IEnumerator InsertSkilltree()
+    {
+        Skilltree skill = new Skilltree();
+        skill.path = varMaster.path;
+        skill.attack = (int)varMaster.chefAttackLvl;
+        skill.speed = (int)varMaster.chefSpeedLvl;
+        skill.life = (int)varMaster.chefHealthLvl;
+        string jsonData = JsonUtility.ToJson(skill);
+        string EP = $"{SkilltreeEP}/{varMaster.treeID}";
+
+        using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
+        {
+            www.method = "PUT";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success) {
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    IEnumerator InsertAlly()
+    {
+        Ally ally = new Ally();
+        ally.attack = (int)varMaster.allyAttackLvl;
+        ally.speed = (int)varMaster.allySpeedLvl;
+        ally.life = (int)varMaster.allyHealthLvl;
+        string jsonData = JsonUtility.ToJson(ally);
+        string EP = $"{AllyEP}/{varMaster.allyID}";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(EP, jsonData))
+        {
+            www.method = "PUT";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
                 if (errorText != null) errorText.text = "";
             }
             else
@@ -219,23 +608,21 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-    IEnumerator AddPersonalization()
-    {
-        Personalization pChef = new Personalization();
-        pChef.difficulty = 2;
-        pChef.eyecolor = varMaster.codeEye;
-        pChef.skincolor = varMaster.codeHead;
-        pChef.nationality = varMaster.nat;
-        string jsonData = JsonUtility.ToJson(pChef);
 
-        using (UnityWebRequest www = UnityWebRequest.Put(url + PersonalizationEP, jsonData))
+    IEnumerator InsertFoodtruck()
+    {
+        Foodtruck foodtruck = new Foodtruck();
+        foodtruck.life = varMaster.cartLvl;
+        string jsonData = JsonUtility.ToJson(foodtruck);
+        string EP = $"{FoodtruckEP}/{varMaster.truckID}";
+
+        using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
         {
-            www.method = "POST";
+            www.method = "PUT";
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success) {
-                Debug.Log("Response: " + www.downloadHandler.text);
                 if (errorText != null) errorText.text = "";
             } else {
                 Debug.Log("Error: " + www.error);
@@ -244,21 +631,84 @@ public class APIconnection : MonoBehaviour
         }
     }
 
-    IEnumerator Login(){
-        yield return new WaitForSeconds(2f);
-        if(loginCheck != null){
-            if(loginCheck.isSendable){
-                //foreach (var users in allUsers.users)
-                //{
-                //    if (users.username == loginCheck.user && users.password == loginCheck.pass)
-                //    {
-                //        varMaster.userID = users.user_id;
-                //    }else{
-                //        Debug.Log("no coincide");
-                //    }
-                }
-            }else{
-                Debug.Log("no es mandable");
+    IEnumerator InsertLevelScore()
+    {
+        LevelScore levelscore = new LevelScore();
+        levelscore.level1 = varMaster.lvlOne;
+        levelscore.level2 = varMaster.lvlTwo;
+        levelscore.level3 = varMaster.lvlThree;
+        string jsonData = JsonUtility.ToJson(levelscore);
+        string EP = $"{LevelScoreEP}/{varMaster.scoreID}";
+
+        using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
+        {
+            www.method = "PUT";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success) {
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
             }
         }
+    }
+
+    IEnumerator insertSession(){
+        Session session = new Session();
+        session.user_id = varMaster.userID;
+        session.lastcheck = varMaster.sesionID;
+        session.skillpoints = varMaster.skillPoints;
+        session.points = varMaster.totalScore;
+        string jsonData = JsonUtility.ToJson(session);
+        string EP = $"{SessionEP}/{varMaster.sesionID}";
+
+        using (UnityWebRequest www = UnityWebRequest.Put(EP, jsonData))
+        {
+            www.method = "POST";
+            www.SetRequestHeader("Content-Type", "application/json");
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success) {
+                if (errorText != null) errorText.text = "";
+            } else {
+                Debug.Log("Error: " + www.error);
+                if (errorText != null) errorText.text = "Error: " + www.error;
+            }
+        }
+    }
+
+    IEnumerator GetCreationID()
+    {
+        using (UnityWebRequest www = UnityWebRequest.Get(url + LastIDEP))
+        {
+            yield return www.SendWebRequest();
+
+            if(www.result == UnityWebRequest.Result.Success)
+            {
+                string json = www.downloadHandler.text;
+                if(json != "[]"){
+                    string jsonString = "{ \"personalizations\": " + www.downloadHandler.text + "}";
+                    allPersonalizations = JsonUtility.FromJson<PersonalizationList>(jsonString);
+                    Personalization personalization = allPersonalizations.personalizations[0];
+                    varMaster.personID = personalization.person_id;
+                    varMaster.treeID = personalization.person_id;
+                    varMaster.allyID = personalization.person_id;
+                    varMaster.truckID = personalization.person_id;
+                    varMaster.scoreID = personalization.person_id;
+                    StartCoroutine(AddSkilltree());
+                    StartCoroutine(AddAlly());
+                    StartCoroutine(AddFoodtruck());
+                    StartCoroutine(AddLevelScore());
+                    StartCoroutine(AddSession());
+                }else{
+                    Debug.Log("Username doesn't exist");
+                }
+                
+            }else{
+                Debug.Log("El usuario ya existe o correo ya está registrado");
+            }
+        }
+    }
 }

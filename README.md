@@ -12,10 +12,10 @@ Mealtime Mayhem is a top down 2D RPG/real time strategy  game where the player t
 
 The player must focus on selecting the best strategy to defeat the enemy hordes of fungi, creating the food companions that will best fulfill the task.
 
-#See our webpage: 
+# See our webpage: 
 https://fer5929.github.io//HTML/index-1.html
 
-#Play the game 
+# Play the game 
 https://simmer.io/@Fer_vie/mealtimemayhem
 
 ## Team
